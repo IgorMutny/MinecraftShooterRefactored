@@ -1,0 +1,13 @@
+using UnityEngine;
+
+[CreateAssetMenu(menuName = "Settings/Character")]
+public class CharacterInfo : ScriptableObject
+{
+    [field: SerializeField] public GameObject Instance { get; private set; }
+    [field: SerializeField] public MovementType MovementType { get; private set; }
+    [field: SerializeField] public float MovementSpeed { get; private set; }
+    [field: SerializeField] public float RotationSpeed { get; private set; }
+    [field: SerializeField] public Vector2 HeadMaxAngles { get; private set; }
+    [field: SerializeField] public WeaponInfo Weapon { get; private set; }
+    [field: SerializeField] public int Health { get; private set; }
+}

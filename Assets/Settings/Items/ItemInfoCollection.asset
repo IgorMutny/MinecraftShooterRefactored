@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78c340444ccf0064f82d75ec96bd5dac, type: 3}
+  m_Name: ItemInfoCollection
+  m_EditorClassIdentifier: 
+  <Weapons>k__BackingField:
+  - {fileID: 11400000, guid: d259fa1bd104d604b9b7105f50fc581f, type: 2}
+  - {fileID: 11400000, guid: cc61136213dd64b489d8bed58b6823f1, type: 2}
+  - {fileID: 11400000, guid: 70a7f8401119b3042befa1801c3367ed, type: 2}
+  - {fileID: 11400000, guid: eb536a9265624d145bc49bb09155b480, type: 2}
+  - {fileID: 11400000, guid: f2fc5818cb70def4fbbe8b73e809a447, type: 2}
+  - {fileID: 11400000, guid: 8d421414f1309604a9bcf7631b2076f9, type: 2}
+  - {fileID: 11400000, guid: a096220d0331db94c874dd2de969f81a, type: 2}
+  <Armors>k__BackingField:
+  - {fileID: 11400000, guid: 61bfe83f584c1094fbe0a5c793f17962, type: 2}
+  - {fileID: 11400000, guid: 3748283a01f653846b40587240ceaecf, type: 2}
+  - {fileID: 11400000, guid: 418c7e4520fc0ac4487af14ceb5a8360, type: 2}
+  - {fileID: 11400000, guid: 885cdfef2d64eee4599486bfbe2f6eca, type: 2}
+  - {fileID: 11400000, guid: 95c05c8f5cb63fb41ad4769cd2097566, type: 2}
+  <Totems>k__BackingField:
+  - {fileID: 11400000, guid: 247582b05fe25c64aae9d2845efc105d, type: 2}

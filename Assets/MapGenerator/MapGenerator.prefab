@@ -1,0 +1,58 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3416393045964327002
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8519089213443375060}
+  - component: {fileID: 1492080430171738341}
+  m_Layer: 0
+  m_Name: MapGenerator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8519089213443375060
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3416393045964327002}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1492080430171738341
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3416393045964327002}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e820257797d25394185ce8816d4d108c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _texture: {fileID: 2800000, guid: 9d233e98de4834347ba2c2522725b2bf, type: 3}
+  _mainBlock: {fileID: 7591457369293476520, guid: 65396b5cf432c3646b6dfca76985d17b, type: 3}
+  _lowerBlock: {fileID: 7591457369293476520, guid: 0ac2c5d3025c2394986e3c5eb895d119, type: 3}
+  _plants:
+  - {fileID: 7591457369293476520, guid: fed1d23dc32a2f44f850e6c4e90ae327, type: 3}
+  - {fileID: 7591457369293476520, guid: efc8de1c82125a94ca75b2b6d3d1abd8, type: 3}
+  - {fileID: 7591457369293476520, guid: 171413f0891f5ac4392bae06b64ecb10, type: 3}
+  _plantChances:
+  - 0.1
+  - 0.02
+  - 0.02
+  _heightMultiplier: 16
