@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class Inventory : IReadOnlyInventory
+public class Inventory
 {
     private Character _character;
 
@@ -83,6 +83,30 @@ public class Inventory : IReadOnlyInventory
         }
     }
 
+    public void OnDied()
+    {
+        if (_weapon != null)
+        {
+            _weapon.Lock();
+            _weapon.Remove(_switchWeaponTime / 2);
+        }
+    }
+
+    public void ChangeWeaponSpeed(float multiplier)
+    {
+        if (_weapon != null)
+        {
+            _weapon.ChangeSpeed(multiplier);
+        }
+    }
+
+    public void ChangeWeaponDamage(float multiplier)
+    {
+        if (_weapon != null)
+        {
+            _weapon.ChangeDamage(multiplier);
+        }
+    }
 
     public void SetInput(bool isAttacking, bool isReloading,
         int numericWeaponIndex, int prevNextWeaponIndex)
@@ -113,6 +137,11 @@ public class Inventory : IReadOnlyInventory
 
     private void TryTakeWeaponByIndex(int index)
     {
+        if (index >= _records.Length)
+        {
+            return;
+        }
+
         if (_records[index].Weapon != null && _currentRecord != index && _isLocked == false)
         {
             TryTakeWeapon(index);
@@ -164,6 +193,10 @@ public class Inventory : IReadOnlyInventory
             RoundsChanged?.Invoke(_records[index].Rounds);
         }
 
+        if (_records[index].Weapon is MeleeInfo melee)
+        {
+            _weapon = new Melee(_character, this, _records[index].Weapon);
+        }
 
         _weapon.Lock();
         _weapon.Raise(_switchWeaponTime);
@@ -203,7 +236,7 @@ public class Inventory : IReadOnlyInventory
         else
         {
             return true;
-        }    
+        }
     }
 
     public void ReloadRounds()

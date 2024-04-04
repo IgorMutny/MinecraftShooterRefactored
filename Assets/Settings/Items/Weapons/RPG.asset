@@ -27,7 +27,8 @@ MonoBehaviour:
   <Position>k__BackingField: {x: 0.7, y: -0.35, z: 0.3}
   <CooldownTime>k__BackingField: 0.25
   <ReloadTime>k__BackingField: 3
-  <Projectile>k__BackingField: {fileID: 1187225692383471338, guid: d1b56fbb61e4a514da25fa0554a45016, type: 3}
+  <ReloadRPGStyle>k__BackingField: 1
+  <Projectile>k__BackingField: {fileID: 1187225692383471338, guid: 7d7aca8f7ffe64d43a2ad8b5bf21aa2f, type: 3}
   <ProjectilesAmount>k__BackingField: 1
   <SpreadAngle>k__BackingField: 0
   <Rounds>k__BackingField: 1

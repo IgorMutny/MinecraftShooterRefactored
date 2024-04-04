@@ -6,7 +6,7 @@ public class Bullet : Projectile
     {
         if (hit.collider.TryGetComponent(out Character character) == true)
         { 
-            character.GetDamage(GetRandomDamage(), DamageType.Physical, Sender);
+            character.Health.GetDamage(GetRandomDamage(), DamageType.Physical, Sender);
 
             if (IsPenetrating == false)
             {
@@ -27,6 +27,7 @@ public class Bullet : Projectile
             Explosion explosion =
                 Instantiate(ExplosionSample, position, Quaternion.identity).GetComponent<Explosion>();
             explosion.SetSender(Sender);
+            explosion.Activate();
         }
 
         ShouldBeDestroyed = true;

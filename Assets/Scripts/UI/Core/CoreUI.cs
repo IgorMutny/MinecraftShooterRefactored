@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -5,6 +6,7 @@ namespace CoreUIElements
 {
     public class CoreUI : MonoBehaviour
     {
+        [SerializeField] private MetaUIElements.BalanceWidget _balance;
         [SerializeField] private Panel _panel;
         [SerializeField] private Health _health;
         [SerializeField] private Armor _armor;
@@ -16,10 +18,19 @@ namespace CoreUIElements
         [SerializeField] private InGameMenu _inGameMenu;
 
         private Character _player;
-        private PauseHandler _pauseHandler;
+        private LootCollection _lootCollection;
+
+        public event Action ResumeButtonClicked;
+        public event Action ExitButtonClicked;
 
         public void Initialize(Character player)
         {
+            _lootCollection = ServiceLocator.Get<LootCollection>();
+            _lootCollection.BalanceChanged += OnBalanceChanged;
+
+            IReadOnlyGameDataService gameDataService = ServiceLocator.Get<GameDataService>();
+            _balance.Initialize(gameDataService);
+
             _player = player;
 
             _player.Health.Cured += OnCured;
@@ -37,14 +48,18 @@ namespace CoreUIElements
             _totem.SetActive(_player.Health.CanBeResurrected);
             _player.Health.Resurrected += OnResurrected;
 
-            _pauseHandler = ServiceLocator.Get<PauseHandler>();
-            _pauseHandler.PauseSwitched += OnPauseSwitched;
             _inGameMenu.gameObject.SetActive(false);
             _youDeadMessage.gameObject.SetActive(false);
+
+            _inGameMenu.ResumeButton.onClick.AddListener(() => ResumeButtonClicked?.Invoke());
+            _inGameMenu.ExitButton.onClick.AddListener(() => ExitButtonClicked?.Invoke());
+
         }
 
         private void OnDestroy()
         {
+            _lootCollection.BalanceChanged -= OnBalanceChanged;
+
             _player.Health.Cured -= OnCured;
             _player.Health.Damaged -= OnDamaged;
             _player.Health.Died -= OnDied;
@@ -54,12 +69,18 @@ namespace CoreUIElements
             _player.Inventory.RoundsChanged -= OnRoundsChanged;
             _player.Inventory.MaxRoundsChanged -= OnMaxRoundsChanged;
 
-            _pauseHandler.PauseSwitched -= OnPauseSwitched;
+            _inGameMenu.ResumeButton.onClick.RemoveAllListeners();
+            _inGameMenu.ExitButton.onClick.RemoveAllListeners();
         }
 
         public void ShowMessage(string text, Color color)
         {
             _messagePresenter.ShowMessage(text, color);
+        }
+
+        public void SwitchInGameMenu(bool isPaused)
+        {
+            _inGameMenu.gameObject.SetActive(isPaused);
         }
 
         private void OnCured(int health)
@@ -68,7 +89,7 @@ namespace CoreUIElements
             _health.SetHearts(health, _player.Health.MaxHealth);
         }
 
-        private void OnDamaged(int health)
+        private void OnDamaged(int health, Character attacker)
         {
             _panel.Damage();
             _health.SetHearts(health, _player.Health.MaxHealth);
@@ -111,9 +132,9 @@ namespace CoreUIElements
             _rounds.SetRoundsAmount(amount);
         }
 
-        private void OnPauseSwitched(bool isPaused)
+        private void OnBalanceChanged()
         {
-            _inGameMenu.gameObject.SetActive(isPaused);
+            _balance.Reload();
         }
 
         private void OnApplicationQuit()

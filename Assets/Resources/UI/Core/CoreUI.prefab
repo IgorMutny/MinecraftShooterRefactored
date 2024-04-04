@@ -452,6 +452,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4775439086496817689}
+  - component: {fileID: 4187688481273196482}
   m_Layer: 5
   m_Name: Balance
   m_TagString: Untagged
@@ -483,6 +484,20 @@ RectTransform:
   m_AnchoredPosition: {x: -156.66669, y: 249.00002}
   m_SizeDelta: {x: 72, y: 100}
   m_Pivot: {x: 0, y: 1}
+--- !u!114 &4187688481273196482
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1084602776505254015}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe437340372c92b4eb9fac4429bcad8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _gold: {fileID: 3741574739029776725}
+  _diamonds: {fileID: 7638604101661399648}
 --- !u!1 &1569125741773519654
 GameObject:
   m_ObjectHideFlags: 0
@@ -862,8 +877,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: '######'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 387cc575e2a0ff7478eedcee8cb57f63, type: 2}
+  m_sharedMaterial: {fileID: 9060988423505101476, guid: 387cc575e2a0ff7478eedcee8cb57f63, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1507,6 +1522,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd702406a767bca4babfed5551a1f631, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _balance: {fileID: 4187688481273196482}
   _panel: {fileID: 6379491053858266438}
   _health: {fileID: 2460555320544803416}
   _armor: {fileID: 8519384596118386886}
@@ -2034,7 +2050,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d7e4f77a27a6c34989949fa8b74be4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _continueButton: {fileID: 4099877320276060417}
+  <ResumeButton>k__BackingField: {fileID: 4099877320276060417}
+  <ExitButton>k__BackingField: {fileID: 3709257055027567117}
 --- !u!1 &5723799341439008015
 GameObject:
   m_ObjectHideFlags: 0
@@ -2648,8 +2665,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: '######'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 387cc575e2a0ff7478eedcee8cb57f63, type: 2}
+  m_sharedMaterial: {fileID: 9060988423505101476, guid: 387cc575e2a0ff7478eedcee8cb57f63, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

@@ -10,7 +10,6 @@ public class PauseHandler : IService
     public PauseHandler()
     {
         Time.timeScale = 1;
-        Cursor.lockState = CursorLockMode.Locked;
         _isPaused = false;
     }
 
@@ -21,7 +20,7 @@ public class PauseHandler : IService
         AudioListener.pause = false;
     }
 
-    public void TryPause()
+    public void SwitchPause()
     {
         if (_isPaused == false)
         {

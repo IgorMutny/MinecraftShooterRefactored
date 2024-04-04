@@ -1,19 +1,17 @@
-using System;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
 public class AudioService : IService
 {
     private UIAudioSource _audioSource;
-    private float _volume;
 
-    public event Action<float> VolumeChanged;
+    public AudioListener Listener { get; private set; }
 
-    public float Volume => _volume;
+    public float Volume { get; private set; }
 
     public AudioService(MiscObjectsCollection uiCollection)
     {
-        _volume = ServiceLocator.Get<GameDataService>().SoundVolume;
+        Volume = ServiceLocator.Get<GameDataService>().SoundVolume;
 
         GameObject audioSourceObject = GameObject.Instantiate(uiCollection.UIAudioSource);
         Object.DontDestroyOnLoad(audioSourceObject);
@@ -23,12 +21,21 @@ public class AudioService : IService
 
     public void ChangeSoundVolume(float volume)
     {
-        _volume = volume;
-        VolumeChanged?.Invoke(volume);
+        Volume = volume;
     }
 
     public void OnButtonClicked()
     {
         _audioSource.OnButtonClicked();
+    }
+
+    public void Play(AudioClip clip)
+    {
+        _audioSource.Play(clip);
+    }
+
+    public void FindListener()
+    {
+        Listener = GameObject.FindObjectOfType<AudioListener>();
     }
 }

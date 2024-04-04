@@ -14,12 +14,12 @@ public class WaveEndingState : ILevelState
 
     public void OnTick() { }
 
-    private void OnEnemyDied(Character enemy)
+    private void OnEnemyDied(Character enemy, Character attacker)
     { 
         if (_characterCollection.GetEnemiesCount() == 0)
         {
             _characterCollection.EnemyDied -= OnEnemyDied;
-
+            _characterCollection.ClearDeadEnemies();
             ShowMessage();
 
             _stateMachine.IncreaseCurrentWave();
@@ -31,7 +31,7 @@ public class WaveEndingState : ILevelState
     {
         MessageSender sender = ServiceLocator.Get<MessageSender>();
         int currentWave = _stateMachine.CurrentWave + 1;
-        string text = $"<size = 120%>бнкмю <size = 150%>{currentWave}<size = 120%> гюбепьемю!";
+        string text = $"<size=120%>бнкмю <size=150%>{currentWave}<size=120%> гюбепьемю!";
         sender.ShowMessage(text, Color.white);
     }
 }

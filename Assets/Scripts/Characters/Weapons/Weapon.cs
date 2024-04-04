@@ -8,7 +8,7 @@ public abstract class Weapon
 
     protected bool IsLocked { get; private set; }
 
-    protected float SpeedMultiplier => Mathf.Max(1f, Character.SpeedMultiplier);
+    protected float SpeedMultiplier => Mathf.Max(1f, Character.AppliedEffects.SpeedMultiplier);
 
     public Weapon(Character character, Inventory inventory, WeaponInfo weaponInfo)
     {
@@ -38,5 +38,7 @@ public abstract class Weapon
 
     public virtual void Raise(float time) { }
 
+    public abstract void ChangeSpeed(float multiplier);
 
+    public abstract void ChangeDamage(float multiplier);
 }

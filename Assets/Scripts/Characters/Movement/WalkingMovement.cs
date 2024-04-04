@@ -9,6 +9,11 @@ public class WalkingMovement : Movement
 
     public override void OnTick()
     {
+        if (IsAlive == false)
+        {
+            return;
+        }
+
         base.OnTick();
 
         DoJumping();
@@ -33,7 +38,7 @@ public class WalkingMovement : Movement
         Vector3 verticalVector = Transform.up * Rigidbody.velocity.y;
 
         Rigidbody.velocity = 
-            MovementVector * MovementSpeed * Character.SpeedMultiplier
+            MovementVector * MovementSpeed * Character.AppliedEffects.SpeedMultiplier
             + verticalVector;
 
         //if (_movementVector != Vector3.zero)

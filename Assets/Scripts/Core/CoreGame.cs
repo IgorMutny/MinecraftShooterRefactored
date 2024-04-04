@@ -28,9 +28,12 @@ public class CoreGame
         CreateUI(player, coreCameras);
         CreateInput(player);
 
+        CreateMessageSender();
+
         CreateLevelStateMachine();
         CreateTimer();
-        CreateMessageSender();
+
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     #region InitializationMethods
@@ -38,6 +41,8 @@ public class CoreGame
     {
         _pauseHandler = new PauseHandler();
         ServiceLocator.Register(_pauseHandler);
+        _pauseHandler = ServiceLocator.Get<PauseHandler>();
+        _pauseHandler.PauseSwitched += OnPauseSwitched;
     }
 
     private void CreateCharacterCollection()
@@ -56,7 +61,6 @@ public class CoreGame
     private Character CreatePlayer()
     {
         Character player = _characterCollection.CreatePlayer();
-        _lootCollection.SetPlayer(player);
         return player;
     }
 
@@ -77,6 +81,8 @@ public class CoreGame
         Transform cameraTransform = coreCameras.UICamera.transform;
         _coreUi = GameObject.Instantiate(uiSample, cameraTransform).GetComponent<CoreUI>();
         _coreUi.Initialize(player);
+        _coreUi.ResumeButtonClicked += () => _pauseHandler.Resume();
+        _coreUi.ExitButtonClicked += ExitToMainMenu;
     }
 
     private void CreateInput(Character player)
@@ -114,6 +120,17 @@ public class CoreGame
         _levelStateMachine.OnTick();
     }
 
+    private void OnPauseSwitched(bool isPaused)
+    {
+        _coreUi.SwitchInGameMenu(isPaused);
+    }
+
+    private void ExitToMainMenu()
+    {
+        GameStateMachine gameStateMachine = ServiceLocator.Get<GameStateMachine>();
+        gameStateMachine.SetState(new MetaGameState());
+    }
+
     public void Destroy()
     {
         _timer.Tick -= OnTick;
@@ -121,14 +138,18 @@ public class CoreGame
 
         GameObject.Destroy(_input.gameObject);
 
+        _coreUi.ResumeButtonClicked -= () => _pauseHandler.Resume();
+        _coreUi.ExitButtonClicked -= ExitToMainMenu;
         GameObject.Destroy(_coreUi.gameObject);
 
         ServiceLocator.Unregister<MessageSender>();
         _messageSender = null;
 
+        _characterCollection.Destroy();
         ServiceLocator.Unregister<CharacterCollection>();
         _characterCollection = null;
 
+        _lootCollection.Destroy();
         ServiceLocator.Unregister<LootCollection>();
         _lootCollection = null;
 
@@ -136,6 +157,7 @@ public class CoreGame
         ServiceLocator.Unregister<LevelStateMachine>();
         _levelStateMachine = null;
 
+        _pauseHandler.PauseSwitched -= OnPauseSwitched;
         _pauseHandler.Destroy();
         ServiceLocator.Unregister<PauseHandler>();
         _pauseHandler = null;

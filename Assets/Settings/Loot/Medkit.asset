@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de16c3f3df5785640a9589ca836fbb01, type: 3}
+  m_Name: Medkit
+  m_EditorClassIdentifier: 
+  <Instance>k__BackingField: {fileID: 494960333281870763, guid: d71cd1c629e071346807c328f278729e, type: 3}
+  <Message>k__BackingField: "\u0410\u041F\u0422\u0415\u0427\u041A\u0410!"
+  <Color>k__BackingField: {r: 0, g: 0.29803923, b: 1, a: 1}
+  <Clip>k__BackingField: {fileID: 8300000, guid: a122d0d45985faa4aac1a6fa9ae4fbe4, type: 3}
+  <LifeTime>k__BackingField: 60

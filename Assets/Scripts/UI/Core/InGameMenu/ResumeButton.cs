@@ -7,8 +7,6 @@ namespace CoreUIElements
         public void OnClick()
         {
             ServiceLocator.Get<AudioService>().OnButtonClicked();
-            PauseHandler pauseHandler = ServiceLocator.Get<PauseHandler>();
-            pauseHandler.Resume();
         }
     }
 }

@@ -5,11 +5,12 @@ namespace CoreUIElements
 {
     public class InGameMenu : MonoBehaviour
     {
-        [SerializeField] private Button _continueButton;
+        [field: SerializeField] public Button ResumeButton { get; private set; }
+        [field: SerializeField] public Button ExitButton { get; private set; }
 
         public void OnDied()
         {
-            _continueButton.interactable = false;
+            ResumeButton.interactable = false;
         }
     }
 }

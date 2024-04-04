@@ -14,6 +14,12 @@ public class Resurrector
         SetResurrection();
     }
 
+    public Resurrector(Health health)
+    {
+        _health = health;
+        CanBeResurrected = false;
+    }
+
     private void SetResurrection()
     {
         ItemInfoCollection itemInfoCollection =

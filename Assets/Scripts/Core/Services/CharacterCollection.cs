@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Xml.Serialization;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -8,10 +9,10 @@ public class CharacterCollection: IService
     private SpawnerCollection _spawnerCollection;
 
     private Character _player;
-    private List<Character> _enemies = new List<Character>();
+    private List<Character> _spawnedEnemies = new List<Character>();
+    private List<Character> _aliveEnemies = new List<Character>();
 
-    public event Action PlayerDied;
-    public event Action<Character> EnemyDied;
+    public event Action<Character, Character> EnemyDied;
 
     public CharacterCollection(SpawnerCollection spawnerCollection)
     {
@@ -21,8 +22,13 @@ public class CharacterCollection: IService
     public void Destroy()
     {
         _player = null;
-        _enemies.Clear();
-        _enemies = null;
+
+        _spawnedEnemies.Clear();
+        _spawnedEnemies = null;
+
+        _aliveEnemies.Clear();
+        _aliveEnemies = null;
+
         _spawnerCollection = null;
     }
 
@@ -58,22 +64,36 @@ public class CharacterCollection: IService
         Character enemy =
             GameObject.Instantiate(sample, position, rotation).GetComponent<Character>();
         enemy.Initialize(character, false);
-        _enemies.Add(enemy);
+        _spawnedEnemies.Add(enemy);
+        _aliveEnemies.Add(enemy);
+        enemy.Health.Died += (Character attacker) => OnEnemyDied(enemy, attacker);
     }
 
-    public void DestroyPlayer()
+    private void OnEnemyDied(Character enemy, Character attacker)
     {
-        PlayerDied?.Invoke();
-    }
-
-    public void DestroyEnemy(Character enemy)
-    {
-        _enemies.Remove(enemy);
-        EnemyDied?.Invoke(enemy);
+        enemy.Health.Died -= (Character attacker) => OnEnemyDied(enemy, attacker);
+        _aliveEnemies.Remove(enemy);
+        EnemyDied?.Invoke(enemy, attacker);
     }
 
     public int GetEnemiesCount()
     {
-        return _enemies.Count;
+        return _aliveEnemies.Count;
+    }
+
+    public void ClearDeadEnemies()
+    {
+        foreach (Character enemy in _spawnedEnemies)
+        {
+            enemy.View.Dissolve();
+            enemy.View.Dissolved += OnDissolved;
+        }
+    }
+
+    private void OnDissolved(Character sender)
+    {
+        sender.View.Dissolved -= OnDissolved;
+        _spawnedEnemies.Remove(sender);
+        GameObject.Destroy(sender.gameObject);
     }
 }

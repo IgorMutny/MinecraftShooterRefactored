@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de16c3f3df5785640a9589ca836fbb01, type: 3}
+  m_Name: Diamond
+  m_EditorClassIdentifier: 
+  <Instance>k__BackingField: {fileID: 6395151857028913932, guid: 42b4729a92d530747b24ef35382ed22a, type: 3}
+  <Message>k__BackingField: "\u0410\u041B\u041C\u0410\u0417!"
+  <Color>k__BackingField: {r: 0.54901963, g: 0.95686275, b: 0.8862745, a: 1}
+  <Clip>k__BackingField: {fileID: 8300000, guid: 357e803506de3d245a6ab6e06b70323b, type: 3}
+  <LifeTime>k__BackingField: 60

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7015828265610416070}
   - component: {fileID: 2754924668513874720}
   - component: {fileID: -2547301906646217930}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: CoreUITotem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -108,7 +108,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6886143114558888601}
   - component: {fileID: 5880103769363142312}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}

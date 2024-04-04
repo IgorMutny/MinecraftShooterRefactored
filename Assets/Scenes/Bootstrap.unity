@@ -312,6 +312,7 @@ MonoBehaviour:
   _levelInfoCollection: {fileID: 11400000, guid: eb0d955068b09fb40950e4d020f80454, type: 2}
   _characterInfoCollection: {fileID: 11400000, guid: 485f2cbc7c76bf94cac1b57af14d88db, type: 2}
   _itemInfoCollection: {fileID: 11400000, guid: f29b1627d67e3be44af0275aec926031, type: 2}
+  _lootInfoCollection: {fileID: 11400000, guid: 6e9d97c1349007d4688394ce4cc47e52, type: 2}
   _objectInfoCollection: {fileID: 11400000, guid: f83d2f07085812b4ca8ccbad7d5b1012, type: 2}
 --- !u!4 &1819846265
 Transform:

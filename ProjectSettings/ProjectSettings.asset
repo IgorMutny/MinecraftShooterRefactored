@@ -840,7 +840,7 @@ PlayerSettings:
     QNX: DOTWEEN
     Stadia: DOTWEEN
     Standalone: YG_PLUGIN_YANDEX_GAME;DOTWEEN
-    WebGL: DOTWEEN
+    WebGL: DOTWEEN;YG_PLUGIN_YANDEX_GAME
     Windows Store Apps: DOTWEEN
     XboxOne: DOTWEEN
     iPhone: DOTWEEN

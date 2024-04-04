@@ -67,7 +67,7 @@ public abstract class Projectile : MonoBehaviour
 
         if (Sender != null)
         {
-            damageMultiplier = Sender.DamageMultiplier;
+            damageMultiplier = Sender.AppliedEffects.DamageMultiplier;
         }
 
         int minDamage = (int)(_minDamage * damageMultiplier);

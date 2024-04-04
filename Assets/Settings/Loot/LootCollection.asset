@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21010dccdda23ec4b96cf69797e4a5bc, type: 3}
+  m_Name: LootCollection
+  m_EditorClassIdentifier: 
+  <Diamond>k__BackingField: {fileID: 11400000, guid: e864f0f909c9f3e409e5798dd60650f1, type: 2}
+  <MedKit>k__BackingField: {fileID: 11400000, guid: 47cc52840946f7a4c8d849202a4e5dd5, type: 2}
+  <Powerups>k__BackingField:
+  - {fileID: 11400000, guid: 6270b84f1069624419dfe2b8a6cd9b76, type: 2}
+  - {fileID: 11400000, guid: 6e9fb06465772d0469951ae78f38fdfd, type: 2}
+  - {fileID: 11400000, guid: ad51b86d9405af4478d476fb39ac1c0e, type: 2}
+  <Beam>k__BackingField: {fileID: 4145879455613683920, guid: c43f512647329ca4f9a55575907e2fe1, type: 3}

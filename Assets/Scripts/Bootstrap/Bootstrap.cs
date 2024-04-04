@@ -6,11 +6,13 @@ public class Bootstrap : MonoBehaviour
     [SerializeField] private LevelInfoCollection _levelInfoCollection;
     [SerializeField] private CharacterInfoCollection _characterInfoCollection;
     [SerializeField] private ItemInfoCollection _itemInfoCollection;
+    [SerializeField] private LootInfoCollection _lootInfoCollection;
     [SerializeField] private MiscObjectsCollection _objectInfoCollection;
 
     private void Awake()
     {
         Application.targetFrameRate = 100;
+        DOTween.SetTweensCapacity(short.MaxValue, short.MaxValue);
 
         GameDataService gameDataService = new GameDataService();
         ServiceLocator.Register(gameDataService);
@@ -20,6 +22,7 @@ public class Bootstrap : MonoBehaviour
         settingsService.Register(_objectInfoCollection);
         settingsService.Register(_levelInfoCollection);
         settingsService.Register(_characterInfoCollection);
+        settingsService.Register(_lootInfoCollection);
         ServiceLocator.Register(settingsService);
 
         AudioService audioService = new AudioService(_objectInfoCollection);

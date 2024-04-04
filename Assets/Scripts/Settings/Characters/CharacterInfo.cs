@@ -10,4 +10,5 @@ public class CharacterInfo : ScriptableObject
     [field: SerializeField] public Vector2 HeadMaxAngles { get; private set; }
     [field: SerializeField] public WeaponInfo Weapon { get; private set; }
     [field: SerializeField] public int Health { get; private set; }
+    [field: SerializeField] public DropInfo LootChance { get; private set; }
 }

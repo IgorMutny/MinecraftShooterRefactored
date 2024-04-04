@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Character : MonoBehaviour
@@ -10,23 +8,23 @@ public class Character : MonoBehaviour
     [field: SerializeField] public Transform GroundChecker { get; private set; }
 
     private bool _isInitialized = false;
-    private bool _isAlive;
 
     private CharacterView _view;
     private CharacterInfo _characterInfo;
     private Movement _movement;
     private Inventory _inventory;
     private Health _health;
+    private DropInfo _dropInfo;
+    private AppliedEffects _appliedEffects;
 
-    private float _damageMultiplier = 1;
-    private float _speedMultiplier = 1;
+    public bool IsPlayer { get; private set; }
+    public bool IsAlive { get; private set; }
 
-    public bool IsAlive => _isAlive;
-    public float SpeedMultiplier => _speedMultiplier;
-    public float DamageMultiplier => _damageMultiplier;
-
-    public IReadOnlyInventory Inventory => _inventory;
-    public IReadOnlyHealth Health => _health;
+    public Inventory Inventory => _inventory;
+    public Health Health => _health;
+    public AppliedEffects AppliedEffects => _appliedEffects;
+    public CharacterView View => _view;
+    public DropInfo DropInfo => _dropInfo;
 
     private void Awake()
     {
@@ -36,11 +34,15 @@ public class Character : MonoBehaviour
     public void Initialize(CharacterInfo characterInfo, bool isPlayer)
     {
         _characterInfo = characterInfo;
-        _isAlive = true;
+        _dropInfo = characterInfo.LootChance;
+
+        IsAlive = true;
+        IsPlayer = isPlayer;
 
         AddMovement();
-        AddInventory(isPlayer);
-        AddHealth(isPlayer);
+        AddInventory();
+        AddHealth();
+        AddAppliedEffects();
 
         _isInitialized = true;
     }
@@ -54,9 +56,9 @@ public class Character : MonoBehaviour
         }
     }
 
-    private void AddInventory(bool isPlayer)
+    private void AddInventory()
     {
-        if (isPlayer == true)
+        if (IsPlayer == true)
         {
             IReadOnlyGameDataService gameDataService = ServiceLocator.Get<GameDataService>();
             _inventory = new Inventory(this, gameDataService);
@@ -67,9 +69,9 @@ public class Character : MonoBehaviour
         }
     }
 
-    private void AddHealth(bool isPlayer)
+    private void AddHealth()
     {
-        if (isPlayer == true)
+        if (IsPlayer == true)
         {
             IReadOnlyGameDataService gameDataService = ServiceLocator.Get<GameDataService>();
             _health = new Health(this, _characterInfo, gameDataService);
@@ -80,7 +82,16 @@ public class Character : MonoBehaviour
         }
 
         _health.Died += OnDied;
+        _health.Damaged += OnDamaged;
     }
+
+    private void AddAppliedEffects()
+    {
+        _appliedEffects = new AppliedEffects(this);
+        _appliedEffects.SpeedMultiplierChanged += OnSpeedMultiplierChanged;
+        _appliedEffects.DamageMultiplierChanged += OnDamageMultiplierChanged;
+    }
+
     #endregion InitializationMethods
 
     public void SetInput(Vector3 movementInput, Vector3 rotationInput,
@@ -92,33 +103,45 @@ public class Character : MonoBehaviour
             numericWeaponIndex, prevNextWeaponIndex);
     }
 
-    public void GetCure(int points)
+    public void OnDamaged(int damage, Character attacker)
     {
-        _health.GetCure(points);
-    }
-
-    public void GetDamage(int damage, DamageType damageType, Character attacker)
-    {
-        _health.GetDamage(damage, damageType, attacker);
+        _view.OnDamaged(damage);
     }
 
     private void OnDied(Character attacker)
     {
-        _isAlive = false;
-        _movement.Die();
+        _movement.OnDied();
+        _inventory.OnDied();
+        _view.OnDied();
+        _appliedEffects.OnDied();
+        IsAlive = false;
+    }
+
+    private void OnSpeedMultiplierChanged(float multiplier)
+    {
+        _inventory.ChangeWeaponSpeed(multiplier);
+    }
+
+    private void OnDamageMultiplierChanged(float multiplier)
+    {
+        _inventory.ChangeWeaponDamage(multiplier);
     }
 
     private void FixedUpdate()
     {
-        if (_isAlive == true && _isInitialized == true)
+        if (IsAlive == true && _isInitialized == true)
         {
             _movement.OnTick();
             _inventory.OnTick();
+            _appliedEffects.OnTick();
         }
     }
 
     private void OnDestroy()
     {
         _health.Died -= OnDied;
+        _health.Damaged -= OnDamaged;
+        _appliedEffects.SpeedMultiplierChanged -= OnSpeedMultiplierChanged;
+        _appliedEffects.DamageMultiplierChanged -= OnDamageMultiplierChanged;
     }
 }

@@ -2,16 +2,14 @@ using UnityEngine;
 
 public class PCInput : MonoBehaviour
 {
-    private float _mouseSensitivity = 2000;
+    private float _mouseSensitivity = 1000;
 
-    private readonly KeyCode _forwardKey = KeyCode.W;
-    private readonly KeyCode _backwardKey = KeyCode.S;
-    private readonly KeyCode _leftKey = KeyCode.A;
-    private readonly KeyCode _rightKey = KeyCode.D;
-    private readonly KeyCode _attackKey = KeyCode.None;
-    private readonly KeyCode _reloadKey = KeyCode.None;
-    private readonly KeyCode _nextWeaponKey = KeyCode.None;
-    private readonly KeyCode _prevWeaponKey = KeyCode.None;
+    private readonly string _vertical = "Vertical";
+    private readonly string _horizontal = "Horizontal";
+    private readonly string _mouseX = "Mouse X";
+    private readonly string _mouseY = "Mouse Y";
+    private readonly string _fire = "Fire1";
+    private readonly string _reload = "Fire2";
 
     private readonly KeyCode[] _changeWeaponKeys = new KeyCode[]
     {
@@ -29,6 +27,7 @@ public class PCInput : MonoBehaviour
 
     private Character _player;
     private PauseHandler _pauseHandler;
+    private bool _isMouseFree = false; //temp
 
     public void Initialize(Character player)
     {
@@ -52,48 +51,30 @@ public class PCInput : MonoBehaviour
                 isAttacking, isReloading,
                 numericWeaponIndex, prevNextWeaponIndex);
 
-            if (Input.GetKeyDown(KeyCode.E))
-            {
-                _player.GetCure(Random.Range(0, 250));
-            }
-
-            if (Input.GetKeyDown(KeyCode.Q))
-            {
-                _player.GetDamage(Random.Range(0, 250), DamageType.Physical, null);
-            }
-
             if (Input.GetKeyDown(KeyCode.Escape))
             {
-                _pauseHandler.TryPause();
+                _pauseHandler.SwitchPause();
+            }
+        }
+
+        if (Input.GetKeyDown(KeyCode.Tab) == true) //temp
+        {
+            _isMouseFree = !_isMouseFree;
+            if (_isMouseFree == true)
+            {
+                Cursor.lockState = CursorLockMode.None;
+            }
+            else
+            {
+                Cursor.lockState = CursorLockMode.Locked;
             }
         }
     }
 
     private Vector3 GetMovement()
     {
-        float vertical = 0;
-
-        if (Input.GetKey(_forwardKey) == true)
-        {
-            vertical += 1;
-        }
-
-        if (Input.GetKey(_backwardKey) == true)
-        {
-            vertical -= 1;
-        }
-
-        float horizontal = 0;
-
-        if (Input.GetKey(_rightKey) == true)
-        {
-            horizontal += 1;
-        }
-
-        if (Input.GetKey(_leftKey) == true)
-        {
-            horizontal -= 1;
-        }
+        float vertical = Input.GetAxis(_vertical);
+        float horizontal = Input.GetAxis(_horizontal);
 
         Vector3 movementInput = new Vector3(horizontal, vertical, 0).normalized;
         return movementInput;
@@ -101,20 +82,27 @@ public class PCInput : MonoBehaviour
 
     private Vector3 GetRotation()
     {
-        float mouseX = Input.GetAxis("Mouse X") * _mouseSensitivity;
-        float mouseY = Input.GetAxis("Mouse Y") * _mouseSensitivity;
-        Vector3 rotationInput = new Vector3(mouseX, mouseY, 0);
-        return rotationInput;
+        if (_isMouseFree == false) //temp
+        {
+            float mouseX = Input.GetAxis(_mouseX) * _mouseSensitivity;
+            float mouseY = Input.GetAxis(_mouseY) * _mouseSensitivity;
+            Vector3 rotationInput = new Vector3(mouseX, mouseY, 0);
+            return rotationInput;
+        }
+        else
+        {
+            return Vector3.zero;
+        }
     }
 
     private bool GetAttack()
     {
-        return Input.GetMouseButton(0) || Input.GetKey(_attackKey);
+        return Input.GetAxis(_fire) > 0;
     }
 
     private bool GetReload()
     {
-        return Input.GetMouseButton(1) || Input.GetKey(_reloadKey);
+        return Input.GetAxis(_reload) > 0;
     }
 
     private int GetChangeNumericWeapon()
@@ -132,12 +120,12 @@ public class PCInput : MonoBehaviour
 
     private int GetChangePrevNextWeapon()
     {
-        if (Input.GetKey(_prevWeaponKey) == true || Input.mouseScrollDelta.y < 0)
+        if (Input.mouseScrollDelta.y < 0)
         {
             return -1;
         }
 
-        if (Input.GetKey(_nextWeaponKey) == true || Input.mouseScrollDelta.y > 0)
+        if (Input.mouseScrollDelta.y > 0)
         {
             return 1;
         }

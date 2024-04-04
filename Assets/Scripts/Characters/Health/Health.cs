@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class Health : IReadOnlyHealth
+public class Health
 {
     private Character _character;
     private CharacterInfo _characterInfo;
@@ -18,9 +18,8 @@ public class Health : IReadOnlyHealth
     public float Defence => _physicalDefence;
 
     public event Action<Character> Died;
-    public event Action<Character> Attacked;
     public event Action<int> Cured;
-    public event Action<int> Damaged;
+    public event Action<int, Character> Damaged;
     public event Action Resurrected;
 
     public Health(Character character, CharacterInfo characterInfo)
@@ -32,6 +31,8 @@ public class Health : IReadOnlyHealth
         _health = _maxHealth;
         _physicalDefence = 0;
         _magicalDefence = 0;
+
+        _resurrector = new Resurrector(this);
     }
 
     public Health(Character character,
@@ -91,19 +92,14 @@ public class Health : IReadOnlyHealth
 
     public void GetDamage(int damage, DamageType damageType, Character attacker)
     {
-        if (damage <= 0)
+        if (_isAlive == false || damage <= 0)
         {
             return;
         }
 
         ReduceHealth(damage, damageType);
 
-        if (attacker != null)
-        {
-            Attacked?.Invoke(attacker);
-        }
-
-        Damaged?.Invoke(_health);
+        Damaged?.Invoke(_health, attacker);
 
         if (_health <= 0)
         {

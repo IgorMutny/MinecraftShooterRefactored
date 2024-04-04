@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de16c3f3df5785640a9589ca836fbb01, type: 3}
+  m_Name: Haste
+  m_EditorClassIdentifier: 
+  <Instance>k__BackingField: {fileID: 6395151857028913932, guid: 02c07f8b7e1949042bbaae838a1400bc, type: 3}
+  <Message>k__BackingField: "\u0423\u0421\u041A\u041E\u0420\u0415\u041D\u0418\u0415!"
+  <Color>k__BackingField: {r: 1, g: 1, b: 0, a: 1}
+  <Clip>k__BackingField: {fileID: 8300000, guid: 174a09330f83fc04aab1e73efb2e7076, type: 3}
+  <LifeTime>k__BackingField: 60
+  <Effect>k__BackingField: {fileID: 11400000, guid: 43ba7073e508dde4d887f587624fc5d4, type: 2}

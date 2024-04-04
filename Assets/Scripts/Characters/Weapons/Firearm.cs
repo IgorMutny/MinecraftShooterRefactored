@@ -3,7 +3,7 @@ using UnityEngine;
 public class Firearm : Weapon
 {
     private GameObject _handModel;
-    private WeaponView _weaponView;
+    private FirearmView _firearmView;
 
     private GameObject _projectileSample;
     private int _projectilesAmount;
@@ -25,7 +25,13 @@ public class Firearm : Weapon
         {
             _handModel = GameObject.Instantiate(_firearmInfo.HandModel, character.Head);
             _handModel.transform.Translate(_firearmInfo.Position, Space.Self);
-            _weaponView = _handModel.GetComponent<WeaponView>();
+            _firearmView = _handModel.GetComponent<FirearmView>();
+
+            bool reloadRpgStyle = _firearmInfo.ReloadRPGStyle;
+            if (reloadRpgStyle == true && Inventory.HasRounds() == false)
+            {
+                _firearmView.SetEmpty();
+            }
         }
 
         _projectileSample = _firearmInfo.Projectile;
@@ -79,15 +85,19 @@ public class Firearm : Weapon
     #region AttackMethods
     public override void TryAttack()
     {
-        if (_isReady == true && _isReloaded == true && IsLocked == false)
+        if (_isReady == true && _isReloaded == true 
+            && IsLocked == false) 
         {
-            Attack();
-            _isReady = false;
-            _cooldownTime = _firearmInfo.CooldownTime;
-
             if (Inventory.HasRounds() == true)
             {
+                Attack();
+                _isReady = false;
                 _cooldownTime = _firearmInfo.CooldownTime;
+
+                if (Inventory.HasRounds() == true)
+                {
+                    _cooldownTime = _firearmInfo.CooldownTime;
+                }
             }
             else
             {
@@ -103,9 +113,9 @@ public class Firearm : Weapon
             CreateProjectile();
         }
 
-        if (_weaponView != null)
+        if (_firearmView != null)
         {
-            _weaponView.Shoot();
+            _firearmView.Shoot();
         }
 
         Inventory.DecreaseRounds();
@@ -144,9 +154,9 @@ public class Firearm : Weapon
 
     private void OnReload()
     {
-        if (_weaponView != null)
+        if (_firearmView != null)
         {
-            _weaponView.Reload();
+            _firearmView.Reload();
         }
     }
 
@@ -158,10 +168,10 @@ public class Firearm : Weapon
 
     public override void Remove(float time)
     {
-        if (_weaponView != null)
+        if (_firearmView != null)
         {
-            _weaponView.Remove(time);
-            _weaponView.Removed += OnRemoved;
+            _firearmView.Remove(time);
+            _firearmView.Removed += OnRemoved;
         }
     }
 
@@ -172,9 +182,26 @@ public class Firearm : Weapon
 
     public override void Raise(float time)
     {
-        if (_weaponView != null)
+        if (_firearmView != null)
         {
-            _weaponView.Raise(time);
+            _firearmView.Raise(time);
+            _firearmView.ChangeDamage(Character.AppliedEffects.DamageMultiplier);
+        }
+    }
+
+    public override void ChangeSpeed(float multiplier)
+    {
+        if (_firearmView != null)
+        {
+            _firearmView.ChangeSpeed(multiplier);
+        }
+    }
+
+    public override void ChangeDamage(float multiplier)
+    {
+        if (_firearmView != null)
+        {
+            _firearmView.ChangeDamage(multiplier);
         }
     }
 }

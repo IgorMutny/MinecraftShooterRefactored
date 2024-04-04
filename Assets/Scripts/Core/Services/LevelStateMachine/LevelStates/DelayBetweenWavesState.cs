@@ -17,7 +17,7 @@ public class DelayBetweenWavesState : ILevelState
 
         if (_timer <= 0)
         {
-           //_stateMachine.SetState(new WaveBeginningState());
+           _stateMachine.SetState(new WaveBeginningState());
         }
     }
 }
