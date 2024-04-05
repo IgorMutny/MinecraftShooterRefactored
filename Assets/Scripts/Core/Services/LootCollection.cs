@@ -38,6 +38,11 @@ public class LootCollection : IService
 
     private void OnEnemyDied(Character enemy, Character attacker)
     {
+        if (attacker.IsPlayer == false)
+        {
+            return;
+        }
+
         DropInfo dropInfo = enemy.DropInfo;
         Vector3 position = enemy.transform.position;
 
@@ -47,11 +52,8 @@ public class LootCollection : IService
 
     private void TryAddGold(Character attacker, DropInfo dropInfo)
     {
-        if (attacker.IsPlayer == true)
-        {
-            _gameDataService.AddGold(dropInfo.GoldAmount);
-            BalanceChanged?.Invoke();
-        }
+        _gameDataService.AddGold(dropInfo.GoldAmount);
+        BalanceChanged?.Invoke();
     }
 
     private void TryCreateLoot(DropInfo dropInfo, Vector3 position)

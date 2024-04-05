@@ -12,4 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27aea7e34f04d9a41b5638d66c1b0409, type: 3}
   m_Name: Skeleton
   m_EditorClassIdentifier: 
-  <Instance>k__BackingField: {fileID: 0}
+  <Instance>k__BackingField: {fileID: 6776804392703501973, guid: 3ec8040fb2d171946a0a149f22fa1f87, type: 3}
+  <MovementType>k__BackingField: 0
+  <MovementSpeed>k__BackingField: 3
+  <RotationSpeed>k__BackingField: 180
+  <HeadMaxAngles>k__BackingField: {x: 30, y: 60}
+  <Weapon>k__BackingField: {fileID: 11400000, guid: c54e96527eaf8414db8f13314e637114, type: 2}
+  <Health>k__BackingField: 1000
+  <LootChance>k__BackingField: {fileID: 11400000, guid: 7ef6187d407ca4f4a906a761caf60ef9, type: 2}

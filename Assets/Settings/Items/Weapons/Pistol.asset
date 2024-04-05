@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 054efcdb575c1dc458803ce60d4ff47f, type: 3}
+  m_Script: {fileID: 11500000, guid: 0454ec250eca80344952c635384b498a, type: 3}
   m_Name: Pistol
   m_EditorClassIdentifier: 
   <Id>k__BackingField: 1
@@ -20,12 +20,12 @@ MonoBehaviour:
   <PriceInGold>k__BackingField: 0
   <PriceInDiamonds>k__BackingField: 0
   <Model>k__BackingField: {fileID: 919132149155446097, guid: ad31e31e8f6e2154a8fa0b78d6f75291, type: 3}
-  <WeaponType>k__BackingField: 0
   <Icon>k__BackingField: {fileID: 21300000, guid: 6ef94ec26e064364bbe3800458ffd5ec, type: 3}
   <HandModel>k__BackingField: {fileID: 1561515350808322393, guid: f7e8b47509ff0d24aa3319f6a1dc3511, type: 3}
   <Position>k__BackingField: {x: 0.5, y: -0.5, z: 0.3}
   <CooldownTime>k__BackingField: 0.25
   <ReloadTime>k__BackingField: 2.5
+  <ReloadRPGStyle>k__BackingField: 0
   <Projectile>k__BackingField: {fileID: 1187225692383471338, guid: d1b56fbb61e4a514da25fa0554a45016, type: 3}
   <ProjectilesAmount>k__BackingField: 1
   <SpreadAngle>k__BackingField: 2

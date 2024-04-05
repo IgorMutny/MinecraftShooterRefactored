@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 054efcdb575c1dc458803ce60d4ff47f, type: 3}
+  m_Script: {fileID: 11500000, guid: 0454ec250eca80344952c635384b498a, type: 3}
   m_Name: AK47
   m_EditorClassIdentifier: 
   <Id>k__BackingField: 4
@@ -25,6 +25,7 @@ MonoBehaviour:
   <Position>k__BackingField: {x: 0.5, y: -0.5, z: 0.3}
   <CooldownTime>k__BackingField: 0.1
   <ReloadTime>k__BackingField: 2
+  <ReloadRPGStyle>k__BackingField: 0
   <Projectile>k__BackingField: {fileID: 1187225692383471338, guid: 1db81831394b70649a2d814e353881e4, type: 3}
   <ProjectilesAmount>k__BackingField: 1
   <SpreadAngle>k__BackingField: 1

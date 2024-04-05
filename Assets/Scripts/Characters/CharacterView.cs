@@ -80,8 +80,12 @@ public class CharacterView : MonoBehaviour
 
         foreach (var part in _bodyParts)
         {
-            part.GetComponent<Collider>().enabled = true;
-            part.AddComponent<Rigidbody>();
+            Collider collider = part.GetComponent<Collider>();
+            if (collider != null)
+            {
+                part.GetComponent<Collider>().enabled = true;
+                part.AddComponent<Rigidbody>();
+            }
         }
     }
 

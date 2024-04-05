@@ -74,7 +74,6 @@ public class AppliedEffects
             if (effect.GetType() == typeof(T))
             {
                 effect.SetDuration(duration);
-                Debug.Log($"Duration of effect {effect.GetType()} set to {duration}");
                 return;
             }
         }
@@ -92,8 +91,6 @@ public class AppliedEffects
         effect.SetValue(value);
         effect.Expired += OnExpired;
         _effects.Add(effect);
-
-        Debug.Log($"Effect {effect.GetType()} added");
     }
 
     public void MultiplySpeedMultiplier(float value)
@@ -110,8 +107,6 @@ public class AppliedEffects
     {
         effect.Expired -= OnExpired;
         _effectsToRemove.Add(effect);
-
-        Debug.Log($"Effect {effect.GetType()} removed");
     }
 
     public void RemoveAllEffects()

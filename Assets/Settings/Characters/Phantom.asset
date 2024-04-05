@@ -12,4 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27aea7e34f04d9a41b5638d66c1b0409, type: 3}
   m_Name: Phantom
   m_EditorClassIdentifier: 
-  <Instance>k__BackingField: {fileID: 0}
+  <Instance>k__BackingField: {fileID: 3279747504958232419, guid: e5d13896c6bcd5647895b4d26811bbe7, type: 3}
+  <MovementType>k__BackingField: 1
+  <MovementSpeed>k__BackingField: 3
+  <RotationSpeed>k__BackingField: 180
+  <HeadMaxAngles>k__BackingField: {x: 30, y: 60}
+  <Weapon>k__BackingField: {fileID: 11400000, guid: fae5cd510edb60748ad6b28d785d6df2, type: 2}
+  <Health>k__BackingField: 1000
+  <LootChance>k__BackingField: {fileID: 11400000, guid: 7ef6187d407ca4f4a906a761caf60ef9, type: 2}

@@ -3,10 +3,10 @@ using UnityEngine;
 public abstract class Movement
 {
     protected Character Character { get; private set; }
-    protected CharacterInfo CharacterInfo { get; private set; }
+    protected CharacterInfo Info { get; private set; }
     protected Head Head { get; private set; }
     protected Rigidbody Rigidbody { get; private set; }
-    protected Collider Collider { get; private set; }
+    protected Collider[] Colliders { get; private set; }
     protected Transform Transform { get; private set; }
     protected float MovementSpeed { get; private set; }
     protected float RotationSpeed { get; private set; }
@@ -15,19 +15,21 @@ public abstract class Movement
     protected Vector3 MovementVector { get; set; }
 
     protected bool IsAlive { get; private set; }
+    protected bool IsWalking { get; private set; }
 
-    public Movement(Character character, CharacterInfo characterInfo)
+    public Movement(Character character, CharacterInfo info)
     {
         Character = character;
-        CharacterInfo = characterInfo;
-        Head = new Head(character.Head, characterInfo.HeadMaxAngles);
+        Info = info;
+        Head = new Head(character.Head, info.HeadMaxAngles);
         Rigidbody = character.GetComponent<Rigidbody>();
-        Collider = character.GetComponent<Collider>();
+        Colliders = character.GetComponents<Collider>();
         Transform = character.transform;
-        MovementSpeed = characterInfo.MovementSpeed;
-        RotationSpeed = characterInfo.RotationSpeed;
+        MovementSpeed = info.MovementSpeed;
+        RotationSpeed = info.RotationSpeed;
         MovementVector = Vector3.zero;
         IsAlive = true;
+        IsWalking = info.MovementType == MovementType.Walking;
     }
 
     public virtual void OnTick()
@@ -37,13 +39,16 @@ public abstract class Movement
             return;
         }
 
-        if (IsGrounded() == false)
+        if (IsWalking == true)
         {
-            MovementSpeed = CharacterInfo.MovementSpeed * 0.75f;
-        }
-        else
-        {
-            MovementSpeed = CharacterInfo.MovementSpeed;
+            if (IsGrounded() == false)
+            {
+                MovementSpeed = Info.MovementSpeed * 0.75f;
+            }
+            else
+            {
+                MovementSpeed = Info.MovementSpeed;
+            }
         }
     }
 
@@ -74,7 +79,11 @@ public abstract class Movement
         RotationInput = Vector3.zero;
         Rigidbody.velocity = Vector3.zero;
 
-        GameObject.Destroy(Collider);
+        foreach (Collider collider in Colliders)
+        {
+            GameObject.Destroy(collider);
+        }
+
         GameObject.Destroy(Rigidbody);
 
         IsAlive = false;

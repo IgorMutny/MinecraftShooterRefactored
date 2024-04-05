@@ -235,8 +235,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cffc5cebd3055954ca9d73ad81f7b904, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _audioMinDistance: 1
-  _audioMaxDistance: 16
   _damagedClips:
   - {fileID: 8300000, guid: 5322ab3bae4a7a34b8b4348aad3c1b1c, type: 3}
   - {fileID: 8300000, guid: 0afde1b43358064419beef373f166b39, type: 3}
@@ -288,7 +286,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.25
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}

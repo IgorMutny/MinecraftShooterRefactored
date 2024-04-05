@@ -58,9 +58,9 @@ public class Inventory
     private void AddRecord(int index, WeaponInfo weapon)
     {
         InventoryRecord record;
-        if (weapon is FirearmInfo firearm)
+        if (weapon is PlayerGunInfo gun)
         {
-            record = new InventoryRecord(weapon, firearm.Rounds);
+            record = new InventoryRecord(weapon, gun.Rounds);
         }
         else
         {
@@ -185,17 +185,27 @@ public class Inventory
     {
         _currentRecord = index;
 
-        if (_records[index].Weapon is FirearmInfo firearm)
+        if (_records[index].Weapon is PlayerGunInfo gun)
         {
-            _weapon = new Firearm(_character, this, _records[index].Weapon);
+            _weapon = new PlayerGun(_character, this, _records[index].Weapon);
             WeaponChanged?.Invoke(_currentRecord);
-            MaxRoundsChanged?.Invoke(firearm.Rounds);
+            MaxRoundsChanged?.Invoke(gun.Rounds);
             RoundsChanged?.Invoke(_records[index].Rounds);
         }
 
-        if (_records[index].Weapon is MeleeInfo melee)
+        if (_records[index].Weapon is MeleeInfo)
         {
             _weapon = new Melee(_character, this, _records[index].Weapon);
+        }
+
+        if (_records[index].Weapon is ThrowingWeaponInfo)
+        {
+            _weapon = new ThrowingWeapon(_character, this, _records[index].Weapon);
+        }
+
+        if (_records[index].Weapon is SuicideBombingInfo)
+        {
+            _weapon = new SuicideBombing(_character, this, _records[index].Weapon);
         }
 
         _weapon.Lock();
@@ -229,7 +239,7 @@ public class Inventory
 
     public bool IsFull()
     {
-        if (_records[_currentRecord].Weapon is FirearmInfo firearm)
+        if (_records[_currentRecord].Weapon is PlayerGunInfo firearm)
         {
             return _records[_currentRecord].Rounds == firearm.Rounds;
         }
@@ -241,7 +251,7 @@ public class Inventory
 
     public void ReloadRounds()
     {
-        if (_records[_currentRecord].Weapon is FirearmInfo firearm)
+        if (_records[_currentRecord].Weapon is PlayerGunInfo firearm)
         {
             int rounds = firearm.Rounds;
             _records[_currentRecord] = new InventoryRecord(firearm, rounds);

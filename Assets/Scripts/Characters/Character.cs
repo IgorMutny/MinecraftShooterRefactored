@@ -52,7 +52,10 @@ public class Character : MonoBehaviour
     {
         switch (_characterInfo.MovementType)
         {
-            case MovementType.Walking: _movement = new WalkingMovement(this, _characterInfo); break;
+            case MovementType.Walking: 
+                _movement = new WalkingMovement(this, _characterInfo); break;
+            case MovementType.Flying:
+                _movement = new FlyingMovement(this, _characterInfo); break;
         }
     }
 
