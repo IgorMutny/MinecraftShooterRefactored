@@ -2,10 +2,16 @@ using UnityEngine;
 
 public class WalkingMovement : Movement
 {
-    private float _jumpForce = 300f;
+    private Vector3 _jumpVector = new Vector3(0, 6f, 0);
+    private float _jumpDuration = 0.25f;
+    private float _jumpDurationCounter;
+    private float _obstacleRaycastDistance = 1.5f;
 
     public WalkingMovement(Character character, CharacterInfo characterInfo)
-        : base(character, characterInfo) { }
+        : base(character, characterInfo)
+    {
+
+    }
 
     public override void OnTick()
     {
@@ -40,11 +46,6 @@ public class WalkingMovement : Movement
         Rigidbody.velocity = 
             MovementVector * MovementSpeed * Character.AppliedEffects.SpeedMultiplier
             + verticalVector;
-
-        //if (_movementVector != Vector3.zero)
-        //{
-        //    _soundHandler.Walk();
-        //}
     }
 
     private void Rotate()
@@ -55,17 +56,40 @@ public class WalkingMovement : Movement
         }
         else
         {
-            Transform.Rotate(0, Mathf.Sign(RotationInput.x) * RotationSpeed * Time.fixedDeltaTime, 0);
+            Transform.Rotate
+                (0, Mathf.Sign(RotationInput.x) * RotationSpeed * Time.fixedDeltaTime, 0);
         }
     }
 
     private void DoJumping()
     {
+        DecreaseJumpCounter();
+
         if (IsGrounded() == true)
         {
+            _jumpDurationCounter = 0;
+
             if (ShouldJump() == true)
             {
-                Rigidbody.AddForce(Vector3.up * _jumpForce, ForceMode.Impulse);
+                _jumpDurationCounter = _jumpDuration;
+            }
+        }
+
+        if (_jumpDurationCounter > 0)
+        {
+            Rigidbody.MovePosition(Transform.position + _jumpVector * Time.fixedDeltaTime);
+        }
+    }
+
+    private void DecreaseJumpCounter()
+    {
+        if (_jumpDurationCounter > 0)
+        {
+            _jumpDurationCounter -= Time.fixedDeltaTime;
+
+            if (_jumpDurationCounter < 0)
+            {
+                _jumpDurationCounter = 0;
             }
         }
     }
@@ -80,7 +104,9 @@ public class WalkingMovement : Movement
 
     private bool IsWayBlocked(Transform transform)
     {
-        RaycastHit[] hits = Physics.RaycastAll(transform.position, MovementVector, 1f);
+        RaycastHit[] hits = Physics.RaycastAll
+            (transform.position, MovementVector, _obstacleRaycastDistance);
+
         foreach (RaycastHit hit in hits)
         { 
             if (hit.collider.gameObject.GetComponent<SolidBlock>() != null)
@@ -91,9 +117,4 @@ public class WalkingMovement : Movement
 
         return false;
     }
-
-    //protected override void Animate()
-    //{
-    //    _animator.SetBool(_isWalkingBoolean, _movementVector != Vector3.zero);
-    //}
 }

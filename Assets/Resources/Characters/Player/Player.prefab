@@ -54,6 +54,7 @@ MonoBehaviour:
   <Head>k__BackingField: {fileID: 1026318111543887215}
   <UpperObstacleChecker>k__BackingField: {fileID: 5747218400745798774}
   <LowerObstacleChecker>k__BackingField: {fileID: 5888368249888633654}
+  <AttackPoint>k__BackingField: {fileID: 0}
   <GroundChecker>k__BackingField: {fileID: 6409767141226473141}
 --- !u!114 &-8992056517513797548
 MonoBehaviour:
@@ -80,7 +81,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 856290541048450969}
   serializedVersion: 4
-  m_Mass: 75
+  m_Mass: 70
   m_Drag: 0
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -118,7 +119,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.25
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}

@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Bullet : Projectile
@@ -22,7 +23,7 @@ public class Bullet : Projectile
 
     private void Explode(Vector3 position)
     {
-        if (ExplosionSample != null)
+        if (IsActive == true && ExplosionSample != null)
         {
             Explosion explosion =
                 Instantiate(ExplosionSample, position, Quaternion.identity).GetComponent<Explosion>();

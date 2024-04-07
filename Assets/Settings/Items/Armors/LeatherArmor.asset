@@ -14,7 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Id>k__BackingField: 10
   <Name>k__BackingField: "\u041A\u041E\u0416\u0410\u041D\u0410\u042F \u0411\u0420\u041E\u041D\u042F"
-  <Description>k__BackingField: "\u043A\u043E\u0436\u0430\u043D\u043A\u0430"
+  <Description>k__BackingField: "\u0411\u043B\u043E\u043A\u0438\u0440\u0443\u0435\u0442
+    \u0442\u0440\u0435\u0442\u044C \u043D\u0430\u043D\u043E\u0441\u0438\u043C\u043E\u0433\u043E
+    \u0443\u0440\u043E\u043D\u0430. \u0414\u0435\u0448\u0435\u0432\u043E \u0438 \u0441\u0435\u0440\u0434\u0438\u0442\u043E."
   <PriceInGold>k__BackingField: 0
   <PriceInDiamonds>k__BackingField: 0
   <Model>k__BackingField: {fileID: 919132149155446097, guid: b7c031ab9b4623641bfa7b4fb44e6e4c, type: 3}

@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 193006351e6a1474f9332f199a4a0b98, type: 3}
+  m_Name: Harming
+  m_EditorClassIdentifier: 
+  <Explosion>k__BackingField: {fileID: 3075074058239066863, guid: fa98173109b01be4cad808443b57e8dc, type: 3}
+  <Color>k__BackingField: {r: 0.6627451, g: 0.39607844, b: 0.41568628, a: 1}

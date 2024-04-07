@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class CoreGame
 {
-    private Timer _timer;
+    private TimerWrapper _timer;
     private PCInput _input;
     private CharacterCollection _characterCollection;
     private LootCollection _lootCollection;
@@ -101,10 +101,9 @@ public class CoreGame
 
     private void CreateTimer()
     {
-        GameObject timerSample =
-            ServiceLocator.Get<SettingsService>().Get<MiscObjectsCollection>().Timer;
-        _timer = GameObject.Instantiate(timerSample).GetComponent<Timer>();
+        _timer = new TimerWrapper();
         _timer.Tick += OnTick;
+        ServiceLocator.Register(_timer);
     }
 
     private void CreateMessageSender()
@@ -134,7 +133,8 @@ public class CoreGame
     public void Destroy()
     {
         _timer.Tick -= OnTick;
-        GameObject.Destroy(_timer.gameObject);
+        ServiceLocator.Unregister<TimerWrapper>();
+        _timer = null;
 
         GameObject.Destroy(_input.gameObject);
 

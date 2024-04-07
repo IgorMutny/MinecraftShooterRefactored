@@ -67,30 +67,30 @@ public class AppliedEffects
         _effectsToRemove.Clear();
     }
 
-    public void TryAddEffect<T>(float duration, float period, float value) where T : Effect, new()
+    public void TryAddEffect<T>(EffectInfo info) where T : Effect, new()
     {
         foreach (Effect effect in _effects)
         {
             if (effect.GetType() == typeof(T))
             {
-                effect.SetDuration(duration);
+                effect.SetDuration(info.Duration);
                 return;
             }
         }
 
-        AddEffect<T>(duration, period, value);
+        AddEffect<T>(info);
     }
 
-    private void AddEffect<T>(float duration, float period, float value) where T : Effect, new()
+    private void AddEffect<T>(EffectInfo info) where T : Effect, new()
     {
         Effect effect = new T();
         effect.SetCharacter(_character);
         effect.SetAppliedEffects(this);
-        effect.SetDuration(duration);
-        effect.SetPeriod(period);
-        effect.SetValue(value);
+        effect.SetInfo(info);
         effect.Expired += OnExpired;
         _effects.Add(effect);
+
+        _character.View.TryAddEffect(info);
     }
 
     public void MultiplySpeedMultiplier(float value)
@@ -107,11 +107,13 @@ public class AppliedEffects
     {
         effect.Expired -= OnExpired;
         _effectsToRemove.Add(effect);
+        _character.View.TryRemoveEffect(effect.Info);
     }
 
     public void RemoveAllEffects()
     {
         _effects.Clear();
+        _character.View.RemoveAllEffects();
     }
 
     public void OnDied()
@@ -121,6 +123,6 @@ public class AppliedEffects
             effect.Expired -= OnExpired;
         }
 
-        _effects.Clear();
+        RemoveAllEffects();
     }
 }

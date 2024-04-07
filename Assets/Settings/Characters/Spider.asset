@@ -14,9 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Instance>k__BackingField: {fileID: 6048835009924045396, guid: aca9d36bafb1a3f4898c00e1d9ae67c8, type: 3}
   <MovementType>k__BackingField: 0
-  <MovementSpeed>k__BackingField: 4
-  <RotationSpeed>k__BackingField: 180
+  <MovementSpeed>k__BackingField: 6
+  <RotationSpeed>k__BackingField: 90
   <HeadMaxAngles>k__BackingField: {x: 30, y: 60}
   <Weapon>k__BackingField: {fileID: 11400000, guid: f0990ea6926075e4f8c4f70472ce0a70, type: 2}
   <Health>k__BackingField: 800
   <LootChance>k__BackingField: {fileID: 11400000, guid: 7ef6187d407ca4f4a906a761caf60ef9, type: 2}
+  <AI>k__BackingField: {fileID: 11400000, guid: 84f31afa9ee37204e9397b4415f1d898, type: 2}

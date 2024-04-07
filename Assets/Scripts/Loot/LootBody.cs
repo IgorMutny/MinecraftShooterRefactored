@@ -24,6 +24,6 @@ public class LootBody : MonoBehaviour
 
         transform.position = transform.parent.position + Vector3.up * Mathf.Sin(moment * Mathf.PI);
 
-        transform.Rotate(0, _rotationTime * Time.fixedDeltaTime, 0);
+        transform.Rotate(0, 360f / _rotationTime * Time.fixedDeltaTime, 0);
     }
 }

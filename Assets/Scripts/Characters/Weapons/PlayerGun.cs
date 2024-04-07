@@ -4,6 +4,7 @@ public class PlayerGun : Weapon
 {
     private GameObject _handModel;
     private PlayerGunView _view;
+    private TimerWrapper _timer;
 
     private GameObject _projectileSample;
     private int _projectilesAmount;
@@ -13,12 +14,15 @@ public class PlayerGun : Weapon
 
     private bool _isReady;
     private bool _isReloaded;
+    private TimerSignal _cooldownSignal;
+    private TimerSignal _reloadSignal;
 
     private PlayerGunInfo _info;
 
     public PlayerGun(Character character, Inventory inventory, WeaponInfo weaponInfo)
         : base(character, inventory, weaponInfo)
     {
+        _timer = ServiceLocator.Get<TimerWrapper>();
         _info = (PlayerGunInfo)weaponInfo;
 
         if (_info.HandModel != null)
@@ -37,67 +41,25 @@ public class PlayerGun : Weapon
         _projectileSample = _info.Projectile;
         _projectilesAmount = _info.ProjectilesAmount;
         _spreadAngle = _info.SpreadAngle;
+        _cooldownTime = _info.CooldownTime;
+        _reloadTime = _info.ReloadTime;
 
         _isReady = true;
         _isReloaded = true;
     }
 
-    #region OnTickMethods
-    public override void OnTick()
-    {
-        if (IsLocked == false)
-        {
-            DecreaseCoolDownTime();
-            DecreaseReloadTime();
-        }
-    }
-
-    private void DecreaseCoolDownTime()
-    {
-        if (_cooldownTime > 0)
-        {
-            _cooldownTime -= Time.fixedDeltaTime * SpeedMultiplier;
-        }
-
-        if (_cooldownTime <= 0)
-        {
-            _cooldownTime = 0;
-            _isReady = true;
-        }
-    }
-
-    private void DecreaseReloadTime()
-    {
-        if (_reloadTime > 0)
-        {
-            _reloadTime -= Time.fixedDeltaTime * SpeedMultiplier;
-        }
-
-        if (_reloadTime <= 0 && _isReloaded == false)
-        {
-            Reload();
-            _reloadTime = 0;
-            _isReloaded = true;
-        }
-    }
-    #endregion OnTickMethods
+    public override void OnTick() { }
 
     #region AttackMethods
     public override void TryAttack()
     {
-        if (_isReady == true && _isReloaded == true 
-            && IsLocked == false) 
+        if (_isReady == true && _isReloaded == true && IsLocked == false) 
         {
             if (Inventory.HasRounds() == true)
             {
                 Attack();
                 _isReady = false;
-                _cooldownTime = _info.CooldownTime;
-
-                if (Inventory.HasRounds() == true)
-                {
-                    _cooldownTime = _info.CooldownTime;
-                }
+               _cooldownSignal = _timer.SetSignal(_cooldownTime, SetReady);
             }
             else
             {
@@ -119,6 +81,12 @@ public class PlayerGun : Weapon
         }
 
         Inventory.DecreaseRounds();
+    }
+
+    private void SetReady()
+    {
+        _isReady = true;
+        _cooldownSignal = null;
     }
 
     private void CreateProjectile()
@@ -146,23 +114,21 @@ public class PlayerGun : Weapon
                 return;
             }
 
-            OnReload();
-            _isReloaded = false;
-            _reloadTime = _info.ReloadTime;
-        }
-    }
+            if (_view != null)
+            {
+                _view.Reload();
+            }
 
-    private void OnReload()
-    {
-        if (_view != null)
-        {
-            _view.Reload();
+            _isReloaded = false;
+            _reloadSignal = _timer.SetSignal(_reloadTime, Reload);
         }
     }
 
     private void Reload()
     {
         Inventory.ReloadRounds();
+        _isReloaded = true;
+        _reloadSignal = null;
     }
     #endregion ReloadMethods
 
@@ -171,13 +137,19 @@ public class PlayerGun : Weapon
         if (_view != null)
         {
             _view.Remove(time);
-            _view.Removed += OnRemoved;
+            _view.Removed += OnViewRemoved;
         }
+
+        _timer.RemoveSignal(_cooldownSignal);
+        _timer.RemoveSignal(_reloadSignal);
     }
 
-    private void OnRemoved()
+    private void OnViewRemoved()
     {
-        GameObject.Destroy(_handModel);
+        if (_view != null)
+        {
+            _view.Destroy();
+        }
     }
 
     public override void Raise(float time)

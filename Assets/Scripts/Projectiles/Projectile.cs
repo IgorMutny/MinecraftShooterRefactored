@@ -1,4 +1,6 @@
+using System;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public abstract class Projectile : MonoBehaviour
 {
@@ -25,9 +27,12 @@ public abstract class Projectile : MonoBehaviour
     {
         IsActive = true;
         ShouldBeDestroyed = false;
+        AwakeExtended();
 
         Destroy(gameObject, _lifeTime);
     }
+
+    protected virtual void AwakeExtended() { }
 
     private void FixedUpdate()
     {
@@ -50,11 +55,32 @@ public abstract class Projectile : MonoBehaviour
     {
         RaycastHit[] hits = Physics.RaycastAll(transform.position, transform.forward, _speed * Time.fixedDeltaTime);
 
+        if (hits.Length == 0)
+        {
+            return;
+        }
+
+        float[] distances = new float[hits.Length];
+
+        for (int i = 0; i < hits.Length; i++)
+        {
+            distances[i] = Vector3.Distance(transform.position, hits[i].point);
+        }
+
+        Array.Sort(distances, hits);
+
         foreach (RaycastHit hit in hits)
         {
-            if ((Sender != null && hit.collider.gameObject != Sender.gameObject) || Sender == null)
+            if (Sender != null && hit.collider.gameObject == Sender.gameObject)
             {
-                HandleHit(hit);
+                continue;
+            }
+
+            HandleHit(hit);
+
+            if (IsActive == false)
+            {
+                return;
             }
         }
     }

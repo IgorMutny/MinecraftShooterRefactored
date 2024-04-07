@@ -10,22 +10,22 @@ public abstract class Effect
     protected Character _character;
     protected AppliedEffects _appliedEffects;
 
+    public EffectInfo Info { get; private set; }
+
     public event Action<Effect> Expired;
 
-    public void SetDuration(float duration)
+    public void SetInfo(EffectInfo info)
     {
-        _duration = duration;
-    }
-
-    public void SetPeriod(float period)
-    {
-        _period = period;
+        Info = info;
+        _duration = info.Duration;
+        _period = info.Period;
         _periodCounter = 0;
+        _value = info.Value;
     }
 
-    public void SetValue(float value)
-    {
-        _value = value;
+    public void SetDuration(float duration)
+    { 
+        _duration = duration;
     }
 
     public void SetCharacter(Character character)

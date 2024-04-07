@@ -143,11 +143,12 @@ public class PlayerGunView : MonoBehaviour
         }
     }
 
-    private void OnDestroy()
+    public void Destroy()
     {
         _shootSource = null;
         _reloadSource = null;
 
         DOTween.Kill(this);
+        Destroy(gameObject);
     }
 }

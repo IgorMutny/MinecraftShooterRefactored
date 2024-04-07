@@ -20,3 +20,4 @@ MonoBehaviour:
   <Weapon>k__BackingField: {fileID: 11400000, guid: a2edfeb4ecb60994c9296ad5ea5fd146, type: 2}
   <Health>k__BackingField: 1300
   <LootChance>k__BackingField: {fileID: 11400000, guid: 7ef6187d407ca4f4a906a761caf60ef9, type: 2}
+  <AI>k__BackingField: {fileID: 11400000, guid: fc3bedb2cbde3e04eb2fe6bec16a5f0f, type: 2}

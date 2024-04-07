@@ -1,5 +1,6 @@
 using DG.Tweening;
 using System;
+using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -13,7 +14,8 @@ public class CharacterView : MonoBehaviour
     private AudioSourceWrapper _diedSource;
     private float _blinkTime = 0.2f;
     private float _dissolveTime = 3f;
-
+    private Dictionary<EffectInfo, GameObject> _appliedEffects = new Dictionary<EffectInfo, GameObject>();
+    
     public event Action<Character> Dissolved;
 
     private void Awake()
@@ -96,6 +98,39 @@ public class CharacterView : MonoBehaviour
             DOTween.Sequence()
                 .Append(part.transform.DOScale(0f, _dissolveTime))
                 .OnComplete(() => Dissolved?.Invoke(GetComponent<Character>()));
+        }
+    }
+
+    public void TryAddEffect(EffectInfo info)
+    {
+        if (_appliedEffects.ContainsKey(info))
+        {
+            return;
+        }
+
+        if (info.Smoke == null)
+        {
+            return;
+        }
+
+        GameObject effect = Instantiate(info.Smoke, transform);
+        _appliedEffects.Add(info, effect);
+    }
+
+    public void TryRemoveEffect(EffectInfo info)
+    {
+        if (_appliedEffects.ContainsKey(info))
+        {
+            Destroy(_appliedEffects[info]);
+            _appliedEffects.Remove(info);
+        }
+    }
+
+    public void RemoveAllEffects()
+    {
+        foreach ((EffectInfo info, GameObject effect) in _appliedEffects)
+        {
+            TryRemoveEffect(info);
         }
     }
 }

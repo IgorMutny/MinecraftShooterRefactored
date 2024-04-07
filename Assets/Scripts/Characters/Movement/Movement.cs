@@ -91,7 +91,7 @@ public abstract class Movement
 
     protected bool IsGrounded()
     {
-        RaycastHit[] hits = Physics.RaycastAll(Character.GroundChecker.position, Vector3.down, 0.01f);
+        RaycastHit[] hits = Physics.RaycastAll(Character.GroundChecker.position, Vector3.down, 0.1f);
         foreach (RaycastHit hit in hits)
         { 
             if (hit.collider.gameObject.GetComponent<SolidBlock>() != null)

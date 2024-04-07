@@ -8,11 +8,12 @@ public class CharacterCollection: IService
 {
     private SpawnerCollection _spawnerCollection;
 
-    private Character _player;
     private List<Character> _spawnedEnemies = new List<Character>();
     private List<Character> _aliveEnemies = new List<Character>();
 
     public event Action<Character, Character> EnemyDied;
+
+    public Character Player { get; private set; }
 
     public CharacterCollection(SpawnerCollection spawnerCollection)
     {
@@ -21,7 +22,7 @@ public class CharacterCollection: IService
 
     public void Destroy()
     {
-        _player = null;
+        Player = null;
 
         _spawnedEnemies.Clear();
         _spawnedEnemies = null;
@@ -34,7 +35,7 @@ public class CharacterCollection: IService
 
     public Character CreatePlayer()
     {
-        if (_player != null)
+        if (Player != null)
         {
             throw new Exception("Can't create new player: already exists");
         }
@@ -47,11 +48,11 @@ public class CharacterCollection: IService
         Vector3 position = _spawnerCollection.GetPlayerSpawnerPosition();
         Quaternion rotation = Quaternion.Euler(0, Random.Range(0, 360), 0);
 
-        _player = GameObject.Instantiate(sample, position, rotation)
+        Player = GameObject.Instantiate(sample, position, rotation)
             .GetComponent<Character>();
-        _player.Initialize(playerInfo, true);
+        Player.Initialize(playerInfo, true);
 
-        return _player;
+        return Player;
     }
 
     public void CreateEnemy(CharacterInfo character)

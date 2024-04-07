@@ -222,6 +222,7 @@ MonoBehaviour:
   <Head>k__BackingField: {fileID: 8668514166702934680}
   <UpperObstacleChecker>k__BackingField: {fileID: 4056508369295913623}
   <LowerObstacleChecker>k__BackingField: {fileID: 8384553059945870833}
+  <AttackPoint>k__BackingField: {fileID: 4056508369295913623}
   <GroundChecker>k__BackingField: {fileID: 1262687530784785693}
 --- !u!114 &-8992056517513797548
 MonoBehaviour:
@@ -274,7 +275,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 856290541048450969}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: e5d015d404251e84c8e3de7018161da2, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0

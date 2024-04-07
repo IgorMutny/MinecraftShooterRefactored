@@ -5,21 +5,24 @@ public class Character : MonoBehaviour
     [field: SerializeField] public Transform Head { get; private set; }
     [field: SerializeField] public Transform UpperObstacleChecker { get; private set; }
     [field: SerializeField] public Transform LowerObstacleChecker { get; private set; }
+    [field: SerializeField] public Transform AttackPoint { get; private set; }
     [field: SerializeField] public Transform GroundChecker { get; private set; }
 
     private bool _isInitialized = false;
 
     private CharacterView _view;
-    private CharacterInfo _characterInfo;
+    private CharacterInfo _info;
     private Movement _movement;
     private Inventory _inventory;
     private Health _health;
     private DropInfo _dropInfo;
     private AppliedEffects _appliedEffects;
+    private AI _ai;
 
     public bool IsPlayer { get; private set; }
     public bool IsAlive { get; private set; }
 
+    public Movement Movement => _movement;
     public Inventory Inventory => _inventory;
     public Health Health => _health;
     public AppliedEffects AppliedEffects => _appliedEffects;
@@ -33,7 +36,7 @@ public class Character : MonoBehaviour
 
     public void Initialize(CharacterInfo characterInfo, bool isPlayer)
     {
-        _characterInfo = characterInfo;
+        _info = characterInfo;
         _dropInfo = characterInfo.LootChance;
 
         IsAlive = true;
@@ -43,6 +46,7 @@ public class Character : MonoBehaviour
         AddInventory();
         AddHealth();
         AddAppliedEffects();
+        AddAI();
 
         _isInitialized = true;
     }
@@ -50,12 +54,12 @@ public class Character : MonoBehaviour
     #region InitializationMethods
     private void AddMovement()
     {
-        switch (_characterInfo.MovementType)
+        switch (_info.MovementType)
         {
             case MovementType.Walking: 
-                _movement = new WalkingMovement(this, _characterInfo); break;
+                _movement = new WalkingMovement(this, _info); break;
             case MovementType.Flying:
-                _movement = new FlyingMovement(this, _characterInfo); break;
+                _movement = new FlyingMovement(this, _info); break;
         }
     }
 
@@ -68,7 +72,7 @@ public class Character : MonoBehaviour
         }
         else
         {
-            _inventory = new Inventory(this, _characterInfo);
+            _inventory = new Inventory(this, _info);
         }
     }
 
@@ -77,11 +81,11 @@ public class Character : MonoBehaviour
         if (IsPlayer == true)
         {
             IReadOnlyGameDataService gameDataService = ServiceLocator.Get<GameDataService>();
-            _health = new Health(this, _characterInfo, gameDataService);
+            _health = new Health(this, _info, gameDataService);
         }
         else
         {
-            _health = new Health(this, _characterInfo);
+            _health = new Health(this, _info);
         }
 
         _health.Died += OnDied;
@@ -93,6 +97,14 @@ public class Character : MonoBehaviour
         _appliedEffects = new AppliedEffects(this);
         _appliedEffects.SpeedMultiplierChanged += OnSpeedMultiplierChanged;
         _appliedEffects.DamageMultiplierChanged += OnDamageMultiplierChanged;
+    }
+
+    private void AddAI()
+    {
+        if (IsPlayer == false)
+        {
+            _ai = new AI(this, _info);
+        }
     }
 
     #endregion InitializationMethods
@@ -137,6 +149,11 @@ public class Character : MonoBehaviour
             _movement.OnTick();
             _inventory.OnTick();
             _appliedEffects.OnTick();
+
+            if (_ai != null)
+            {
+                _ai.OnTick();
+            }
         }
     }
 

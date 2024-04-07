@@ -716,6 +716,7 @@ MonoBehaviour:
   <Head>k__BackingField: {fileID: 338137981520557137}
   <UpperObstacleChecker>k__BackingField: {fileID: 2383953410092267774}
   <LowerObstacleChecker>k__BackingField: {fileID: 8411950952259466314}
+  <AttackPoint>k__BackingField: {fileID: 2383953410092267774}
   <GroundChecker>k__BackingField: {fileID: 2356110837314962651}
 --- !u!114 &6889503296467437746
 MonoBehaviour:
