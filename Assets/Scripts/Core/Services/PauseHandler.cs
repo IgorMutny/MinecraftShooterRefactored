@@ -20,18 +20,6 @@ public class PauseHandler : IService
         AudioListener.pause = false;
     }
 
-    public void SwitchPause()
-    {
-        if (_isPaused == false)
-        {
-            Pause();
-        }
-        else
-        {
-            Resume();
-        }
-    }
-
     public void Pause()
     {
         Time.timeScale = 0;

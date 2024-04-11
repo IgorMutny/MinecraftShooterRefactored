@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a04acc5f9c9d6a429462a761ae33104, type: 3}
+  m_Name: CreeperAudio
+  m_EditorClassIdentifier: 
+  IdleClips: []
+  MovingClips: []
+  AttackingClips:
+  - {fileID: 8300000, guid: b4258843672b9d94fa96907111bdf049, type: 3}
+  DamagedClips:
+  - {fileID: 8300000, guid: a99321c093b980b46b5f55cf5fea678f, type: 3}
+  - {fileID: 8300000, guid: 4fa4c352ef7d81e4c9c35ba0cd500f50, type: 3}
+  - {fileID: 8300000, guid: 76d1aa5435945014d9358f9e980d197b, type: 3}
+  - {fileID: 8300000, guid: b6e8bae8f4f0a07499c904bb0784228e, type: 3}
+  DiedClips:
+  - {fileID: 8300000, guid: 6066e90cdff7fee44976c5211b236fb1, type: 3}
+  MinIdleClipRepeatingDelay: 0
+  MaxIdleClipRepeatingDelay: 0
+  MinMovingClipRepeatingDelay: 0
+  MaxMovingClipRepeatingDelay: 0

@@ -997,7 +997,7 @@ GameObject:
   - component: {fileID: 8241410947076598688}
   - component: {fileID: 771657464966231928}
   - component: {fileID: 8127230341913130584}
-  - component: {fileID: 3360302773493400732}
+  - component: {fileID: 8422249644132625064}
   m_Layer: 0
   m_Name: Skeleton
   m_TagString: Untagged
@@ -1091,25 +1091,27 @@ MonoBehaviour:
   <LowerObstacleChecker>k__BackingField: {fileID: 2412504678864473127}
   <AttackPoint>k__BackingField: {fileID: 165591316507220534}
   <GroundChecker>k__BackingField: {fileID: 9140834175366592921}
---- !u!114 &3360302773493400732
-MonoBehaviour:
+--- !u!95 &8422249644132625064
+Animator:
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6776804392703501973}
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cffc5cebd3055954ca9d73ad81f7b904, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _damagedClips:
-  - {fileID: 8300000, guid: bd5b156eb00fb7645acb86330c1a1c3d, type: 3}
-  - {fileID: 8300000, guid: 4b7429414e9a8a14da3edbbdb24336be, type: 3}
-  - {fileID: 8300000, guid: 9a82915013532cc45892bb7a52ed7c5e, type: 3}
-  - {fileID: 8300000, guid: 5bd3ee6139ede064bb43aba4dc88289a, type: 3}
-  _diedClips:
-  - {fileID: 8300000, guid: 10e6999677d66cb459560f12abed4118, type: 3}
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 84773f269bdfa32469630624cca8175c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &7409003200457010436
 GameObject:
   m_ObjectHideFlags: 0

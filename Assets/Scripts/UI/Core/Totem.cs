@@ -6,6 +6,7 @@ namespace CoreUIElements
     {
         [SerializeField] private GameObject _image;
         [SerializeField] private GameObject _totemPresenterSample;
+        [SerializeField] private AudioClip _totemClip;
 
         public void SetActive(bool value)
         {
@@ -15,6 +16,7 @@ namespace CoreUIElements
         public void ShowResurrection(Transform head)
         {
             Instantiate(_totemPresenterSample, head);
+            ServiceLocator.Get<AudioService>().Play(_totemClip);
         }
     }
 }

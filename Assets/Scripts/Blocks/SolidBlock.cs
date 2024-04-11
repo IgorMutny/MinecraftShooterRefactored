@@ -1,6 +1,3 @@
 using UnityEngine;
 
-public class SolidBlock : MonoBehaviour
-{
-
-}
+public class SolidBlock : MonoBehaviour { }

@@ -957,7 +957,7 @@ GameObject:
   - component: {fileID: 8021404892492560686}
   - component: {fileID: 1417580238293476972}
   - component: {fileID: 4238465157066657223}
-  - component: {fileID: 2992733533118792624}
+  - component: {fileID: 9120183077206869720}
   m_Layer: 0
   m_Name: Spider
   m_TagString: Untagged
@@ -1072,25 +1072,27 @@ MonoBehaviour:
   <LowerObstacleChecker>k__BackingField: {fileID: 7316631777983505534}
   <AttackPoint>k__BackingField: {fileID: 7316631777983505534}
   <GroundChecker>k__BackingField: {fileID: 7348557512998547735}
---- !u!114 &2992733533118792624
-MonoBehaviour:
+--- !u!95 &9120183077206869720
+Animator:
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6048835009924045396}
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cffc5cebd3055954ca9d73ad81f7b904, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _damagedClips:
-  - {fileID: 8300000, guid: 2895864eec40a904ab9741c6cd368320, type: 3}
-  - {fileID: 8300000, guid: da1d319a6c2cc4d4dbb78ca70960e5cf, type: 3}
-  - {fileID: 8300000, guid: be04c2e8d018b9540ac4ef5118e23d5b, type: 3}
-  - {fileID: 8300000, guid: 8c05dd2fba0142846a5650c9643f68c1, type: 3}
-  _diedClips:
-  - {fileID: 8300000, guid: bd1407b4b20286c4fa56791d16cd0dc4, type: 3}
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 1d3ea63545df96744997c14ff1bdb4c3, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &6532291502047650310
 GameObject:
   m_ObjectHideFlags: 0

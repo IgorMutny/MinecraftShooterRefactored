@@ -2,9 +2,7 @@ using UnityEngine;
 
 public class AIRotateThrowingWeaponToTargetHeightTask : AITask
 {
-    public AIRotateThrowingWeaponToTargetHeightTask(AI ai) : base(ai)
-    {
-    }
+    public AIRotateThrowingWeaponToTargetHeightTask(AI ai) : base(ai) { }
 
     public override void OnTick()
     {

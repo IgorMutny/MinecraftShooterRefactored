@@ -1,15 +1,16 @@
-using UnityEngine;
-
 public class RegenerationEffect : Effect
 {
-    protected override void OnTickExtended()
+    protected override void InitializeExtended()
     {
-        if (_periodCounter <= 0)
+        Cure();
+    }
+
+    private void Cure()
+    {
+        if (_isActive == true)
         {
             _character.Health.GetCure((int)_value);
-            _periodCounter = _period;
+            _timer.AddSignal(_period, Cure);
         }
-
-        _periodCounter -= Time.fixedDeltaTime;
     }
 }

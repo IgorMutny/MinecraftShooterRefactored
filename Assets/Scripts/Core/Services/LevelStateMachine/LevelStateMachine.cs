@@ -22,11 +22,6 @@ public class LevelStateMachine: IService
         _currentState.Enter(this);
     }
 
-    public void OnTick()
-    {
-        _currentState.OnTick();
-    }
-
     public void IncreaseCurrentWave()
     {
         _currentWave += 1;

@@ -27,7 +27,6 @@ public class PCInput : MonoBehaviour
 
     private Character _player;
     private PauseHandler _pauseHandler;
-    private bool _isMouseFree = false; //temp
 
     public void Initialize(Character player)
     {
@@ -53,21 +52,13 @@ public class PCInput : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.Escape))
             {
-                _pauseHandler.SwitchPause();
+                _pauseHandler.Pause();
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.Tab) == true) //temp
+        if (Input.GetKeyDown(KeyCode.Tab))
         {
-            _isMouseFree = !_isMouseFree;
-            if (_isMouseFree == true)
-            {
-                Cursor.lockState = CursorLockMode.None;
-            }
-            else
-            {
-                Cursor.lockState = CursorLockMode.Locked;
-            }
+            ServiceLocator.Get<TimerWrapper>().GetSignalsAmount();
         }
     }
 
@@ -82,17 +73,10 @@ public class PCInput : MonoBehaviour
 
     private Vector3 GetRotation()
     {
-        if (_isMouseFree == false) //temp
-        {
-            float mouseX = Input.GetAxis(_mouseX) * _mouseSensitivity;
-            float mouseY = Input.GetAxis(_mouseY) * _mouseSensitivity;
-            Vector3 rotationInput = new Vector3(mouseX, mouseY, 0);
-            return rotationInput;
-        }
-        else
-        {
-            return Vector3.zero;
-        }
+        float mouseX = Input.GetAxis(_mouseX) * _mouseSensitivity;
+        float mouseY = Input.GetAxis(_mouseY) * _mouseSensitivity;
+        Vector3 rotationInput = new Vector3(mouseX, mouseY, 0);
+        return rotationInput;
     }
 
     private bool GetAttack()

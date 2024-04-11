@@ -12,4 +12,5 @@ public class CharacterInfo : ScriptableObject
     [field: SerializeField] public int Health { get; private set; }
     [field: SerializeField] public DropInfo LootChance { get; private set; }
     [field: SerializeField] public AIInfo AI { get; private set; }
+    [field: SerializeField] public CharacterAudioInfo Audio { get; private set; }
 }

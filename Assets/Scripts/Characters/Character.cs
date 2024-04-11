@@ -10,37 +10,28 @@ public class Character : MonoBehaviour
 
     private bool _isInitialized = false;
 
-    private CharacterView _view;
     private CharacterInfo _info;
-    private Movement _movement;
-    private Inventory _inventory;
-    private Health _health;
-    private DropInfo _dropInfo;
-    private AppliedEffects _appliedEffects;
     private AI _ai;
 
     public bool IsPlayer { get; private set; }
     public bool IsAlive { get; private set; }
 
-    public Movement Movement => _movement;
-    public Inventory Inventory => _inventory;
-    public Health Health => _health;
-    public AppliedEffects AppliedEffects => _appliedEffects;
-    public CharacterView View => _view;
-    public DropInfo DropInfo => _dropInfo;
-
-    private void Awake()
-    {
-        _view = GetComponent<CharacterView>();
-    }
+    public Movement Movement { get; private set; }
+    public Inventory Inventory { get; private set; }
+    public Health Health { get; private set; }
+    public AppliedEffects AppliedEffects { get; private set; }
+    public CharacterView View { get; private set; }
+    public DropInfo DropInfo { get; private set; }
 
     public void Initialize(CharacterInfo characterInfo, bool isPlayer)
     {
         _info = characterInfo;
-        _dropInfo = characterInfo.LootChance;
+        DropInfo = characterInfo.LootChance;
 
         IsAlive = true;
         IsPlayer = isPlayer;
+
+        View = new CharacterView(this, _info.Audio);
 
         AddMovement();
         AddInventory();
@@ -57,9 +48,9 @@ public class Character : MonoBehaviour
         switch (_info.MovementType)
         {
             case MovementType.Walking: 
-                _movement = new WalkingMovement(this, _info); break;
+                Movement = new WalkingMovement(this, _info); break;
             case MovementType.Flying:
-                _movement = new FlyingMovement(this, _info); break;
+                Movement = new FlyingMovement(this, _info); break;
         }
     }
 
@@ -68,11 +59,11 @@ public class Character : MonoBehaviour
         if (IsPlayer == true)
         {
             IReadOnlyGameDataService gameDataService = ServiceLocator.Get<GameDataService>();
-            _inventory = new Inventory(this, gameDataService);
+            Inventory = new Inventory(this, gameDataService);
         }
         else
         {
-            _inventory = new Inventory(this, _info);
+            Inventory = new Inventory(this, _info);
         }
     }
 
@@ -81,22 +72,22 @@ public class Character : MonoBehaviour
         if (IsPlayer == true)
         {
             IReadOnlyGameDataService gameDataService = ServiceLocator.Get<GameDataService>();
-            _health = new Health(this, _info, gameDataService);
+            Health = new Health(this, _info, gameDataService);
         }
         else
         {
-            _health = new Health(this, _info);
+            Health = new Health(this, _info);
         }
 
-        _health.Died += OnDied;
-        _health.Damaged += OnDamaged;
+        Health.Died += OnDied;
+        Health.Damaged += OnDamaged;
     }
 
     private void AddAppliedEffects()
     {
-        _appliedEffects = new AppliedEffects(this);
-        _appliedEffects.SpeedMultiplierChanged += OnSpeedMultiplierChanged;
-        _appliedEffects.DamageMultiplierChanged += OnDamageMultiplierChanged;
+        AppliedEffects = new AppliedEffects(this);
+        AppliedEffects.SpeedMultiplierChanged += OnSpeedMultiplierChanged;
+        AppliedEffects.DamageMultiplierChanged += OnDamageMultiplierChanged;
     }
 
     private void AddAI()
@@ -113,42 +104,42 @@ public class Character : MonoBehaviour
         bool isAttacking, bool isReloading,
         int numericWeaponIndex, int prevNextWeaponIndex)
     {
-        _movement.SetInput(movementInput, rotationInput);
-        _inventory.SetInput(isAttacking, isReloading,
+        Movement.SetInput(movementInput, rotationInput);
+        Inventory.SetInput(isAttacking, isReloading,
             numericWeaponIndex, prevNextWeaponIndex);
     }
 
     public void OnDamaged(int damage, Character attacker)
     {
-        _view.OnDamaged(damage);
+        View.OnDamaged(damage);
     }
 
     private void OnDied(Character attacker)
     {
-        _movement.OnDied();
-        _inventory.OnDied();
-        _view.OnDied();
-        _appliedEffects.OnDied();
+        Movement.OnDied();
+        Inventory.OnDied();
+        View.OnDied();
+        AppliedEffects.OnDied();
         IsAlive = false;
     }
 
     private void OnSpeedMultiplierChanged(float multiplier)
     {
-        _inventory.ChangeWeaponSpeed(multiplier);
+        Inventory.ChangeWeaponSpeed(multiplier);
+        View.ChangeSpeed(multiplier);
     }
 
     private void OnDamageMultiplierChanged(float multiplier)
     {
-        _inventory.ChangeWeaponDamage(multiplier);
+        Inventory.ChangeWeaponDamage(multiplier);
     }
 
     private void FixedUpdate()
     {
         if (IsAlive == true && _isInitialized == true)
         {
-            _movement.OnTick();
-            _inventory.OnTick();
-            _appliedEffects.OnTick();
+            Movement.OnTick();
+            AppliedEffects.OnTick();
 
             if (_ai != null)
             {
@@ -159,9 +150,10 @@ public class Character : MonoBehaviour
 
     private void OnDestroy()
     {
-        _health.Died -= OnDied;
-        _health.Damaged -= OnDamaged;
-        _appliedEffects.SpeedMultiplierChanged -= OnSpeedMultiplierChanged;
-        _appliedEffects.DamageMultiplierChanged -= OnDamageMultiplierChanged;
+        Health.Died -= OnDied;
+        Health.Damaged -= OnDamaged;
+        AppliedEffects.SpeedMultiplierChanged -= OnSpeedMultiplierChanged;
+        AppliedEffects.DamageMultiplierChanged -= OnDamageMultiplierChanged;
+        View.Destroy();
     }
 }

@@ -12,8 +12,6 @@ public class WaveEndingState : ILevelState
         _characterCollection.EnemyDied += OnEnemyDied;
     }
 
-    public void OnTick() { }
-
     private void OnEnemyDied(Character enemy, Character attacker)
     { 
         if (_characterCollection.GetEnemiesCount() == 0)

@@ -5,17 +5,18 @@ public class WaveBeginningState : ILevelState
 {
     private LevelStateMachine _stateMachine;
     private CharacterCollection _characterCollection;
-    private float _timer;
+    private TimerWrapper _timer;
     private List<CharacterInfo> _enemiesToSpawn;
 
     public void Enter(LevelStateMachine stateMachine)
     {
         _stateMachine = stateMachine;
         _characterCollection = ServiceLocator.Get<CharacterCollection>();
-        _timer = _stateMachine.Level.DelayBetweenEnemies;
+        _timer = ServiceLocator.Get<TimerWrapper>();
         _enemiesToSpawn = GetEnemiesList();
 
         ShowMessage();
+        OnSignal();
     }
 
     private void ShowMessage()
@@ -26,17 +27,12 @@ public class WaveBeginningState : ILevelState
         sender.ShowMessage(text, Color.white);
     }
 
-    public void OnTick()
+    private void OnSignal()
     {
         if (_enemiesToSpawn.Count > 0)
         {
-            _timer -= Time.fixedDeltaTime;
-
-            if (_timer <= 0)
-            {
-                _timer = _stateMachine.Level.DelayBetweenEnemies;
-                CreateRandomEnemy();
-            }
+            CreateRandomEnemy();
+            _timer.AddSignal(_stateMachine.Level.DelayBetweenEnemies, OnSignal);
         }
         else
         {

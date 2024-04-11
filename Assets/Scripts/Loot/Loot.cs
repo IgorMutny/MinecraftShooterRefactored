@@ -10,7 +10,8 @@ public abstract class Loot : MonoBehaviour
 
     private Vector3 _gravity = new Vector3(0, -9.8f, 0);
     private float _lifeTime;
-    private bool _isAlive;
+
+    private TimerWrapper _timer;
 
     public LootInfo Info { get; private set; }
 
@@ -27,13 +28,14 @@ public abstract class Loot : MonoBehaviour
 
         _triggerRadius = GetComponent<SphereCollider>().radius;
         _lifeTime = info.LifeTime;
-        _isAlive = true;
+
+        _timer = ServiceLocator.Get<TimerWrapper>();
+        _timer.AddSignal(_lifeTime, Die);
     }
 
     private void FixedUpdate()
     {
         SimulateGravity();
-        DecreaseLifeTime();
     }
 
     private void SimulateGravity()
@@ -52,18 +54,9 @@ public abstract class Loot : MonoBehaviour
         transform.Translate(_gravity * Time.fixedDeltaTime);
     }
 
-    private void DecreaseLifeTime()
+    private void Die()
     {
-        if (_isAlive == true)
-        {
-            _lifeTime -= Time.fixedDeltaTime;
-
-            if (_lifeTime <= 0)
-            {
-                _isAlive = false;
-                Died?.Invoke(this);
-            }
-        }
+        Died?.Invoke(this);
     }
 
     private void OnTriggerEnter(Collider collider)

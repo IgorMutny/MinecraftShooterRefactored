@@ -1,16 +1,17 @@
-using UnityEngine;
-
 public class PoisoningEffect : Effect
 {
-    protected override void OnTickExtended()
+    protected override void InitializeExtended()
     {
-        if (_periodCounter <= 0)
+        Damage();
+    }
+
+    private void Damage()
+    {
+        if (_isActive == true)
         {
             _character.Health.GetDamage((int)_value, DamageType.Poison, null);
-            _periodCounter = _period;
+            _timer.AddSignal(_period, Damage);
         }
-
-        _periodCounter -= Time.fixedDeltaTime;
     }
 }
 

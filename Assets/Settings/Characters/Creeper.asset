@@ -21,3 +21,4 @@ MonoBehaviour:
   <Health>k__BackingField: 1000
   <LootChance>k__BackingField: {fileID: 11400000, guid: 7ef6187d407ca4f4a906a761caf60ef9, type: 2}
   <AI>k__BackingField: {fileID: 11400000, guid: 69a171c5b97221a45b73c2ebd3402606, type: 2}
+  <Audio>k__BackingField: {fileID: 11400000, guid: 433a82f678d6ab14887f23b9746e786e, type: 2}

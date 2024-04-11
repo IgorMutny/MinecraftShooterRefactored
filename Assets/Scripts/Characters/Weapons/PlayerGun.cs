@@ -5,6 +5,7 @@ public class PlayerGun : Weapon
     private GameObject _handModel;
     private PlayerGunView _view;
     private TimerWrapper _timer;
+    private float _speedMultiplier = 1f;
 
     private GameObject _projectileSample;
     private int _projectilesAmount;
@@ -48,8 +49,6 @@ public class PlayerGun : Weapon
         _isReloaded = true;
     }
 
-    public override void OnTick() { }
-
     #region AttackMethods
     public override void TryAttack()
     {
@@ -59,7 +58,7 @@ public class PlayerGun : Weapon
             {
                 Attack();
                 _isReady = false;
-               _cooldownSignal = _timer.SetSignal(_cooldownTime, SetReady);
+               _cooldownSignal = _timer.AddSignal(_cooldownTime / _speedMultiplier, SetReady);
             }
             else
             {
@@ -120,7 +119,7 @@ public class PlayerGun : Weapon
             }
 
             _isReloaded = false;
-            _reloadSignal = _timer.SetSignal(_reloadTime, Reload);
+            _reloadSignal = _timer.AddSignal(_reloadTime / _speedMultiplier, Reload);
         }
     }
 
@@ -167,6 +166,8 @@ public class PlayerGun : Weapon
         {
             _view.ChangeSpeed(multiplier);
         }
+        
+        _speedMultiplier = multiplier;
     }
 
     public override void ChangeDamage(float multiplier)

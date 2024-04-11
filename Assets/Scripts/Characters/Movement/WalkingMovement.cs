@@ -4,13 +4,15 @@ public class WalkingMovement : Movement
 {
     private Vector3 _jumpVector = new Vector3(0, 6f, 0);
     private float _jumpDuration = 0.25f;
-    private float _jumpDurationCounter;
     private float _obstacleRaycastDistance = 1.5f;
+    private TimerWrapper _timer;
+    private bool _isJumping;
 
     public WalkingMovement(Character character, CharacterInfo characterInfo)
         : base(character, characterInfo)
-    {
-
+    { 
+        _timer = ServiceLocator.Get<TimerWrapper>();
+        _isJumping = false;
     }
 
     public override void OnTick()
@@ -38,6 +40,8 @@ public class WalkingMovement : Movement
 
     private void Move()
     {
+        Vector3 prevMovementVector = MovementVector;
+
         MovementVector = 
             Transform.right * MovementInput.x + 
             Transform.forward * MovementInput.y;
@@ -46,6 +50,19 @@ public class WalkingMovement : Movement
         Rigidbody.velocity = 
             MovementVector * MovementSpeed * Character.AppliedEffects.SpeedMultiplier
             + verticalVector;
+
+        if (prevMovementVector != MovementVector)
+        {
+            if (prevMovementVector == Vector3.zero)
+            {
+                Character.View.StartMovement();
+            }
+
+            if (MovementVector == Vector3.zero)
+            {
+                Character.View.StopMovement();
+            }
+        }
     }
 
     private void Rotate()
@@ -63,35 +80,26 @@ public class WalkingMovement : Movement
 
     private void DoJumping()
     {
-        DecreaseJumpCounter();
-
         if (IsGrounded() == true)
         {
-            _jumpDurationCounter = 0;
+            StopJumping();
 
             if (ShouldJump() == true)
             {
-                _jumpDurationCounter = _jumpDuration;
+                _isJumping = true;
+                _timer.AddSignal(_jumpDuration, StopJumping);
             }
         }
 
-        if (_jumpDurationCounter > 0)
+        if (_isJumping == true)
         {
             Rigidbody.MovePosition(Transform.position + _jumpVector * Time.fixedDeltaTime);
         }
     }
 
-    private void DecreaseJumpCounter()
+    private void StopJumping()
     {
-        if (_jumpDurationCounter > 0)
-        {
-            _jumpDurationCounter -= Time.fixedDeltaTime;
-
-            if (_jumpDurationCounter < 0)
-            {
-                _jumpDurationCounter = 0;
-            }
-        }
+        _isJumping = false;
     }
 
     private bool ShouldJump()

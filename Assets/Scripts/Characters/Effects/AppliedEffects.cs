@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using UnityEngine;
 
 public class AppliedEffects
 {
@@ -86,7 +85,7 @@ public class AppliedEffects
         Effect effect = new T();
         effect.SetCharacter(_character);
         effect.SetAppliedEffects(this);
-        effect.SetInfo(info);
+        effect.Initialize(info);
         effect.Expired += OnExpired;
         _effects.Add(effect);
 

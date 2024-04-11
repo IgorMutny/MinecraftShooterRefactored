@@ -7,6 +7,7 @@ public class TimerWrapper : IService
     private Timer _timer;
     private List<TimerSignal> _signals = new List<TimerSignal>();
     private List<TimerSignal> _signalsToRemove = new List<TimerSignal>();
+    private List<TimerSignal> _signalsToAdd = new List<TimerSignal>();
 
     public event Action Tick;
 
@@ -27,11 +28,17 @@ public class TimerWrapper : IService
             signal.OnTick();
         }
 
+        foreach (TimerSignal signal in _signalsToAdd)
+        {
+            _signals.Add(signal);
+        }
+
         foreach(TimerSignal signal in _signalsToRemove)
         {
             _signals.Remove(signal);
         }
 
+        _signalsToAdd.Clear();
         _signalsToRemove.Clear();
     }
 
@@ -39,12 +46,17 @@ public class TimerWrapper : IService
     {
         _timer.Tick -= OnTick;
         GameObject.Destroy(_timer.gameObject);
+
+        foreach (TimerSignal signal in _signals)
+        {
+            RemoveSignal(signal);
+        }
     }
 
-    public TimerSignal SetSignal(float seconds, Action action)
+    public TimerSignal AddSignal(float seconds, Action action, string tag = null)
     {
-        TimerSignal signal = new TimerSignal(seconds, action);
-        _signals.Add(signal);
+        TimerSignal signal = new TimerSignal(seconds, action, tag);
+        _signalsToAdd.Add(signal);
         signal.Ready += RemoveSignal;
         return signal;
     }
@@ -56,5 +68,10 @@ public class TimerWrapper : IService
             signal.Ready -= RemoveSignal;
             _signalsToRemove.Add(signal);
         }
+    }
+
+    public void GetSignalsAmount()
+    {
+        Debug.Log(_signals.Count);
     }
 }

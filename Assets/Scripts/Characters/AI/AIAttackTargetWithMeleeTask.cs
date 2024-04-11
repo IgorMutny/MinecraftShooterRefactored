@@ -1,8 +1,6 @@
 public class AIAttackTargetWithMeleeTask : AITask
 {
-    public AIAttackTargetWithMeleeTask(AI ai) : base(ai)
-    {
-    }
+    public AIAttackTargetWithMeleeTask(AI ai) : base(ai) { }
 
     public override void OnTick()
     {

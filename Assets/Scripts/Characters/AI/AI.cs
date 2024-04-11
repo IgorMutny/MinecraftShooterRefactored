@@ -4,23 +4,25 @@ public class AI
 {
     private AIState _currentState;
     private AIState _permanentTasks;
-    private float _delayBetweenAttacksCounter;
+    private TimerWrapper _timer;
 
     public Character Character { get; private set; }
     public CharacterInfo Info { get; private set; }
     public Character Target { get; private set; }
 
-    public bool CanAttack => _delayBetweenAttacksCounter == 0;
+    public bool CanAttack { get; private set; }
 
     public AI(Character character, CharacterInfo info)
     {
         Character = character;
         Info = info;
 
-        _delayBetweenAttacksCounter = info.AI.DelayBetweenAttacks;
+        _timer = ServiceLocator.Get<TimerWrapper>();
 
         _permanentTasks = new AIPermanentTasks();
         _permanentTasks.SetAI(this);
+
+        CanAttack = true;
 
         SetState<AIMoveToTargetState>();
     }
@@ -29,27 +31,18 @@ public class AI
     {
         _currentState.OnTick();
         _permanentTasks.OnTick();
-
-        DecreaseDelayBetweenAttacks();
     }
 
-    private void DecreaseDelayBetweenAttacks()
-    {
-        if (_delayBetweenAttacksCounter > 0)
-        {
-            _delayBetweenAttacksCounter -= Time.fixedDeltaTime;
-            {
-                if (_delayBetweenAttacksCounter < 0)
-                {
-                    _delayBetweenAttacksCounter = 0;
-                }
-            }
-        }
-    }
 
     public void OnAttacking()
     {
-        _delayBetweenAttacksCounter = Info.AI.DelayBetweenAttacks;
+        CanAttack = false;
+        _timer.AddSignal(Info.AI.DelayBetweenAttacks, AllowAttack);
+    }
+
+    private void AllowAttack()
+    {
+        CanAttack = true;
     }
 
     public void SetTarget(Character target)

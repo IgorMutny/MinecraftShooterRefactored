@@ -18,8 +18,6 @@ public abstract class Weapon
         IsLocked = false;
     }
 
-    public abstract void OnTick();
-
     public void Lock()
     {
         IsLocked = true;

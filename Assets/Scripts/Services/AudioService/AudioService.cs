@@ -19,7 +19,7 @@ public class AudioService : IService
         _audioSource.Initialize(this);
     }
 
-    public void ChangeSoundVolume(float volume)
+    public void SetVolume(float volume)
     {
         Volume = volume;
     }

@@ -7,78 +7,47 @@ public class Melee : Weapon
     private float _minDamage;
     private float _maxDamage;
     private float _attackRange;
-    private float _cooldownCounter;
-    private float _delayBeforeDamagingCounter;
-
+    private float _cooldownTime;
+    private float _delayBeforeDamaging;
+    private TimerWrapper _timer;
 
     public Melee(Character character, Inventory inventory, WeaponInfo weaponInfo)
         : base(character, inventory, weaponInfo)
     {
         _info = (MeleeInfo)weaponInfo;
+        _timer = ServiceLocator.Get<TimerWrapper>();
 
         _maxDamage = _info.MaxDamage;
         _minDamage = _info.MinDamage;
         _attackRange = _info.AttackRange;
-        _cooldownCounter = _info.CooldownTime;
-        _delayBeforeDamagingCounter = 0;
+        _cooldownTime = _info.CooldownTime;
+        _delayBeforeDamaging = _info.DelayBeforeDamaging;
 
         _isReady = true;
     }
 
     public override void ChangeDamage(float multiplier) { }
 
-    public override void ChangeSpeed(float multiplier) { }
-
-    public override void OnTick()
+    public override void ChangeSpeed(float multiplier)
     {
-        if (IsLocked == false)
-        {
-            DecreaseCoolDownTime();
-            DecreaseDelayBeforeDamagingTime();
-        }
-    }
-
-    private void DecreaseCoolDownTime()
-    {
-        if (_cooldownCounter > 0)
-        {
-            _cooldownCounter -= Time.fixedDeltaTime * SpeedMultiplier;
-
-            if (_cooldownCounter <= 0)
-            {
-                _cooldownCounter = 0;
-                _isReady = true;
-            }
-        }
-    }
-
-    private void DecreaseDelayBeforeDamagingTime()
-    {
-        if (_delayBeforeDamagingCounter > 0)
-        {
-            _delayBeforeDamagingCounter -= Time.fixedDeltaTime * SpeedMultiplier;
-
-            if (_delayBeforeDamagingCounter <= 0)
-            {
-                _delayBeforeDamagingCounter = 0;
-                DoDamage();
-            }
-        }
+        _cooldownTime = _info.CooldownTime * multiplier;
     }
 
     public override void TryAttack()
     {
         if (_isReady == true && IsLocked == false)
         {
-            Attack();
+            _timer.AddSignal(_delayBeforeDamaging, DoDamage);
+            _timer.AddSignal(_cooldownTime, AllowAttack);
+            Character.View.Attack();
             _isReady = false;
-            _cooldownCounter = _info.CooldownTime;
+            _cooldownTime = _info.CooldownTime;
         }
     }
 
-    private void Attack()
+    private void AllowAttack()
     {
-        _delayBeforeDamagingCounter = _info.DelayBeforeDamaging;
+        _isReady = true;
     }
 
     private void DoDamage()

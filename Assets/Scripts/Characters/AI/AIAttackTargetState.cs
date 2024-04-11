@@ -51,6 +51,11 @@ public class AIAttackTargetState : AIState
             _ai.SetState<AIMoveToTargetState>();
         }
 
+        if (_ai.Info.MovementType == MovementType.Flying && _ai.CanAttack == false)
+        {
+            _ai.SetState<AIMoveToTargetState>();
+        }
+
         if (_ai.Info.AI.CanFlee == true
             && _ai.GetDistanceToTarget() < _ai.Info.AI.DistanceToFlee)
         {

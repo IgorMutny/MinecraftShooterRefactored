@@ -624,7 +624,7 @@ GameObject:
   - component: {fileID: 5841426533283922195}
   - component: {fileID: 9205445157385094634}
   - component: {fileID: 5427461024043057643}
-  - component: {fileID: 6889503296467437746}
+  - component: {fileID: -7245989564547968590}
   m_Layer: 0
   m_Name: Witch
   m_TagString: Untagged
@@ -718,23 +718,24 @@ MonoBehaviour:
   <LowerObstacleChecker>k__BackingField: {fileID: 8411950952259466314}
   <AttackPoint>k__BackingField: {fileID: 2383953410092267774}
   <GroundChecker>k__BackingField: {fileID: 2356110837314962651}
---- !u!114 &6889503296467437746
-MonoBehaviour:
+--- !u!95 &-7245989564547968590
+Animator:
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9200619192933056255}
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cffc5cebd3055954ca9d73ad81f7b904, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _damagedClips:
-  - {fileID: 8300000, guid: 30c9c7150e9681248bf7db038befea92, type: 3}
-  - {fileID: 8300000, guid: 865f5ff0474a4f743998116756244c58, type: 3}
-  - {fileID: 8300000, guid: 044bd4627c2fcd54ca70fe60539cca59, type: 3}
-  _diedClips:
-  - {fileID: 8300000, guid: 916a03d7d361e2c4cb8f2f0eba3fde94, type: 3}
-  - {fileID: 8300000, guid: 6355983a9733d734995bb10276200577, type: 3}
-  - {fileID: 8300000, guid: 10c85ea0519dd5045bd7046f4d87c78a, type: 3}
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: c38c667d348ad13458b504319d46eb21, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

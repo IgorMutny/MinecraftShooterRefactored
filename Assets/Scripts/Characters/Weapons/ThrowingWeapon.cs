@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ThrowingWeapon : Weapon
@@ -7,8 +5,9 @@ public class ThrowingWeapon : Weapon
     private ThrowingWeaponInfo _info;
     private GameObject _projectileSample;
     private float _spreadAngle;
-    private float _cooldownCounter;
+    private float _cooldownTime;
     private bool _isReady;
+    private TimerWrapper _timer;
 
     public ThrowingWeapon(Character character, Inventory inventory, WeaponInfo weaponInfo)
         : base(character, inventory, weaponInfo)
@@ -17,42 +16,18 @@ public class ThrowingWeapon : Weapon
 
         _projectileSample = _info.Projectile;
         _spreadAngle = _info.SpreadAngle;
-        _cooldownCounter = _info.CooldownTime;
+        _cooldownTime = _info.CooldownTime;
 
         _isReady = true;
 
+        _timer = ServiceLocator.Get<TimerWrapper>();
     }
 
-    public override void ChangeDamage(float multiplier)
-    {
-
-    }
+    public override void ChangeDamage(float multiplier) { }
 
     public override void ChangeSpeed(float multiplier)
     {
-
-    }
-
-    public override void OnTick()
-    {
-        if (IsLocked == false)
-        {
-            DecreaseCoolDownTime();
-        }
-    }
-
-    private void DecreaseCoolDownTime()
-    {
-        if (_cooldownCounter > 0)
-        {
-            _cooldownCounter -= Time.fixedDeltaTime * SpeedMultiplier;
-
-            if (_cooldownCounter <= 0)
-            {
-                _cooldownCounter = 0;
-                _isReady = true;
-            }
-        }
+        _cooldownTime = _info.CooldownTime * multiplier;
     }
 
     public override void TryAttack()
@@ -60,9 +35,15 @@ public class ThrowingWeapon : Weapon
         if (_isReady == true && IsLocked == false)
         {
             Attack();
+            Character.View.Attack();
             _isReady = false;
-            _cooldownCounter = _info.CooldownTime;
+            _timer.AddSignal(_cooldownTime, AllowAttack);
         }
+    }
+
+    private void AllowAttack()
+    {
+        _isReady = true;
     }
 
     private void Attack()

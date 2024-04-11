@@ -18,6 +18,7 @@ public class CoreGame
     {
         _level = level;
 
+        CreateTimer();
         CreatePauseHandler();
 
         CreateCharacterCollection();
@@ -31,7 +32,6 @@ public class CoreGame
         CreateMessageSender();
 
         CreateLevelStateMachine();
-        CreateTimer();
 
         Cursor.lockState = CursorLockMode.Locked;
     }
@@ -102,7 +102,6 @@ public class CoreGame
     private void CreateTimer()
     {
         _timer = new TimerWrapper();
-        _timer.Tick += OnTick;
         ServiceLocator.Register(_timer);
     }
 
@@ -113,11 +112,6 @@ public class CoreGame
     }
 
     #endregion InitializationMethods
-
-    private void OnTick()
-    {
-        _levelStateMachine.OnTick();
-    }
 
     private void OnPauseSwitched(bool isPaused)
     {
@@ -132,7 +126,6 @@ public class CoreGame
 
     public void Destroy()
     {
-        _timer.Tick -= OnTick;
         ServiceLocator.Unregister<TimerWrapper>();
         _timer = null;
 

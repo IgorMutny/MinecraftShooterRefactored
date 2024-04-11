@@ -1,5 +1,3 @@
-using System;
-
 public class AIFleeState : AIState
 {
     protected override void AddTasks()

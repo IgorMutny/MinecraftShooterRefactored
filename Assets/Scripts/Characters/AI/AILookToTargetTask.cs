@@ -1,8 +1,6 @@
 public class AILookToTargetTask : AITask
 {
-    public AILookToTargetTask(AI ai) : base(ai)
-    {
-    }
+    public AILookToTargetTask(AI ai) : base(ai) { }
 
     public override void OnTick()
     {

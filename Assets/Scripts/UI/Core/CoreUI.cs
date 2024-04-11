@@ -16,9 +16,11 @@ namespace CoreUIElements
         [SerializeField] private MessagePresenter _messagePresenter;
         [SerializeField] private YouDeadMessage _youDeadMessage;
         [SerializeField] private InGameMenu _inGameMenu;
+        [SerializeField] private OptionsMenu _optionsMenu;
 
         private Character _player;
         private LootCollection _lootCollection;
+        private GameDataService _gameDataService;
 
         public event Action ResumeButtonClicked;
         public event Action ExitButtonClicked;
@@ -28,8 +30,8 @@ namespace CoreUIElements
             _lootCollection = ServiceLocator.Get<LootCollection>();
             _lootCollection.BalanceChanged += OnBalanceChanged;
 
-            IReadOnlyGameDataService gameDataService = ServiceLocator.Get<GameDataService>();
-            _balance.Initialize(gameDataService);
+            _gameDataService = ServiceLocator.Get<GameDataService>();
+            _balance.Initialize(_gameDataService);
 
             _player = player;
 
@@ -49,11 +51,16 @@ namespace CoreUIElements
             _player.Health.Resurrected += OnResurrected;
 
             _inGameMenu.gameObject.SetActive(false);
+            _optionsMenu.gameObject.SetActive(false);
             _youDeadMessage.gameObject.SetActive(false);
 
             _inGameMenu.ResumeButton.onClick.AddListener(() => ResumeButtonClicked?.Invoke());
+            _inGameMenu.OptionsButton.onClick.AddListener(OpenOptionsMenu);
             _inGameMenu.ExitButton.onClick.AddListener(() => ExitButtonClicked?.Invoke());
 
+            _optionsMenu.SoundVolumeChanged += OnSoundVolumeChanged;
+            _optionsMenu.MusicVolumeChanged += OnMusicVolumeChanged;
+            _optionsMenu.BackButton.onClick.AddListener(CloseOptionsMenu);
         }
 
         private void OnDestroy()
@@ -70,7 +77,12 @@ namespace CoreUIElements
             _player.Inventory.MaxRoundsChanged -= OnMaxRoundsChanged;
 
             _inGameMenu.ResumeButton.onClick.RemoveAllListeners();
+            _inGameMenu.OptionsButton.onClick.RemoveListener(OpenOptionsMenu);
             _inGameMenu.ExitButton.onClick.RemoveAllListeners();
+
+            _optionsMenu.SoundVolumeChanged -= OnSoundVolumeChanged;
+            _optionsMenu.MusicVolumeChanged -= OnMusicVolumeChanged;
+            _optionsMenu.BackButton.onClick.RemoveAllListeners();
         }
 
         public void ShowMessage(string text, Color color)
@@ -140,6 +152,28 @@ namespace CoreUIElements
         private void OnApplicationQuit()
         {
             ServiceLocator.Get<GameDataService>().Save();
+        }
+
+        private void OpenOptionsMenu()
+        {
+            _inGameMenu.gameObject.SetActive(false);
+            _optionsMenu.gameObject.SetActive(true);
+        }
+
+        private void CloseOptionsMenu()
+        {
+            _optionsMenu.gameObject.SetActive(false);
+            _inGameMenu.gameObject.SetActive(true);
+        }
+
+        private void OnSoundVolumeChanged(float volume)
+        {
+            _gameDataService.SetSoundVolume(volume);
+        }
+
+        private void OnMusicVolumeChanged(float volume)
+        { 
+            _gameDataService.SetMusicVolume(volume);
         }
     }
 }

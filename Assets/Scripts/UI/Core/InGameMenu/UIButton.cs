@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace CoreUIElements
 {
-    public class ExitButton : MonoBehaviour
+    public class UIButton : MonoBehaviour
     {
         public void OnClick()
         {

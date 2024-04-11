@@ -14,6 +14,9 @@ public class Bootstrap : MonoBehaviour
         Application.targetFrameRate = 100;
         DOTween.SetTweensCapacity(short.MaxValue, short.MaxValue);
 
+        AdService adService = new AdService();
+        ServiceLocator.Register(adService);
+
         GameDataService gameDataService = new GameDataService();
         ServiceLocator.Register(gameDataService);
 

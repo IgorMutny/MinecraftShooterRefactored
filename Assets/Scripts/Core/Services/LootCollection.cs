@@ -38,7 +38,7 @@ public class LootCollection : IService
 
     private void OnEnemyDied(Character enemy, Character attacker)
     {
-        if (attacker.IsPlayer == false)
+        if (attacker == null || attacker.IsPlayer == false)
         {
             return;
         }

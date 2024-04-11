@@ -9,6 +9,7 @@ public class NormalExplosion : Explosion
 
     private AudioSourceWrapper _audioSource;
     private float _flashTime = 0.1f;
+    private float _audioVolume = 2;
 
     public override void Activate()
     {
@@ -28,6 +29,7 @@ public class NormalExplosion : Explosion
         {
             _audioSource = new AudioSourceWrapper(transform, true);
             _audioSource.SetClip(_sound);
+            _audioSource.SetVolume(_audioVolume);
             _audioSource.Play();
         }
 

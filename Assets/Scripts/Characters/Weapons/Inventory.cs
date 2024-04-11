@@ -1,5 +1,4 @@
 using System;
-using UnityEngine;
 
 public class Inventory
 {
@@ -12,7 +11,8 @@ public class Inventory
     private bool _isLocked;
 
     private float _switchWeaponTime = 0.5f;
-    private SwitchWeaponTimer _switchWeaponTimer;
+    private TimerWrapper _timer;
+    private int _nextIndex;
 
     public event Action<int> MaxRoundsChanged;
     public event Action<int> RoundsChanged;
@@ -22,6 +22,7 @@ public class Inventory
     {
         _character = character;
         _isLocked = false;
+        _timer = ServiceLocator.Get<TimerWrapper>();
 
         _records = new InventoryRecord[1];
         AddRecord(0, characterInfo.Weapon);
@@ -39,6 +40,14 @@ public class Inventory
 
         _records = new InventoryRecord[itemInfoCollection.Weapons.Length];
 
+        _timer = ServiceLocator.Get<TimerWrapper>();
+
+        FillInventory(gameDataService, itemInfoCollection);
+        TryTakeWeapon(GetBestWeaponIndex());
+    }
+
+    private void FillInventory(IReadOnlyGameDataService gameDataService, ItemInfoCollection itemInfoCollection)
+    {
         int recordIndex = 0;
 
         for (int i = 0; i < _records.Length; i++)
@@ -51,8 +60,6 @@ public class Inventory
                 recordIndex += 1;
             }
         }
-
-        TryTakeWeapon(GetBestWeaponIndex());
     }
 
     private void AddRecord(int index, WeaponInfo weapon)
@@ -68,19 +75,6 @@ public class Inventory
         }
 
         _records[index] = record;
-    }
-
-    public void OnTick()
-    {
-        if (_switchWeaponTimer != null)
-        {
-            _switchWeaponTimer.OnTick();
-        }
-
-        if (_weapon != null)
-        {
-            _weapon.OnTick();
-        }
     }
 
     public void OnDied()
@@ -176,47 +170,44 @@ public class Inventory
             _weapon.Remove(_switchWeaponTime / 2);
         }
 
-        _switchWeaponTimer = new SwitchWeaponTimer(_switchWeaponTime, index);
-        _switchWeaponTimer.WeaponTaken += OnWeaponTaken;
-        _switchWeaponTimer.WeaponReady += OnWeaponReady;
+        _nextIndex = index;
+        _timer.AddSignal(_switchWeaponTime / 2, OnWeaponTaken);
     }
 
-    private void OnWeaponTaken(int index)
+    private void OnWeaponTaken()
     {
-        _currentRecord = index;
+        _currentRecord = _nextIndex;
 
-        if (_records[index].Weapon is PlayerGunInfo gun)
+        if (_records[_currentRecord].Weapon is PlayerGunInfo gun)
         {
-            _weapon = new PlayerGun(_character, this, _records[index].Weapon);
+            _weapon = new PlayerGun(_character, this, _records[_currentRecord].Weapon);
             WeaponChanged?.Invoke(_currentRecord);
             MaxRoundsChanged?.Invoke(gun.Rounds);
-            RoundsChanged?.Invoke(_records[index].Rounds);
+            RoundsChanged?.Invoke(_records[_currentRecord].Rounds);
         }
 
-        if (_records[index].Weapon is MeleeInfo)
+        if (_records[_currentRecord].Weapon is MeleeInfo)
         {
-            _weapon = new Melee(_character, this, _records[index].Weapon);
+            _weapon = new Melee(_character, this, _records[_currentRecord].Weapon);
         }
 
-        if (_records[index].Weapon is ThrowingWeaponInfo)
+        if (_records[_currentRecord].Weapon is ThrowingWeaponInfo)
         {
-            _weapon = new ThrowingWeapon(_character, this, _records[index].Weapon);
+            _weapon = new ThrowingWeapon(_character, this, _records[_currentRecord].Weapon);
         }
 
-        if (_records[index].Weapon is SuicideBombingInfo)
+        if (_records[_currentRecord].Weapon is SuicideBombingInfo)
         {
-            _weapon = new SuicideBombing(_character, this, _records[index].Weapon);
+            _weapon = new SuicideBombing(_character, this, _records[_currentRecord].Weapon);
         }
 
         _weapon.Lock();
-        _weapon.Raise(_switchWeaponTime);
+        _weapon.Raise(_switchWeaponTime / 2);
+        _timer.AddSignal(_switchWeaponTime / 2, OnWeaponReady);
     }
 
     private void OnWeaponReady()
     {
-        _switchWeaponTimer.WeaponTaken -= OnWeaponTaken;
-        _switchWeaponTimer.WeaponReady -= OnWeaponReady;
-        _switchWeaponTimer = null;
         _weapon.Unlock();
     }
 

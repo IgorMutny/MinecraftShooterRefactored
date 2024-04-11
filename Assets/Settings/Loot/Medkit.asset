@@ -17,3 +17,4 @@ MonoBehaviour:
   <Color>k__BackingField: {r: 0, g: 0.29803923, b: 1, a: 1}
   <Clip>k__BackingField: {fileID: 8300000, guid: a122d0d45985faa4aac1a6fa9ae4fbe4, type: 3}
   <LifeTime>k__BackingField: 60
+  <Effect>k__BackingField: {fileID: 0}

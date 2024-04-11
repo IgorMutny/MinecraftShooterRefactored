@@ -11,8 +11,7 @@ public class AudioSourceWrapper
     private AudioClip[] _clips;
     private bool _ignoreListenerPause;
     private bool _is3D;
-    private float _minDistance = 1;
-    private float _maxDistance = 64;
+    private float _minDistance = 4;
     private float _innerVolume = 1;
 
     private AudioListener _listener => _service.Listener;
@@ -80,6 +79,7 @@ public class AudioSourceWrapper
     public void IgnoreListenerPause(bool value)
     {
         _ignoreListenerPause = value;
+        _audioSource.ignoreListenerPause = _ignoreListenerPause;
     }
 
     private float GetVolumeByDistance()
@@ -99,7 +99,8 @@ public class AudioSourceWrapper
                 distance = _minDistance;
             }
 
-            float k = (_maxDistance - distance) / (_maxDistance - _minDistance);
+            float k = _minDistance / distance;
+            k = Mathf.Clamp01(k);
             float volume = Volume * k * _innerVolume;
             volume = Mathf.Clamp01(volume);
 

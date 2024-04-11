@@ -1,8 +1,6 @@
 public class AIFindTargetIfNullTask : AITask
 {
-    public AIFindTargetIfNullTask(AI ai) : base(ai)
-    {
-    }
+    public AIFindTargetIfNullTask(AI ai) : base(ai) { }
 
     public override void OnTick()
     {

@@ -6,6 +6,7 @@ public class FlyingMovement : Movement
         : base(character, characterInfo)
     {
         Rigidbody.useGravity = false;
+        Character.View.StartMovement();
     }
 
     public override void OnTick()
@@ -49,8 +50,16 @@ public class FlyingMovement : Movement
         }
         else
         {
-            Transform.Rotate
-                (0, Mathf.Sign(RotationInput.x) * RotationSpeed * Time.fixedDeltaTime, 0);
+            if (RotationInput.z == 0) 
+            {
+                Transform.Rotate
+                    (0, Mathf.Sign(RotationInput.x) * RotationSpeed * Time.fixedDeltaTime, 0);
+            }
+            else //to decrease angle
+            {
+                Transform.Rotate
+                    (0, Mathf.Sign(RotationInput.x) * RotationSpeed / 3 * Time.fixedDeltaTime, 0);
+            }
         }
     }
 }

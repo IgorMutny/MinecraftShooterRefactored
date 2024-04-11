@@ -1,8 +1,6 @@
 public class AIExplodeTargetTask : AITask
 {
-    public AIExplodeTargetTask(AI ai) : base(ai)
-    {
-    }
+    public AIExplodeTargetTask(AI ai) : base(ai) { }
 
     public override void OnTick()
     {

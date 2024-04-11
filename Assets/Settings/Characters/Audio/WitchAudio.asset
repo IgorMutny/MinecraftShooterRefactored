@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a04acc5f9c9d6a429462a761ae33104, type: 3}
+  m_Name: WitchAudio
+  m_EditorClassIdentifier: 
+  IdleClips:
+  - {fileID: 8300000, guid: 481a6f04c6dc0cd45b85abda17f2787c, type: 3}
+  - {fileID: 8300000, guid: a06853799141f4841b268648f64a6343, type: 3}
+  - {fileID: 8300000, guid: db468d6122d56ee418d4beb1409ebf08, type: 3}
+  - {fileID: 8300000, guid: c86120f4f51bf1748b15d41800f12628, type: 3}
+  - {fileID: 8300000, guid: bb06668fa6201db4f82c2ff64c05bb67, type: 3}
+  MovingClips: []
+  AttackingClips:
+  - {fileID: 8300000, guid: 7f09409aac3f54a499f52a1769b88018, type: 3}
+  - {fileID: 8300000, guid: 0ec2399aaf06fc64a84406c4ed3abe15, type: 3}
+  - {fileID: 8300000, guid: 23626d17ee0e9484786da4c04104db87, type: 3}
+  DamagedClips:
+  - {fileID: 8300000, guid: 30c9c7150e9681248bf7db038befea92, type: 3}
+  - {fileID: 8300000, guid: 865f5ff0474a4f743998116756244c58, type: 3}
+  - {fileID: 8300000, guid: 044bd4627c2fcd54ca70fe60539cca59, type: 3}
+  DiedClips:
+  - {fileID: 8300000, guid: 916a03d7d361e2c4cb8f2f0eba3fde94, type: 3}
+  - {fileID: 8300000, guid: 6355983a9733d734995bb10276200577, type: 3}
+  - {fileID: 8300000, guid: 10c85ea0519dd5045bd7046f4d87c78a, type: 3}
+  MinIdleClipRepeatingDelay: 5
+  MaxIdleClipRepeatingDelay: 10
+  MinMovingClipRepeatingDelay: 0.6
+  MaxMovingClipRepeatingDelay: 0.7

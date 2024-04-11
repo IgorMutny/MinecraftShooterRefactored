@@ -1,10 +1,10 @@
 using System;
-using UnityEngine;
 
 public class GameDataService : IService, IReadOnlyGameDataService
 {
     private GameDataProvider _gameDataProvider;
     private GameData _gameData;
+    private AudioService _audioService;
 
     public float SoundVolume => _gameData.SoundVolume;
     public float MusicVolume => _gameData.MusicVolume;
@@ -111,5 +111,22 @@ public class GameDataService : IService, IReadOnlyGameDataService
     public bool IsLevelOpen(int id)
     {
         return _gameData.Levels[id];
+    }
+
+    public void SetSoundVolume(float value)
+    {
+        _gameData.SoundVolume = value;
+
+        if (_audioService == null)
+        {
+            _audioService = ServiceLocator.Get<AudioService>();
+        }
+
+        _audioService.SetVolume(value);
+    }
+
+    public void SetMusicVolume(float value)
+    {
+        _gameData.MusicVolume = value;
     }
 }

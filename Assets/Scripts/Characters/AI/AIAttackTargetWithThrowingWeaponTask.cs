@@ -3,9 +3,7 @@ using UnityEngine;
 
 public class AIAttackTargetWithThrowingWeaponTask : AITask
 {
-    public AIAttackTargetWithThrowingWeaponTask(AI ai) : base(ai)
-    {
-    }
+    public AIAttackTargetWithThrowingWeaponTask(AI ai) : base(ai) { }
 
     public override void OnTick()
     {

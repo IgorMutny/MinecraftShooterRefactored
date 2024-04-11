@@ -2,6 +2,9 @@ public class HasteEffect : Effect
 {
     protected override void OnTickExtended()
     {
-        _appliedEffects.MultiplySpeedMultiplier(_value);
+        if (_isActive == true)
+        {
+            _appliedEffects.MultiplySpeedMultiplier(_value);
+        }
     }
 }

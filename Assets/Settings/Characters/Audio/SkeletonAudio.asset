@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a04acc5f9c9d6a429462a761ae33104, type: 3}
+  m_Name: SkeletonAudio
+  m_EditorClassIdentifier: 
+  IdleClips:
+  - {fileID: 8300000, guid: 2fb4b5337c309834bb50b610095e4f14, type: 3}
+  - {fileID: 8300000, guid: e9656d09799d1744eb6b1b2bf62ab790, type: 3}
+  - {fileID: 8300000, guid: 75c2edaefcf495e408dd8e6ebd0a59cf, type: 3}
+  MovingClips:
+  - {fileID: 8300000, guid: d32d3abe3ff56d64fa8f30cee4c3550d, type: 3}
+  - {fileID: 8300000, guid: 761e139d08dcc5b40a0c825bdb5b6079, type: 3}
+  - {fileID: 8300000, guid: 5660a0d600f51854cbd90907a827b050, type: 3}
+  - {fileID: 8300000, guid: 092e3d02829032445a004afe21652ff1, type: 3}
+  AttackingClips:
+  - {fileID: 8300000, guid: 1800567a0b5ef284a914b94ed21668c6, type: 3}
+  DamagedClips:
+  - {fileID: 8300000, guid: bd5b156eb00fb7645acb86330c1a1c3d, type: 3}
+  - {fileID: 8300000, guid: 4b7429414e9a8a14da3edbbdb24336be, type: 3}
+  - {fileID: 8300000, guid: 9a82915013532cc45892bb7a52ed7c5e, type: 3}
+  - {fileID: 8300000, guid: 5bd3ee6139ede064bb43aba4dc88289a, type: 3}
+  DiedClips:
+  - {fileID: 8300000, guid: 10e6999677d66cb459560f12abed4118, type: 3}
+  MinIdleClipRepeatingDelay: 5
+  MaxIdleClipRepeatingDelay: 10
+  MinMovingClipRepeatingDelay: 0.6
+  MaxMovingClipRepeatingDelay: 0.7

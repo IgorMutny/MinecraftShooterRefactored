@@ -214,7 +214,7 @@ GameObject:
   - component: {fileID: 5766021976868009786}
   - component: {fileID: 7288887064009022644}
   - component: {fileID: 6520147952120769942}
-  - component: {fileID: 3927036193146822619}
+  - component: {fileID: -3120419398752136301}
   m_Layer: 0
   m_Name: Phantom
   m_TagString: Untagged
@@ -304,26 +304,27 @@ MonoBehaviour:
   <LowerObstacleChecker>k__BackingField: {fileID: 0}
   <AttackPoint>k__BackingField: {fileID: 5938298515032852133}
   <GroundChecker>k__BackingField: {fileID: 0}
---- !u!114 &3927036193146822619
-MonoBehaviour:
+--- !u!95 &-3120419398752136301
+Animator:
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3279747504958232419}
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cffc5cebd3055954ca9d73ad81f7b904, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _damagedClips:
-  - {fileID: 8300000, guid: a6be5c5e644c28c4c93add9614843dbf, type: 3}
-  - {fileID: 8300000, guid: 5510a698337da3343827a661d09c85e1, type: 3}
-  - {fileID: 8300000, guid: c9663d106a402d74c9e169dec8329ea8, type: 3}
-  _diedClips:
-  - {fileID: 8300000, guid: aa365a338a8ea744f9a0a81f8b8bcb8a, type: 3}
-  - {fileID: 8300000, guid: 8016ecfed7240de42b3c5a8e262c1f9c, type: 3}
-  - {fileID: 8300000, guid: d8cb2202c66f5aa4f914e01b8da894bb, type: 3}
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 7017aa5fbe7a8bb47b00d14434ffb066, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &3706471520814075708
 GameObject:
   m_ObjectHideFlags: 0

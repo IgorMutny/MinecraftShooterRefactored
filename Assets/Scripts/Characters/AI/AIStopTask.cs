@@ -2,9 +2,7 @@ using UnityEngine;
 
 public class AIStopTask : AITask
 {
-    public AIStopTask(AI ai) : base(ai)
-    {
-    }
+    public AIStopTask(AI ai) : base(ai) { }
 
     public override void OnTick()
     {

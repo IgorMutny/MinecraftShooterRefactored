@@ -2,6 +2,9 @@ public class QuadDamageEffect : Effect
 {
     protected override void OnTickExtended()
     {
-        _appliedEffects.MultiplyDamageMultiplier(_value);
+        if (_isActive == true)
+        {
+            _appliedEffects.MultiplyDamageMultiplier(_value);
+        }
     }
 }

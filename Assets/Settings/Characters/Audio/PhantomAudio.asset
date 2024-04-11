@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a04acc5f9c9d6a429462a761ae33104, type: 3}
+  m_Name: PhantomAudio
+  m_EditorClassIdentifier: 
+  IdleClips:
+  - {fileID: 8300000, guid: f4840cf88ea1b984f8c4241e423c5ef4, type: 3}
+  - {fileID: 8300000, guid: b4adc6aab73aae846a3a996a0591f47c, type: 3}
+  - {fileID: 8300000, guid: 714f5c6cb596c284ab41e2b87c3c7a99, type: 3}
+  - {fileID: 8300000, guid: c80dda32079dbf44aaff4ff098ba486f, type: 3}
+  - {fileID: 8300000, guid: cd20f540c5a00b74c860830851fa779a, type: 3}
+  MovingClips:
+  - {fileID: 8300000, guid: b80b9a750a74e9743ab5e1b3bef00bcd, type: 3}
+  - {fileID: 8300000, guid: f117404dfa08b6a43932ab7c3dbc0ae3, type: 3}
+  - {fileID: 8300000, guid: 6e106677268b9fa4ca01f8e1b38d48ee, type: 3}
+  - {fileID: 8300000, guid: fee1b3fcd9aa7b64b8083644ba97ef0c, type: 3}
+  - {fileID: 8300000, guid: 4aeed34e9ea179148b00020c13486876, type: 3}
+  AttackingClips:
+  - {fileID: 8300000, guid: 2416d144da0b74a49845c2d57ce23b1c, type: 3}
+  - {fileID: 8300000, guid: 919a8c5cf041e594992aafb6a86e769f, type: 3}
+  DamagedClips:
+  - {fileID: 8300000, guid: a6be5c5e644c28c4c93add9614843dbf, type: 3}
+  - {fileID: 8300000, guid: 5510a698337da3343827a661d09c85e1, type: 3}
+  - {fileID: 8300000, guid: c9663d106a402d74c9e169dec8329ea8, type: 3}
+  DiedClips:
+  - {fileID: 8300000, guid: aa365a338a8ea744f9a0a81f8b8bcb8a, type: 3}
+  - {fileID: 8300000, guid: 8016ecfed7240de42b3c5a8e262c1f9c, type: 3}
+  - {fileID: 8300000, guid: d8cb2202c66f5aa4f914e01b8da894bb, type: 3}
+  MinIdleClipRepeatingDelay: 5
+  MaxIdleClipRepeatingDelay: 10
+  MinMovingClipRepeatingDelay: 1.8
+  MaxMovingClipRepeatingDelay: 2.2

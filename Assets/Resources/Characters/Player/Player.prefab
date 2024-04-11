@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 993705118677956017}
   - component: {fileID: -431056330511657294}
-  - component: {fileID: -8992056517513797548}
   - component: {fileID: 7075169240497087588}
   - component: {fileID: 8075801023262417622}
   m_Layer: 0
@@ -56,23 +55,6 @@ MonoBehaviour:
   <LowerObstacleChecker>k__BackingField: {fileID: 5888368249888633654}
   <AttackPoint>k__BackingField: {fileID: 0}
   <GroundChecker>k__BackingField: {fileID: 6409767141226473141}
---- !u!114 &-8992056517513797548
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 856290541048450969}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cffc5cebd3055954ca9d73ad81f7b904, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _damagedClips:
-  - {fileID: 8300000, guid: 93431fcc53214b8469ef01686e382e21, type: 3}
-  - {fileID: 8300000, guid: e71f70db4945dd24394752fb87c3b960, type: 3}
-  - {fileID: 8300000, guid: 8218604049221f04db68e0561856b0aa, type: 3}
-  _diedClips: []
 --- !u!54 &7075169240497087588
 Rigidbody:
   m_ObjectHideFlags: 0

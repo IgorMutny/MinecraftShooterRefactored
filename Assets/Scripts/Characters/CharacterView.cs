@@ -1,136 +1,105 @@
-using DG.Tweening;
 using System;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
+using CharacterViewElements;
 
-public class CharacterView : MonoBehaviour
+public class CharacterView
 {
-    [SerializeField] private AudioClip[] _damagedClips;
-    [SerializeField] private AudioClip[] _diedClips;
+    private Character _character;
+    private AnimatorController _animator;
+    private AudioController _audio;
+    private BodyPartsController _bodyParts;
+    private EffectsController _effects;
 
-    private MeshRenderer[] _bodyParts;
-    private AudioSourceWrapper _damagedSource;
-    private AudioSourceWrapper _diedSource;
-    private float _blinkTime = 0.2f;
-    private float _dissolveTime = 3f;
-    private Dictionary<EffectInfo, GameObject> _appliedEffects = new Dictionary<EffectInfo, GameObject>();
-    
     public event Action<Character> Dissolved;
 
-    private void Awake()
+    public CharacterView(Character character, CharacterAudioInfo audioInfo)
     {
-        FillBodyPartsList();
+        _character = character;
 
-        _damagedSource = AddAudioSource(_damagedClips);
-        _diedSource = AddAudioSource(_diedClips);
+        _animator = new AnimatorController(_character.GetComponent<Animator>());
+        _audio = new AudioController(_character.transform, audioInfo);
+        _bodyParts = new BodyPartsController(_character.transform);
+        _effects = new EffectsController(_character.transform);
     }
 
-    private void FillBodyPartsList()
+    public void StartMovement()
     {
-        _bodyParts = GetComponentsInChildren<MeshRenderer>();
+        _audio.StartMovement();
+        _animator.StartMovement();
     }
 
-    private AudioSourceWrapper AddAudioSource(AudioClip[] clips)
+    public void StopMovement()
     {
-        if (clips.Length > 0)
-        {
-            AudioSourceWrapper result = new AudioSourceWrapper(transform, true);
-            result.SetClip(clips);
-            return result;
-        }
-        else
-        {
-            return null;
-        }
+        _audio.StopMovement();
+        _animator.StopMovement();
     }
 
-    private void OnDestroy()
+    public void ChangeSpeed(float multiplier)
     {
-        _damagedSource = null;
-        _diedSource = null;
-
-        DOTween.Kill(this);
+        _audio.SetSpeed(multiplier);
+        _animator.ChangeSpeed(multiplier);
     }
 
-    public void OnDamaged(int damage)
+    public void Attack()
     {
-        if (damage <= 0)
-        {
-            return;
-        }
-
-        if (_damagedSource != null)
-        {
-            _damagedSource.Play();
-        }
-
-        foreach (var part in _bodyParts)
-        {
-            DOTween.Sequence()
-                .Append(part.materials[0].DOColor(Color.red, _blinkTime / 2))
-                .Append(part.materials[0].DOColor(Color.white, _blinkTime / 2));
-        }
+        _animator.Attack();
+        _audio.Attack();
     }
 
-    public void OnDied()
+    public void Explode(float duration)
     {
-        if (_diedSource != null)
-        {
-            _diedSource.Play();
-        }
-
-        foreach (var part in _bodyParts)
-        {
-            Collider collider = part.GetComponent<Collider>();
-            if (collider != null)
-            {
-                part.GetComponent<Collider>().enabled = true;
-                part.AddComponent<Rigidbody>();
-            }
-        }
+        _bodyParts.Explode(duration);
+        _audio.Attack();
     }
-
-    public void Dissolve()
-    {
-        foreach (var part in _bodyParts)
-        {
-            DOTween.Sequence()
-                .Append(part.transform.DOScale(0f, _dissolveTime))
-                .OnComplete(() => Dissolved?.Invoke(GetComponent<Character>()));
-        }
-    }
-
     public void TryAddEffect(EffectInfo info)
     {
-        if (_appliedEffects.ContainsKey(info))
-        {
-            return;
-        }
-
-        if (info.Smoke == null)
-        {
-            return;
-        }
-
-        GameObject effect = Instantiate(info.Smoke, transform);
-        _appliedEffects.Add(info, effect);
+        _effects.TryAddEffect(info);
     }
 
     public void TryRemoveEffect(EffectInfo info)
     {
-        if (_appliedEffects.ContainsKey(info))
-        {
-            Destroy(_appliedEffects[info]);
-            _appliedEffects.Remove(info);
-        }
+        _effects.TryRemoveEffect(info);
     }
 
     public void RemoveAllEffects()
     {
-        foreach ((EffectInfo info, GameObject effect) in _appliedEffects)
-        {
-            TryRemoveEffect(info);
-        }
+        _effects.RemoveAllEffects();
+    }
+
+    public void OnDamaged(int damage)
+    {
+        _audio.OnDamaged();
+        _bodyParts.OnDamaged();
+    }
+
+    public void OnDied()
+    {
+        _audio.OnDied();
+        _animator.OnDied();
+        _bodyParts.OnDied();
+        _bodyParts.Dissolved += OnDissolved;
+    }
+
+    public void Dissolve()
+    {
+        _bodyParts.Dissolve();
+    }
+
+    private void OnDissolved()
+    {
+        Dissolved?.Invoke(_character);
+    }
+
+    public void Destroy()
+    {
+        _audio.OnDestroy();
+        _bodyParts.OnDestroy();
+        _bodyParts.Dissolved -= OnDissolved;
+
+        _animator = null;
+        _audio = null;
+        _bodyParts = null;
+        _effects = null;
     }
 }
+

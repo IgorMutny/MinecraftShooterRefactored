@@ -74,4 +74,14 @@ public class MetaGame
     {
         ServiceLocator.Get<GameStateMachine>().SetState(new CoreGameState());
     }
+
+    public void ChangeSoundVolume(float value)
+    {
+        _gameDataService.SetSoundVolume(value);
+    }
+
+    public void ChangeMusicVolume(float value)
+    {
+        _gameDataService.SetMusicVolume(value);
+    }
 }

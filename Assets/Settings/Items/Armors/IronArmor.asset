@@ -18,8 +18,8 @@ MonoBehaviour:
     \u043A\u043B\u0430\u0441\u0441\u0438\u043A\u0430. \u0411\u043B\u043E\u043A\u0438\u0440\u0443\u0435\u0442
     \u043F\u043E\u043B\u043E\u0432\u0438\u043D\u0443 \u043D\u0430\u043D\u043E\u0441\u0438\u043C\u043E\u0433\u043E
     \u0443\u0440\u043E\u043D\u0430."
-  <PriceInGold>k__BackingField: 0
-  <PriceInDiamonds>k__BackingField: 0
+  <PriceInGold>k__BackingField: 500
+  <PriceInDiamonds>k__BackingField: 5
   <Model>k__BackingField: {fileID: 919132149155446097, guid: 71bfd318ab8ce5747b3c23da593c60f2, type: 3}
   <PhysicalDefence>k__BackingField: 0.5
   <MagicalDefence>k__BackingField: 0

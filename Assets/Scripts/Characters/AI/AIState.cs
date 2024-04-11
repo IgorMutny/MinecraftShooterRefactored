@@ -1,7 +1,6 @@
 public abstract class AIState
 {
     protected AI _ai;
-
     protected AITask[] _tasks;
 
     public void SetAI(AI ai)

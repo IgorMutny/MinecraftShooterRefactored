@@ -1,8 +1,6 @@
 public class AIRemoveDeadTargetTask : AITask
 {
-    public AIRemoveDeadTargetTask(AI ai) : base(ai)
-    {
-    }
+    public AIRemoveDeadTargetTask(AI ai) : base(ai) { }
 
     public override void OnTick()
     {

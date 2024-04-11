@@ -3,12 +3,10 @@ using UnityEngine;
 public class AIFlyToTargetTask : AITask
 {
     private AIRotationHelper _helper;
-    private Vector3 _sideMovement;
 
     public AIFlyToTargetTask(AI ai) : base(ai)
     {
         _helper = new AIRotationHelper(_ai);
-        GetRandomSideMovement();
     }
 
     public override void OnTick()
@@ -37,10 +35,7 @@ public class AIFlyToTargetTask : AITask
             _ai.Character.transform.position.y,
             preferredHeight);
 
-            if (direction != 0)
-            {
-                rotation = (rotation + _sideMovement).normalized;
-            }
+            rotation += Vector3.forward; //to decrease angle
         }
 
         switch (direction)
@@ -75,12 +70,5 @@ public class AIFlyToTargetTask : AITask
         }
 
         return result;
-    }
-
-    private void GetRandomSideMovement()
-    {
-        float rnd = Random.Range(-1f, 1f);
-        int side = (int)Mathf.Sign(rnd);
-        _sideMovement = new Vector3(0, side * 90, 0);
     }
 }

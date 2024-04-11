@@ -178,9 +178,9 @@ GameObject:
   m_Component:
   - component: {fileID: 993705118677956017}
   - component: {fileID: -431056330511657294}
-  - component: {fileID: -8992056517513797548}
   - component: {fileID: 5745100089209082022}
   - component: {fileID: 6869402811241453167}
+  - component: {fileID: 8526482532672907210}
   m_Layer: 0
   m_Name: Zombie
   m_TagString: Untagged
@@ -224,23 +224,6 @@ MonoBehaviour:
   <LowerObstacleChecker>k__BackingField: {fileID: 8384553059945870833}
   <AttackPoint>k__BackingField: {fileID: 4056508369295913623}
   <GroundChecker>k__BackingField: {fileID: 1262687530784785693}
---- !u!114 &-8992056517513797548
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 856290541048450969}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cffc5cebd3055954ca9d73ad81f7b904, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _damagedClips:
-  - {fileID: 8300000, guid: 5322ab3bae4a7a34b8b4348aad3c1b1c, type: 3}
-  - {fileID: 8300000, guid: 0afde1b43358064419beef373f166b39, type: 3}
-  _diedClips:
-  - {fileID: 8300000, guid: 8eb2dd9577c0109479ea01af1e8f1f07, type: 3}
 --- !u!54 &5745100089209082022
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -291,6 +274,27 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!95 &8526482532672907210
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 856290541048450969}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 584d0a25204ed964da433c6214ecf4f8, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &988138163563514374
 GameObject:
   m_ObjectHideFlags: 0

@@ -19,3 +19,6 @@ MonoBehaviour:
   <HeadMaxAngles>k__BackingField: {x: 75, y: 0}
   <Weapon>k__BackingField: {fileID: 0}
   <Health>k__BackingField: 1000
+  <LootChance>k__BackingField: {fileID: 0}
+  <AI>k__BackingField: {fileID: 0}
+  <Audio>k__BackingField: {fileID: 11400000, guid: 48f357abf897cae4ea99fe45418f3cc8, type: 2}

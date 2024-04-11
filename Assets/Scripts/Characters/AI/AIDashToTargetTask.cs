@@ -4,13 +4,15 @@ public class AIDashToTargetTask : AITask
 {
     private AIRotationHelper _helper;
     private DashState _currentState;
-    private float _counter;
+    private TimerWrapper _timer;
 
     public AIDashToTargetTask(AI ai) : base(ai)
     {
         _helper = new AIRotationHelper(_ai);
         _currentState = DashState.Dashing;
-        _counter = 0;
+
+        _timer = ServiceLocator.Get<TimerWrapper>();
+        SwitchDashState();
     }
 
     public override void OnTick()
@@ -19,8 +21,6 @@ public class AIDashToTargetTask : AITask
         {
             return;
         }
-
-        DecreaseDashStateCounter();
 
         Vector3 rotation = _helper.GetRotation();
 
@@ -35,23 +35,18 @@ public class AIDashToTargetTask : AITask
         }
     }
 
-    private void DecreaseDashStateCounter()
+    private void SwitchDashState()
     {
-        _counter -= Time.fixedDeltaTime;
-
-        if (_counter <= 0)
+        switch (_currentState)
         {
-            switch (_currentState)
-            {
-                case DashState.Dashing:
-                    _counter = _ai.Info.AI.DelayBetweenDashes;
-                    _currentState = DashState.Waiting;
-                    break;
-                case DashState.Waiting:
-                    _counter = _ai.Info.AI.DashDuration;
-                    _currentState = DashState.Dashing;
-                    break;
-            }
+            case DashState.Dashing:
+                _timer.AddSignal(_ai.Info.AI.DelayBetweenDashes, SwitchDashState);
+                _currentState = DashState.Waiting;
+                break;
+            case DashState.Waiting:
+                _timer.AddSignal(_ai.Info.AI.DashDuration, SwitchDashState);
+                _currentState = DashState.Dashing;
+                break;
         }
     }
 
