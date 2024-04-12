@@ -2,8 +2,6 @@ using UnityEngine;
 
 public class PCInput : MonoBehaviour
 {
-    private float _mouseSensitivity = 1000;
-
     private readonly string _vertical = "Vertical";
     private readonly string _horizontal = "Horizontal";
     private readonly string _mouseX = "Mouse X";
@@ -27,11 +25,13 @@ public class PCInput : MonoBehaviour
 
     private Character _player;
     private PauseHandler _pauseHandler;
+    private IReadOnlyGameDataService _gameDataService;
 
     public void Initialize(Character player)
     {
         _player = player;
         _pauseHandler = ServiceLocator.Get<PauseHandler>();
+        _gameDataService = ServiceLocator.Get<GameDataService>();
     }
 
     private void Update()
@@ -50,13 +50,13 @@ public class PCInput : MonoBehaviour
                 isAttacking, isReloading,
                 numericWeaponIndex, prevNextWeaponIndex);
 
-            if (Input.GetKeyDown(KeyCode.Escape))
+            if (Input.GetKeyDown(KeyCode.Tab))
             {
                 _pauseHandler.Pause();
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.Tab))
+        if (Input.GetKeyDown(KeyCode.T))
         {
             ServiceLocator.Get<TimerWrapper>().GetSignalsAmount();
         }
@@ -73,8 +73,8 @@ public class PCInput : MonoBehaviour
 
     private Vector3 GetRotation()
     {
-        float mouseX = Input.GetAxis(_mouseX) * _mouseSensitivity;
-        float mouseY = Input.GetAxis(_mouseY) * _mouseSensitivity;
+        float mouseX = Input.GetAxis(_mouseX) * _gameDataService.Sensitivity;
+        float mouseY = Input.GetAxis(_mouseY) * _gameDataService.Sensitivity;
         Vector3 rotationInput = new Vector3(mouseX, mouseY, 0);
         return rotationInput;
     }

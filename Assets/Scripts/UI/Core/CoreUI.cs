@@ -60,6 +60,7 @@ namespace CoreUIElements
 
             _optionsMenu.SoundVolumeChanged += OnSoundVolumeChanged;
             _optionsMenu.MusicVolumeChanged += OnMusicVolumeChanged;
+            _optionsMenu.SensitivityChanged += OnSensitivityChanged;
             _optionsMenu.BackButton.onClick.AddListener(CloseOptionsMenu);
         }
 
@@ -82,6 +83,7 @@ namespace CoreUIElements
 
             _optionsMenu.SoundVolumeChanged -= OnSoundVolumeChanged;
             _optionsMenu.MusicVolumeChanged -= OnMusicVolumeChanged;
+            _optionsMenu.SensitivityChanged -= OnSensitivityChanged;
             _optionsMenu.BackButton.onClick.RemoveAllListeners();
         }
 
@@ -149,11 +151,6 @@ namespace CoreUIElements
             _balance.Reload();
         }
 
-        private void OnApplicationQuit()
-        {
-            ServiceLocator.Get<GameDataService>().Save();
-        }
-
         private void OpenOptionsMenu()
         {
             _inGameMenu.gameObject.SetActive(false);
@@ -174,6 +171,11 @@ namespace CoreUIElements
         private void OnMusicVolumeChanged(float volume)
         { 
             _gameDataService.SetMusicVolume(volume);
+        }
+
+        private void OnSensitivityChanged(float volume)
+        {
+            _gameDataService.SetSensitivity(volume);
         }
     }
 }

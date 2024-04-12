@@ -2,8 +2,6 @@ using UnityEngine;
 
 public class AdService : IService
 {
-    private CursorLockMode _lockMode;
-
     public AdService()
     {
         YG.YandexGame.CloseFullAdEvent += Resume;
@@ -12,13 +10,22 @@ public class AdService : IService
 
     public void ShowFullScreenAd()
     {
-        _lockMode = Cursor.lockState;
         YG.YandexGame.FullscreenShow();
     }
 
     private void Resume()
     {
-        Cursor.lockState = _lockMode;
+        IGameState currentState = ServiceLocator.Get<GameStateMachine>().CurrentState;
+
+        if (currentState is CoreGameState)
+        {
+            ServiceLocator.Get<TimerWrapper>().AddSignal(0.1f, LockCursor);
+        }
+    }
+
+    private void LockCursor()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     ~AdService()

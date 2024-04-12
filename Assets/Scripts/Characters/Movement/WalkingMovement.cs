@@ -3,7 +3,7 @@ using UnityEngine;
 public class WalkingMovement : Movement
 {
     private Vector3 _jumpVector = new Vector3(0, 6f, 0);
-    private float _jumpDuration = 0.25f;
+    private float _jumpDuration = 0.35f;
     private float _obstacleRaycastDistance = 1.5f;
     private TimerWrapper _timer;
     private bool _isJumping;

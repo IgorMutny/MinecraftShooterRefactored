@@ -8,6 +8,7 @@ public class GameData
 
     public float SoundVolume;
     public float MusicVolume;
+    public float Sensitivity;
 
     public int Gold;
     public int Diamonds;
@@ -19,6 +20,7 @@ public class GameData
     {
         SoundVolume = 1f;
         MusicVolume = 1f;
+        Sensitivity = 1000f;
 
         Gold = 0;
         Diamonds = 0;

@@ -1,5 +1,3 @@
-using UnityEngine;
-
 public class LevelStateMachine: IService
 {
     private LevelInfo _level;
@@ -13,6 +11,7 @@ public class LevelStateMachine: IService
     {
         _level = level;
         _currentWave = 0;
+
         SetState(new DelayBetweenWavesState());
     }
 

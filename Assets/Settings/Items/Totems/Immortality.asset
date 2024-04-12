@@ -22,6 +22,6 @@ MonoBehaviour:
     \u043F\u043E\u043A\u0443\u043F\u0430\u0442\u044C \u043D\u043E\u0432\u044B\u0439
     \u0442\u043E\u0442\u0435\u043C."
   <PriceInGold>k__BackingField: 0
-  <PriceInDiamonds>k__BackingField: 0
+  <PriceInDiamonds>k__BackingField: 1
   <Model>k__BackingField: {fileID: 919132149155446097, guid: cef242a98de268949be89bf5839623b0, type: 3}
   <TotemType>k__BackingField: 0

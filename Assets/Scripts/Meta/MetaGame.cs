@@ -84,4 +84,9 @@ public class MetaGame
     {
         _gameDataService.SetMusicVolume(value);
     }
+
+    public void ChangeSensitivity(float value)
+    {
+        _gameDataService.SetSensitivity(value);
+    }
 }

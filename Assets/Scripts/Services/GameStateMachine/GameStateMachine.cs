@@ -2,6 +2,8 @@ public class GameStateMachine : IService
 {
     private IGameState _currentState;
 
+    public IGameState CurrentState => _currentState;
+
     public GameStateMachine()
     {
         _currentState = new MetaGameState();

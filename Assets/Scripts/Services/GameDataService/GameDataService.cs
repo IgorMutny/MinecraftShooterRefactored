@@ -8,6 +8,7 @@ public class GameDataService : IService, IReadOnlyGameDataService
 
     public float SoundVolume => _gameData.SoundVolume;
     public float MusicVolume => _gameData.MusicVolume;
+    public float Sensitivity => _gameData.Sensitivity;
     public int Gold => _gameData.Gold;
     public int Diamonds => _gameData.Diamonds;
     public int SelectedLevel => _gameData.SelectedLevel;
@@ -18,7 +19,7 @@ public class GameDataService : IService, IReadOnlyGameDataService
         _gameData = _gameDataProvider.Load();
     }
 
-    public void Save()
+    private void Save()
     {
         _gameDataProvider.Save(_gameData);
     }
@@ -31,6 +32,7 @@ public class GameDataService : IService, IReadOnlyGameDataService
         }
 
         _gameData.Gold += value;
+        Save();
     }
 
     public void SubtractGold(int value)
@@ -41,6 +43,7 @@ public class GameDataService : IService, IReadOnlyGameDataService
         }
 
         _gameData.Gold -= value;
+        Save();
     }
 
     public void AddDiamonds(int value)
@@ -51,6 +54,7 @@ public class GameDataService : IService, IReadOnlyGameDataService
         }
 
         _gameData.Diamonds += value;
+        Save();
     }
 
     public void SubtractDiamonds(int value)
@@ -61,6 +65,7 @@ public class GameDataService : IService, IReadOnlyGameDataService
         }
 
         _gameData.Diamonds -= value;
+        Save();
     }
 
     public void AddItem(int id)
@@ -71,6 +76,7 @@ public class GameDataService : IService, IReadOnlyGameDataService
         }
 
         _gameData.Items[id] = true;
+        Save();
     }
 
     public void RemoveItem(int id)
@@ -81,6 +87,7 @@ public class GameDataService : IService, IReadOnlyGameDataService
         }
 
         _gameData.Items[id] = false;
+        Save();
     }
 
     public bool HasItem(int id)
@@ -96,6 +103,7 @@ public class GameDataService : IService, IReadOnlyGameDataService
         }
 
         _gameData.SelectedLevel = id;
+        Save();
     }
 
     public void AddLevel(int id)
@@ -106,6 +114,7 @@ public class GameDataService : IService, IReadOnlyGameDataService
         }
 
         _gameData.Levels[id] = true;
+        Save();
     }
 
     public bool IsLevelOpen(int id)
@@ -123,10 +132,18 @@ public class GameDataService : IService, IReadOnlyGameDataService
         }
 
         _audioService.SetVolume(value);
+        Save();
     }
 
     public void SetMusicVolume(float value)
     {
         _gameData.MusicVolume = value;
+        Save();
+    }
+
+    public void SetSensitivity(float value)
+    {
+        _gameData.Sensitivity = value;
+        Save();
     }
 }

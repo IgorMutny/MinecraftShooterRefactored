@@ -18,7 +18,7 @@ MonoBehaviour:
     \u0443\u0440\u043E\u043D, \u0432\u044B\u0441\u043E\u043A\u0430\u044F \u0441\u043A\u043E\u0440\u043E\u0441\u0442\u0440\u0435\u043B\u044C\u043D\u043E\u0441\u0442\u044C.
     \u041F\u043B\u044E\u0441 100 \u043E\u0447\u043A\u043E\u0432 \u043A \u043E\u0431\u0440\u0430\u0437\u0443
     \u0440\u0435\u0430\u043B\u044C\u043D\u043E\u0433\u043E \u0433\u044D\u043D\u0433\u0441\u0442\u0430."
-  <PriceInGold>k__BackingField: 500
+  <PriceInGold>k__BackingField: 50
   <PriceInDiamonds>k__BackingField: 1
   <Model>k__BackingField: {fileID: 919132149155446097, guid: 525311a43bc8a2549a26eba4c9168c86, type: 3}
   <Icon>k__BackingField: {fileID: 21300000, guid: baf9c0b670eb47346beb628eb76a5ab7, type: 3}

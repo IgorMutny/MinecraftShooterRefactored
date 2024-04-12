@@ -40,10 +40,5 @@ namespace MetaUIElements
                 panel.Reload();
             }
         }
-
-        private void OnApplicationQuit()
-        {
-            ServiceLocator.Get<GameDataService>().Save();
-        }
     }
 }
