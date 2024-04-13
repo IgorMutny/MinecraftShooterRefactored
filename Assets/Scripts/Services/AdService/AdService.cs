@@ -4,23 +4,13 @@ public class AdService : IService
 {
     public AdService()
     {
-        YG.YandexGame.CloseFullAdEvent += Resume;
-        YG.YandexGame.ErrorFullAdEvent += Resume;
+        YG.YandexGame.CloseFullAdEvent += LockCursor;
+        YG.YandexGame.ErrorFullAdEvent += LockCursor;
     }
 
     public void ShowFullScreenAd()
     {
         YG.YandexGame.FullscreenShow();
-    }
-
-    private void Resume()
-    {
-        IGameState currentState = ServiceLocator.Get<GameStateMachine>().CurrentState;
-
-        if (currentState is CoreGameState)
-        {
-            ServiceLocator.Get<TimerWrapper>().AddSignal(0.1f, LockCursor);
-        }
     }
 
     private void LockCursor()
@@ -30,7 +20,7 @@ public class AdService : IService
 
     ~AdService()
     {
-        YG.YandexGame.CloseFullAdEvent -= Resume;
-        YG.YandexGame.ErrorFullAdEvent -= Resume;
+        YG.YandexGame.CloseFullAdEvent -= LockCursor;
+        YG.YandexGame.ErrorFullAdEvent -= LockCursor;
     }
 }

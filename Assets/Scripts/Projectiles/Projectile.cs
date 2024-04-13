@@ -44,10 +44,11 @@ public abstract class Projectile : MonoBehaviour
             {
                 transform.Translate((transform.forward * _speed + Vector3.down * _gravity) * Time.fixedDeltaTime, Space.World);
             }
-            else
-            {
-                Destroy(gameObject);
-            }
+        }
+
+        if (ShouldBeDestroyed == true)
+        {
+            Destroy(gameObject);
         }
     }
 

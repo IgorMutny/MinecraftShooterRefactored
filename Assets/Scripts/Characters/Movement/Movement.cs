@@ -5,7 +5,7 @@ public abstract class Movement
     protected Character Character { get; private set; }
     protected CharacterInfo Info { get; private set; }
     protected Head Head { get; private set; }
-    protected Rigidbody Rigidbody { get; private set; }
+    protected CharacterController Controller { get; private set; }
     protected Collider[] Colliders { get; private set; }
     protected Transform Transform { get; private set; }
     protected float MovementSpeed { get; private set; }
@@ -22,7 +22,7 @@ public abstract class Movement
         Character = character;
         Info = info;
         Head = new Head(character.Head, info.HeadMaxAngles);
-        Rigidbody = character.GetComponent<Rigidbody>();
+        Controller = character.GetComponent<CharacterController>();
         Colliders = character.GetComponents<Collider>();
         Transform = character.transform;
         MovementSpeed = info.MovementSpeed;
@@ -49,6 +49,16 @@ public abstract class Movement
             {
                 MovementSpeed = Info.MovementSpeed;
             }
+        }
+
+        PreventFallingOutOfBounds();
+    }
+
+    private void PreventFallingOutOfBounds()
+    {
+        if (Transform.position.y < -10)
+        {
+            Transform.position = new Vector3(Transform.position.x, 20, Transform.position.z);
         }
     }
 
@@ -77,14 +87,11 @@ public abstract class Movement
     {
         MovementInput = Vector3.zero;
         RotationInput = Vector3.zero;
-        Rigidbody.velocity = Vector3.zero;
 
         foreach (Collider collider in Colliders)
         {
             GameObject.Destroy(collider);
         }
-
-        GameObject.Destroy(Rigidbody);
 
         IsAlive = false;
     }

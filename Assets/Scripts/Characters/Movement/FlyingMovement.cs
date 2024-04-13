@@ -5,7 +5,6 @@ public class FlyingMovement : Movement
     public FlyingMovement(Character character, CharacterInfo characterInfo)
         : base(character, characterInfo)
     {
-        Rigidbody.useGravity = false;
         Character.View.StartMovement();
     }
 
@@ -38,8 +37,8 @@ public class FlyingMovement : Movement
             Transform.forward * MovementInput.y +
             Transform.up * MovementInput.z).normalized;
 
-        Rigidbody.velocity =
-            MovementVector * MovementSpeed * Character.AppliedEffects.SpeedMultiplier;
+        Controller.Move(MovementVector * MovementSpeed
+            * Character.AppliedEffects.SpeedMultiplier * Time.fixedDeltaTime);
     }
 
     private void Rotate()

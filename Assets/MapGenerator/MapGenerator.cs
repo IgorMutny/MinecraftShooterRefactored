@@ -39,7 +39,7 @@ public class MapGenerator : MonoBehaviour
 
     private void AddMainBlock(int x, int z, Color color)
     {
-        float height = (color.r - 0.5f) * _heightMultiplier;
+        float height = color.r * _heightMultiplier;
         int y = (int)Mathf.Round(height);
         Vector3 position = new Vector3(x, y, z);
         _heights[x, z] = y;
@@ -121,7 +121,6 @@ public class MapGenerator : MonoBehaviour
         }
 
         int result = Mathf.Min(neighbourHeights);
-        Debug.Log(result);
 
         return result;
     }

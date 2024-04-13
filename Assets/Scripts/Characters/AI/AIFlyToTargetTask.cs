@@ -3,6 +3,7 @@ using UnityEngine;
 public class AIFlyToTargetTask : AITask
 {
     private AIRotationHelper _helper;
+    private float _maxDistanceToFlyDown = 16;
 
     public AIFlyToTargetTask(AI ai) : base(ai)
     {
@@ -21,7 +22,7 @@ public class AIFlyToTargetTask : AITask
 
         int direction;
 
-        if (_ai.CanAttack == true)
+        if (_ai.CanAttack == true && _ai.GetDistanceToTarget() < _maxDistanceToFlyDown)
         {
             direction = GetDirection(
             _ai.Character.transform.position.y,

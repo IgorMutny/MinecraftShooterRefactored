@@ -43,7 +43,8 @@ public class Inventory
         _timer = ServiceLocator.Get<TimerWrapper>();
 
         FillInventory(gameDataService, itemInfoCollection);
-        TryTakeWeapon(GetBestWeaponIndex());
+        
+        _timer.AddSignal(0.1f, () => TryTakeWeapon(GetBestWeaponIndex()));
     }
 
     private void FillInventory(IReadOnlyGameDataService gameDataService, ItemInfoCollection itemInfoCollection)

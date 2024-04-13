@@ -3,14 +3,15 @@ using UnityEngine;
 public class WalkingMovement : Movement
 {
     private Vector3 _jumpVector = new Vector3(0, 6f, 0);
-    private float _jumpDuration = 0.35f;
-    private float _obstacleRaycastDistance = 1.5f;
+    private Vector3 _gravityVector = new Vector3(0, -4f, 0);
+    private float _jumpDuration = 0.25f;
+    private float _obstacleRaycastDistance = 1f;
     private TimerWrapper _timer;
     private bool _isJumping;
 
     public WalkingMovement(Character character, CharacterInfo characterInfo)
         : base(character, characterInfo)
-    { 
+    {
         _timer = ServiceLocator.Get<TimerWrapper>();
         _isJumping = false;
     }
@@ -42,14 +43,12 @@ public class WalkingMovement : Movement
     {
         Vector3 prevMovementVector = MovementVector;
 
-        MovementVector = 
-            Transform.right * MovementInput.x + 
+        MovementVector =
+            Transform.right * MovementInput.x +
             Transform.forward * MovementInput.y;
-        Vector3 verticalVector = Transform.up * Rigidbody.velocity.y;
 
-        Rigidbody.velocity = 
-            MovementVector * MovementSpeed * Character.AppliedEffects.SpeedMultiplier
-            + verticalVector;
+        Controller.Move(MovementVector * MovementSpeed
+            * Character.AppliedEffects.SpeedMultiplier * Time.fixedDeltaTime);
 
         if (prevMovementVector != MovementVector)
         {
@@ -93,7 +92,11 @@ public class WalkingMovement : Movement
 
         if (_isJumping == true)
         {
-            Rigidbody.MovePosition(Transform.position + _jumpVector * Time.fixedDeltaTime);
+            Controller.Move(_jumpVector * Time.fixedDeltaTime);
+        }
+        else
+        {
+            Controller.Move(_gravityVector * Time.fixedDeltaTime);
         }
     }
 
@@ -104,19 +107,43 @@ public class WalkingMovement : Movement
 
     private bool ShouldJump()
     {
+        if (MovementVector == Vector3.zero)
+        {
+            return false;
+        }
+
         bool wayIsBlocked = IsWayBlocked(Character.LowerObstacleChecker);
-        bool wayAboveIsBlocked = IsWayBlocked(Character.UpperObstacleChecker); 
+        bool wayAboveIsBlocked = IsWayBlocked(Character.UpperObstacleChecker);
 
         return wayIsBlocked == true && wayAboveIsBlocked == false;
     }
 
     private bool IsWayBlocked(Transform transform)
     {
+        Vector3[] vectors = new Vector3[]
+        {
+            new Vector3(Mathf.Sign(MovementVector.x), 0, 0),
+            new Vector3(0, 0, Mathf.Sign(MovementVector.z)),
+        };
+
+        for (int i = 0; i < vectors.Length; i++)
+        { 
+            if (IsWayBlockedInDirection(transform, vectors[i]) == true)
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    private bool IsWayBlockedInDirection(Transform transform, Vector3 direction)
+    {
         RaycastHit[] hits = Physics.RaycastAll
-            (transform.position, MovementVector, _obstacleRaycastDistance);
+            (transform.position, direction, _obstacleRaycastDistance);
 
         foreach (RaycastHit hit in hits)
-        { 
+        {
             if (hit.collider.gameObject.GetComponent<SolidBlock>() != null)
             {
                 return true;
