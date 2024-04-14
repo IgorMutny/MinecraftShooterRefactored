@@ -957,6 +957,7 @@ GameObject:
   - component: {fileID: 4238465157066657223}
   - component: {fileID: 9120183077206869720}
   - component: {fileID: -1764717710602823160}
+  - component: {fileID: 1642246236980776934}
   m_Layer: 0
   m_Name: Spider
   m_TagString: Untagged
@@ -1068,6 +1069,27 @@ CharacterController:
   m_SkinWidth: 0.0001
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: -0.1, z: 0.25}
+--- !u!65 &1642246236980776934
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6048835009924045396}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.5, y: 0.5, z: 1}
+  m_Center: {x: 0, y: 0, z: 0.2}
 --- !u!1 &6532291502047650310
 GameObject:
   m_ObjectHideFlags: 0

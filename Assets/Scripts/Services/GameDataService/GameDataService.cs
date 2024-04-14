@@ -13,7 +13,7 @@ public class GameDataService : IService, IReadOnlyGameDataService
     public int Diamonds => _gameData.Diamonds;
     public int SelectedLevel => _gameData.SelectedLevel;
 
-    private bool _savesEnabled = false;
+    private bool _savesEnabled = true;
 
     public GameDataService()
     {

@@ -624,6 +624,7 @@ GameObject:
   - component: {fileID: 5427461024043057643}
   - component: {fileID: -7245989564547968590}
   - component: {fileID: 5567854993942827992}
+  - component: {fileID: 4398244622198682579}
   m_Layer: 0
   m_Name: Witch
   m_TagString: Untagged
@@ -707,10 +708,31 @@ CharacterController:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Height: 2
-  m_Radius: 0.25
+  m_Height: 1.9
+  m_Radius: 0.35
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.0001
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: -0.05, z: 0}
+--- !u!65 &4398244622198682579
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9200619192933056255}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 2.5, z: 0.5}
+  m_Center: {x: 0, y: 0.25, z: 0}

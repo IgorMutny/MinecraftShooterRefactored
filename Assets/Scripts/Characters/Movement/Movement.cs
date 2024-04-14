@@ -58,7 +58,9 @@ public abstract class Movement
     {
         if (Transform.position.y < -10)
         {
+            Controller.enabled = false;
             Transform.position = new Vector3(Transform.position.x, 20, Transform.position.z);
+            Controller.enabled = true;
         }
     }
 

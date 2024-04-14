@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27aea7e34f04d9a41b5638d66c1b0409, type: 3}
+  m_Name: ArmoredSkeleton
+  m_EditorClassIdentifier: 
+  <Instance>k__BackingField: {fileID: 6776804392703501973, guid: ac8d3790263cd3b45a460fe8128e1b06, type: 3}
+  <MovementType>k__BackingField: 0
+  <MovementSpeed>k__BackingField: 3
+  <RotationSpeed>k__BackingField: 90
+  <HeadMaxAngles>k__BackingField: {x: 30, y: 60}
+  <Weapon>k__BackingField: {fileID: 11400000, guid: c54e96527eaf8414db8f13314e637114, type: 2}
+  <Armor>k__BackingField: {fileID: 11400000, guid: 418c7e4520fc0ac4487af14ceb5a8360, type: 2}
+  <Health>k__BackingField: 1000
+  <LootChance>k__BackingField: {fileID: 11400000, guid: 9660a0c975d137b47bfdb0609545fdff, type: 2}
+  <AI>k__BackingField: {fileID: 11400000, guid: 0830473fc6faa9a46a45a91b94817f46, type: 2}
+  <Audio>k__BackingField: {fileID: 11400000, guid: fdd0b7a54b22237469b594b8dc0bb43b, type: 2}

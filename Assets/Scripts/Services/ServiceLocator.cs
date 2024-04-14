@@ -40,4 +40,9 @@ public static class ServiceLocator
             throw new Exception("Unable to provide service: service locator does not contain it");
         }
     }
+
+    public static void GetServicesAmount()
+    {
+        UnityEngine.Debug.Log("Registered services: " + _services.Count);
+    }
 }

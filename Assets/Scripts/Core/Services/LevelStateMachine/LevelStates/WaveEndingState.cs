@@ -4,18 +4,27 @@ public class WaveEndingState : ILevelState
 {
     private LevelStateMachine _stateMachine;
     private CharacterCollection _characterCollection;
+    private TimerWrapper _timer;
+    private TimerSignal _killAllEnemiesSignal;
 
     public void Enter(LevelStateMachine stateMachine)
     {
         _stateMachine = stateMachine;
         _characterCollection = ServiceLocator.Get<CharacterCollection>();
         _characterCollection.EnemyDied += OnEnemyDied;
+        _timer = ServiceLocator.Get<TimerWrapper>();
     }
 
     private void OnEnemyDied(Character enemy, Character attacker)
     { 
+        if (_characterCollection.GetEnemiesCount() == 1)
+        {
+            _killAllEnemiesSignal = _timer.AddSignal(15f, KillAllEnemies);
+        }
+
         if (_characterCollection.GetEnemiesCount() == 0)
         {
+            _timer.RemoveSignal(_killAllEnemiesSignal);
             _characterCollection.EnemyDied -= OnEnemyDied;
             _characterCollection.ClearDeadEnemies();
             ShowMessage();
@@ -23,6 +32,11 @@ public class WaveEndingState : ILevelState
             _stateMachine.IncreaseCurrentWave();
             _stateMachine.SetState(new DelayBetweenWavesState());
         }
+    }
+
+    private void KillAllEnemies()
+    {
+        _characterCollection.KillAllEnemies();
     }
 
     private void ShowMessage()

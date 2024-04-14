@@ -25,9 +25,12 @@ namespace CharacterViewElements
         {
             foreach (var part in _bodyParts)
             {
-                DOTween.Sequence()
-                    .Append(part.materials[0].DOColor(Color.red, _blinkTime / 2))
-                    .Append(part.materials[0].DOColor(Color.white, _blinkTime / 2));
+                foreach (Material material in part.materials)
+                {
+                    DOTween.Sequence()
+                        .Append(material.DOColor(Color.red, _blinkTime / 2))
+                        .Append(material.DOColor(Color.white, _blinkTime / 2));
+                }
             }
         }
 

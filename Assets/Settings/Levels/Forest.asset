@@ -23,6 +23,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 7c96c727a57c6384e81caef30f118f59, type: 2}
   - {fileID: 11400000, guid: dfee9e6b81b02c94682c5bc9dc62a060, type: 2}
   - {fileID: 11400000, guid: 27fbd23784d25dc45aafa1ba0a35d5ea, type: 2}
+  - {fileID: 11400000, guid: ddd174a648ce52c4a956ef0ba8e6917f, type: 2}
   <DelayBetweenWaves>k__BackingField: 6
   <DelayBetweenEnemies>k__BackingField: 2
   <AdditionalEnemiesPerWave>k__BackingField: 1

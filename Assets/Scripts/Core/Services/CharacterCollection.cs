@@ -8,7 +8,6 @@ public class CharacterCollection: IService
     private SpawnerCollection _spawnerCollection;
 
     private List<Character> _spawnedEnemies = new List<Character>();
-    private List<Character> _aliveEnemies = new List<Character>();
 
     public event Action<Character, Character> EnemyDied;
 
@@ -25,9 +24,6 @@ public class CharacterCollection: IService
 
         _spawnedEnemies.Clear();
         _spawnedEnemies = null;
-
-        _aliveEnemies.Clear();
-        _aliveEnemies = null;
 
         _spawnerCollection = null;
     }
@@ -65,20 +61,27 @@ public class CharacterCollection: IService
             GameObject.Instantiate(sample, position, rotation).GetComponent<Character>();
         enemy.Initialize(character, false);
         _spawnedEnemies.Add(enemy);
-        _aliveEnemies.Add(enemy);
         enemy.Health.Died += (Character attacker) => OnEnemyDied(enemy, attacker);
     }
 
     private void OnEnemyDied(Character enemy, Character attacker)
     {
         enemy.Health.Died -= (Character attacker) => OnEnemyDied(enemy, attacker);
-        _aliveEnemies.Remove(enemy);
         EnemyDied?.Invoke(enemy, attacker);
     }
 
     public int GetEnemiesCount()
     {
-        return _aliveEnemies.Count;
+        int result = 0;
+        foreach (Character enemy in _spawnedEnemies)
+        {
+            if (enemy.IsAlive == true)
+            {
+                result += 1;
+            }
+        }
+
+        return result;
     }
 
     public void ClearDeadEnemies()
@@ -95,5 +98,16 @@ public class CharacterCollection: IService
         sender.View.Dissolved -= OnDissolved;
         _spawnedEnemies.Remove(sender);
         GameObject.Destroy(sender.gameObject);
+    }
+
+    public void KillAllEnemies()
+    {
+        foreach(Character enemy in _spawnedEnemies)
+        {
+            if (enemy.IsAlive == true)
+            {
+                enemy.Health.GetDamage(10000, DamageType.Physical, null);
+            }
+        }
     }
 }

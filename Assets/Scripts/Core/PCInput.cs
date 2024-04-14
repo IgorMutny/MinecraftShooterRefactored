@@ -58,6 +58,7 @@ public class PCInput : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.T))
         {
+            ServiceLocator.GetServicesAmount();
             ServiceLocator.Get<TimerWrapper>().GetSignalsAmount();
         }
     }

@@ -45,6 +45,9 @@ public class PlayerGun : Weapon
         _cooldownTime = _info.CooldownTime;
         _reloadTime = _info.ReloadTime;
 
+        ChangeDamage(Character.AppliedEffects.DamageMultiplier);
+        ChangeSpeed(Character.AppliedEffects.SpeedMultiplier);
+
         _isReady = true;
         _isReloaded = true;
     }
@@ -156,7 +159,6 @@ public class PlayerGun : Weapon
         if (_view != null)
         {
             _view.Raise(time);
-            _view.ChangeDamage(Character.AppliedEffects.DamageMultiplier);
         }
     }
 

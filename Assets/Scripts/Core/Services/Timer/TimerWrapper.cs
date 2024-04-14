@@ -72,6 +72,6 @@ public class TimerWrapper : IService
 
     public void GetSignalsAmount()
     {
-        Debug.Log(_signals.Count);
+        Debug.Log("Timer signals: " + _signals.Count);
     }
 }

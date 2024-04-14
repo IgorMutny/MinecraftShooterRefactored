@@ -32,6 +32,11 @@ public class Health
         _physicalDefence = 0;
         _magicalDefence = 0;
 
+        if (_characterInfo.Armor != null)
+        {
+            SetDefence(_characterInfo.Armor);
+        }
+
         _resurrector = new Resurrector(this);
     }
 
@@ -69,9 +74,14 @@ public class Health
 
         if (bestArmor != null)
         {
-            _physicalDefence = bestArmor.PhysicalDefence;
-            _magicalDefence = bestArmor.MagicalDefence;
+            SetDefence(bestArmor);
         }
+    }
+
+    private void SetDefence(ArmorInfo armor)
+    {
+        _physicalDefence = armor.PhysicalDefence;
+        _magicalDefence = armor.MagicalDefence;
     }
 
     public void GetCure(int points)
