@@ -18,6 +18,6 @@ public class DelayBetweenWavesState : ILevelState
 
     private void ShowAd()
     {
-        ServiceLocator.Get<AdService>().ShowFullScreenAd();
+        //ServiceLocator.Get<AdService>().ShowFullScreenAd();
     }
 }
