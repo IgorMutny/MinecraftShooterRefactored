@@ -5,15 +5,11 @@ public class Bullet : Projectile
     protected override void HandleHit(RaycastHit hit)
     {
         if (hit.collider.TryGetComponent(out Character character) == true)
-        { 
+        {
             character.Health.GetDamage(GetRandomDamage(), DamageType.Physical, Sender);
-
-            if (IsPenetrating == false)
-            {
-                Explode(hit.point);
-            }
+            Explode(hit.point);
         }
-        
+
         if (hit.collider.TryGetComponent(out SolidBlock solidBlock) == true)
         {
             Explode(hit.point);

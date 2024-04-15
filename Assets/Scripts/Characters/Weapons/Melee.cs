@@ -59,6 +59,11 @@ public class Melee : Weapon
             if (hit.collider.gameObject.TryGetComponent(out Character victim) == true)
             {
                 victim.Health.GetDamage(GetRandomDamage(), DamageType.Physical, Character);
+
+                if (_info.PoisoningEffect != null)
+                {
+                    victim.AppliedEffects.TryAddEffect<PoisoningEffect>(_info.PoisoningEffect);
+                }
             }
         }
     }

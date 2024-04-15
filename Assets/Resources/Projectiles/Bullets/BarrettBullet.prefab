@@ -47,7 +47,6 @@ MonoBehaviour:
   _lifeTime: 5
   _speed: 100
   _gravity: 0
-  _minDamage: 2000
-  _maxDamage: 4000
+  _minDamage: 3000
+  _maxDamage: 6000
   <ExplosionSample>k__BackingField: {fileID: 7109406785157822951, guid: 72f1b1eb8db1d17418d8f328116417b7, type: 3}
-  <IsPenetrating>k__BackingField: 1

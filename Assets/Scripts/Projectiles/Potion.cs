@@ -18,10 +18,7 @@ public class Potion : Projectile
     {
         if (hit.collider.TryGetComponent(out Character character) == true)
         {
-            if (IsPenetrating == false)
-            {
-                Explode(hit.point);
-            }
+            Explode(hit.point);
         }
 
         if (hit.collider.TryGetComponent(out SolidBlock solidBlock) == true)

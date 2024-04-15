@@ -1,7 +1,7 @@
 {
-    "idSave": 1017,
+    "idSave": 1109,
     "isFirstSession": false,
     "language": "ru",
     "promptDone": false,
-    "Data": "{\"SoundVolume\":0.7825162410736084,\"MusicVolume\":0.03411532938480377,\"Sensitivity\":500.0,\"Gold\":18610,\"Diamonds\":34,\"SelectedLevel\":1,\"Items\":[false,true,true,true,true,true,true,true,false,false,false,false,false,false,true,false],\"Levels\":[false,true,true,false]}"
+    "Data": "{\"SoundVolume\":0.7825162410736084,\"MusicVolume\":0.03411532938480377,\"Sensitivity\":500.0,\"Gold\":19530,\"Diamonds\":38,\"SelectedLevel\":1,\"Items\":[false,true,true,true,true,true,true,true,false,false,false,false,false,false,true,false],\"Levels\":[false,true,true,false]}"
 }

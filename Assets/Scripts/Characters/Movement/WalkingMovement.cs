@@ -5,7 +5,7 @@ public class WalkingMovement : Movement
     private Vector3 _jumpVector = new Vector3(0, 6f, 0);
     private Vector3 _gravityVector = new Vector3(0, -4f, 0);
     private float _jumpDuration = 0.25f;
-    private float _obstacleRaycastDistance = 1f;
+    private float _obstacleRaycastDistance => Controller.radius + 0.5f;
     private TimerWrapper _timer;
     private bool _isJumping;
 

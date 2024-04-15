@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a04acc5f9c9d6a429462a761ae33104, type: 3}
+  m_Name: HerobrineAudio
+  m_EditorClassIdentifier: 
+  IdleClips: []
+  MovingClips:
+  - {fileID: 8300000, guid: 209d14dac31956848ad8f05d6c39696c, type: 3}
+  - {fileID: 8300000, guid: 467623dcb024ebf4eaa2257f3ea1576a, type: 3}
+  - {fileID: 8300000, guid: 4a769243753f81e4194f42a8de3ddcf8, type: 3}
+  - {fileID: 8300000, guid: dbdc31ad81410cd48832aa97da54b650, type: 3}
+  - {fileID: 8300000, guid: a49c825e2b2e6a246bb842e4d9fd66a0, type: 3}
+  - {fileID: 8300000, guid: 3ba86a03431ff49429e285e6009764e2, type: 3}
+  AttackingClips:
+  - {fileID: 8300000, guid: df6b981fefc2ec548829cec6fe0883ae, type: 3}
+  DamagedClips:
+  - {fileID: 8300000, guid: 93431fcc53214b8469ef01686e382e21, type: 3}
+  - {fileID: 8300000, guid: e71f70db4945dd24394752fb87c3b960, type: 3}
+  - {fileID: 8300000, guid: 8218604049221f04db68e0561856b0aa, type: 3}
+  DiedClips: []
+  MinIdleClipRepeatingDelay: 0
+  MaxIdleClipRepeatingDelay: 0
+  MinMovingClipRepeatingDelay: 0.45
+  MaxMovingClipRepeatingDelay: 0.55

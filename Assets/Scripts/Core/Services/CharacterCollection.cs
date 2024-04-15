@@ -99,15 +99,4 @@ public class CharacterCollection: IService
         _spawnedEnemies.Remove(sender);
         GameObject.Destroy(sender.gameObject);
     }
-
-    public void KillAllEnemies()
-    {
-        foreach(Character enemy in _spawnedEnemies)
-        {
-            if (enemy.IsAlive == true)
-            {
-                enemy.Health.GetDamage(10000, DamageType.Physical, null);
-            }
-        }
-    }
 }

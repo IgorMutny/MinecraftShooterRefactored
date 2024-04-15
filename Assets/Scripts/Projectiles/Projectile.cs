@@ -11,7 +11,6 @@ public abstract class Projectile : MonoBehaviour
     [SerializeField] private int _maxDamage;
 
     [field: SerializeField] protected GameObject ExplosionSample { get; private set; }
-    [field: SerializeField] protected bool IsPenetrating { get; private set; }
 
     protected Character Sender { get; private set; }
 

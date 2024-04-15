@@ -65,6 +65,11 @@ namespace CharacterViewElements
 
         public void OnDied()
         {
+            if (_transform.gameObject.TryGetComponent(out Light light) == true)
+            {
+                light.DOIntensity(0, _blinkTime);
+            }
+
             foreach (var part in _bodyParts)
             {
                 Collider collider = part.GetComponent<Collider>();

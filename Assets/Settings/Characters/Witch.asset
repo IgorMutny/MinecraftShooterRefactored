@@ -18,7 +18,7 @@ MonoBehaviour:
   <RotationSpeed>k__BackingField: 180
   <HeadMaxAngles>k__BackingField: {x: 30, y: 60}
   <Weapon>k__BackingField: {fileID: 11400000, guid: a2edfeb4ecb60994c9296ad5ea5fd146, type: 2}
-  <Armor>k__BackingField: {fileID: 0}
+  <Armor>k__BackingField: {fileID: 11400000, guid: d00d05de69435d74691a759fea54fa60, type: 2}
   <Health>k__BackingField: 1300
   <LootChance>k__BackingField: {fileID: 11400000, guid: 9660a0c975d137b47bfdb0609545fdff, type: 2}
   <AI>k__BackingField: {fileID: 11400000, guid: fc3bedb2cbde3e04eb2fe6bec16a5f0f, type: 2}
