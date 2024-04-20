@@ -3,7 +3,7 @@ using UnityEngine;
 public class WalkingMovement : Movement
 {
     private Vector3 _jumpVector = new Vector3(0, 6f, 0);
-    private Vector3 _gravityVector = new Vector3(0, -4f, 0);
+    private Vector3 _gravityVector = new Vector3(0, -6f, 0);
     private float _jumpDuration = 0.25f;
     private float _obstacleRaycastDistance => Controller.radius + 0.5f;
     private TimerWrapper _timer;
@@ -120,27 +120,8 @@ public class WalkingMovement : Movement
 
     private bool IsWayBlocked(Transform transform)
     {
-        Vector3[] vectors = new Vector3[]
-        {
-            new Vector3(Mathf.Sign(MovementVector.x), 0, 0),
-            new Vector3(0, 0, Mathf.Sign(MovementVector.z)),
-        };
-
-        for (int i = 0; i < vectors.Length; i++)
-        { 
-            if (IsWayBlockedInDirection(transform, vectors[i]) == true)
-            {
-                return true;
-            }
-        }
-
-        return false;
-    }
-
-    private bool IsWayBlockedInDirection(Transform transform, Vector3 direction)
-    {
         RaycastHit[] hits = Physics.RaycastAll
-            (transform.position, direction, _obstacleRaycastDistance);
+            (transform.position, MovementVector, _obstacleRaycastDistance);
 
         foreach (RaycastHit hit in hits)
         {

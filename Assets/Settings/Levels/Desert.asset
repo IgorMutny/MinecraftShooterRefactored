@@ -16,4 +16,8 @@ MonoBehaviour:
   <Name>k__BackingField: "\u041F\u0423\u0421\u0422\u042B\u041D\u042F"
   <Image>k__BackingField: {fileID: 0}
   <SceneName>k__BackingField: Desert
-  <PlayerSpawner>k__BackingField: {x: 0, y: 0, z: 0}
+  <Waves>k__BackingField:
+  - {fileID: 11400000, guid: bbf67d42de29cf3409ad4c45dc8b40c7, type: 2}
+  <DelayBetweenWaves>k__BackingField: 6
+  <DelayBetweenEnemies>k__BackingField: 2
+  <AdditionalEnemiesPerWave>k__BackingField: 1
