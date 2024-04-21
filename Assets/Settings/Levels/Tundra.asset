@@ -14,6 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Id>k__BackingField: 3
   <Name>k__BackingField: "\u0422\u0423\u041D\u0414\u0420\u0410"
+  <Description>k__BackingField: "\u041D\u0430 10-\u043E\u0439 \u0432\u043E\u043B\u043D\u0435
+    \u0442\u044B \u0443\u0432\u0438\u0434\u0438\u0448\u044C \u0442\u043E\u0433\u043E,
+    \u043A\u043E\u0433\u043E \u043D\u0435 \u043E\u0436\u0438\u0434\u0430\u043B \u0437\u0434\u0435\u0441\u044C
+    \u0443\u0432\u0438\u0434\u0435\u0442\u044C."
   <Image>k__BackingField: {fileID: 0}
+  <WaveToOpenNextLevel>k__BackingField: 10
+  <NextLevelId>k__BackingField: 0
   <SceneName>k__BackingField: Tundra
-  <PlayerSpawner>k__BackingField: {x: 0, y: 0, z: 0}
+  <Waves>k__BackingField: []
+  <DelayBetweenWaves>k__BackingField: 0
+  <DelayBetweenEnemies>k__BackingField: 0
+  <AdditionalEnemiesPerWave>k__BackingField: 0

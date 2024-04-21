@@ -14,7 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Id>k__BackingField: 1
   <Name>k__BackingField: "\u041B\u0415\u0421"
-  <Image>k__BackingField: {fileID: 0}
+  <Description>k__BackingField: "\u041F\u0440\u043E\u0434\u0435\u0440\u0436\u0438\u0441\u044C
+    10 \u0432\u043E\u043B\u043D, \u0447\u0442\u043E\u0431\u044B \u043E\u0442\u043A\u0440\u044B\u0442\u044C
+    \u043A\u0430\u0440\u0442\u0443 \"\u041F\u0443\u0441\u0442\u044B\u043D\u044F\"."
+  <Image>k__BackingField: {fileID: 21300000, guid: a1b376794d13006408549125d029d8a5, type: 3}
+  <WaveToOpenNextLevel>k__BackingField: 10
+  <NextLevelId>k__BackingField: 2
   <SceneName>k__BackingField: Forest
   <Waves>k__BackingField:
   - {fileID: 11400000, guid: bbf67d42de29cf3409ad4c45dc8b40c7, type: 2}

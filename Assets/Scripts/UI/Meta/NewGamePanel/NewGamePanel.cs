@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 
 namespace MetaUIElements
@@ -7,6 +8,7 @@ namespace MetaUIElements
         [SerializeField] private GameObject _selectLevelButtonSample;
         [SerializeField] private StartLevelButton _startLevelButton;
         [SerializeField] private RectTransform _levelsList;
+        [SerializeField] private TextMeshProUGUI _description;
 
         private LevelInfo[] _levels;
         private SelectLevelButton[] _selectLevelButtons;
@@ -64,6 +66,11 @@ namespace MetaUIElements
 
             bool isSelected = _gameDataService.SelectedLevel == level.Id;
             selectLevelButton.SetSelected(isSelected);
+
+            if (isSelected == true)
+            {
+                _description.text = level.Description;
+            }
         }
 
         public void StartLevel()

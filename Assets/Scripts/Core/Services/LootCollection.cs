@@ -46,11 +46,11 @@ public class LootCollection : IService
         DropInfo dropInfo = enemy.DropInfo;
         Vector3 position = enemy.transform.position;
 
-        TryAddGold(attacker, dropInfo);
+        TryAddGold(dropInfo);
         TryCreateLoot(dropInfo, position);
     }
 
-    private void TryAddGold(Character attacker, DropInfo dropInfo)
+    private void TryAddGold(DropInfo dropInfo)
     {
         _gameDataService.AddGold(dropInfo.GoldAmount);
         BalanceChanged?.Invoke();

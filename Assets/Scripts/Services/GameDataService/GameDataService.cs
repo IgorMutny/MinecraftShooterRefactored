@@ -113,11 +113,6 @@ public class GameDataService : IService, IReadOnlyGameDataService
 
     public void AddLevel(int id)
     {
-        if (_gameData.Levels[id] == true)
-        {
-            throw new Exception("Can't add level: it is already added");
-        }
-
         _gameData.Levels[id] = true;
         Save();
     }

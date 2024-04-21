@@ -24,6 +24,11 @@ public class LevelStateMachine: IService
     public void IncreaseCurrentWave()
     {
         _currentWave += 1;
+
+        if (_currentWave == _level.WaveToOpenNextLevel)
+        {
+            ServiceLocator.Get<GameDataService>().AddLevel(_level.NextLevelId);
+        }
     }
 
     public void Destroy()
