@@ -4,7 +4,8 @@ using UnityEngine;
 public class CoreGame
 {
     private TimerWrapper _timer;
-    private PCInput _input;
+    private PCInput _pcInput;
+    private MobileInput _mobileInput;
     private CharacterCollection _characterCollection;
     private LootCollection _lootCollection;
     private LevelStateMachine _levelStateMachine;
@@ -87,10 +88,20 @@ public class CoreGame
 
     private void CreateInput(Character player)
     {
-        GameObject inputSample =
-            ServiceLocator.Get<SettingsService>().Get<MiscObjectsCollection>().PCInput;
-        _input = GameObject.Instantiate(inputSample).GetComponent<PCInput>();
-        _input.Initialize(player);
+        if (Platform.Mobile == true)
+        {
+            GameObject inputSample =
+                ServiceLocator.Get<SettingsService>().Get<MiscObjectsCollection>().MobileInput;
+            _mobileInput = GameObject.Instantiate(inputSample).GetComponent<MobileInput>();
+            _mobileInput.Initialize(player, _coreUi);
+        }
+        else
+        {
+            GameObject inputSample =
+                ServiceLocator.Get<SettingsService>().Get<MiscObjectsCollection>().PCInput;
+            _pcInput = GameObject.Instantiate(inputSample).GetComponent<PCInput>();
+            _pcInput.Initialize(player);
+        }
     }
 
     private void CreateLevelStateMachine()
@@ -115,7 +126,7 @@ public class CoreGame
 
     private void OnPauseSwitched(bool isPaused)
     {
-        _coreUi.SwitchInGameMenu(isPaused);
+        _coreUi.SwitchPause(isPaused);
     }
 
     private void ExitToMainMenu()
@@ -129,7 +140,15 @@ public class CoreGame
         ServiceLocator.Unregister<TimerWrapper>();
         _timer = null;
 
-        GameObject.Destroy(_input.gameObject);
+        if (_pcInput != null)
+        {
+            GameObject.Destroy(_pcInput.gameObject);
+        }
+
+        if (_mobileInput != null)
+        {
+            GameObject.Destroy(_mobileInput.gameObject);
+        }
 
         _coreUi.ResumeButtonClicked -= () => _pauseHandler.Resume();
         _coreUi.ExitButtonClicked -= ExitToMainMenu;

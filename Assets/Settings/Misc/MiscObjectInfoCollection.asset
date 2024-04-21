@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aecf387b4e3683c4dafc21a2d25e2d08, type: 3}
   m_Name: MiscObjectInfoCollection
   m_EditorClassIdentifier: 
-  <MetaUI>k__BackingField: {fileID: 3947956509329895079, guid: 4ffc26b15337aae47a278aab383b0e6e, type: 3}
-  <CoreUI>k__BackingField: {fileID: 3947956509329895079, guid: 1c2d68fabacf0ed4b8130b2a3e11aee8, type: 3}
+  <MetaUI>k__BackingField: {fileID: 4050247754639775768, guid: 4ffc26b15337aae47a278aab383b0e6e, type: 3}
+  <CoreUI>k__BackingField: {fileID: 2989992208229299040, guid: 1c2d68fabacf0ed4b8130b2a3e11aee8, type: 3}
   <UIAudioSource>k__BackingField: {fileID: 6856973755866695048, guid: 96a5b51cc9e54cd468d7a88f862fe20d, type: 3}
   <Timer>k__BackingField: {fileID: 8757160038326481516, guid: 31dd6e2689f4a074bad5d7a5d53a742b, type: 3}
   <PCInput>k__BackingField: {fileID: 3295970940706355601, guid: 60678f7e66d76414facf63c6fcaf47be, type: 3}
+  <MobileInput>k__BackingField: {fileID: 3295970940706355601, guid: d97c84225f9748c43a31c25353096970, type: 3}
   <CoreCameras>k__BackingField: {fileID: 728391718671457586, guid: 6432a857e6324114f948a914af52d9bc, type: 3}

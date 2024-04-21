@@ -14,6 +14,9 @@ public class Bootstrap : MonoBehaviour
         Application.targetFrameRate = 100;
         DOTween.SetTweensCapacity(short.MaxValue, short.MaxValue);
 
+        //Platform.Mobile = Application.isMobilePlatform;
+        Platform.Mobile = true;
+
         AdService adService = new AdService();
         ServiceLocator.Register(adService);
 

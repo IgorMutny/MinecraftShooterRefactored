@@ -17,10 +17,13 @@ namespace CoreUIElements
         [SerializeField] private YouDeadMessage _youDeadMessage;
         [SerializeField] private InGameMenu _inGameMenu;
         [SerializeField] private OptionsMenu _optionsMenu;
+        [SerializeField] private UIMobileInput _mobileInput;
 
         private Character _player;
         private LootCollection _lootCollection;
         private GameDataService _gameDataService;
+
+        public UIMobileInput UIMobileInput => _mobileInput;
 
         public event Action ResumeButtonClicked;
         public event Action ExitButtonClicked;
@@ -62,6 +65,8 @@ namespace CoreUIElements
             _optionsMenu.MusicVolumeChanged += OnMusicVolumeChanged;
             _optionsMenu.SensitivityChanged += OnSensitivityChanged;
             _optionsMenu.BackButton.onClick.AddListener(CloseOptionsMenu);
+
+            _mobileInput.gameObject.SetActive(Platform.Mobile);
         }
 
         private void OnDestroy()
@@ -92,9 +97,21 @@ namespace CoreUIElements
             _messagePresenter.ShowMessage(text, color);
         }
 
-        public void SwitchInGameMenu(bool isPaused)
+        public void SwitchPause(bool isPaused)
         {
             _inGameMenu.gameObject.SetActive(isPaused);
+
+            if (Platform.Mobile == true)
+            {
+                _mobileInput.gameObject.SetActive(!isPaused);
+            }
+        }
+
+        public UIMobileInputButton[] GetWeaponButtons()
+        {
+            GameObject[] images = _weapons.GetWeaponImages();
+            UIMobileInputButton[] weaponButtons = _mobileInput.CreateWeaponButtons(images);
+            return weaponButtons;
         }
 
         private void OnCured(int health)
@@ -123,6 +140,12 @@ namespace CoreUIElements
         private IEnumerator OnDiedCoroutine()
         {
             _panel.Die();
+
+            if (_mobileInput != null)
+            {
+                _mobileInput.gameObject.SetActive(false);
+            }
+
             _youDeadMessage.gameObject.SetActive(true);
             _youDeadMessage.Animate();
             yield return new WaitForSeconds(3f);
@@ -169,7 +192,7 @@ namespace CoreUIElements
         }
 
         private void OnMusicVolumeChanged(float volume)
-        { 
+        {
             _gameDataService.SetMusicVolume(volume);
         }
 

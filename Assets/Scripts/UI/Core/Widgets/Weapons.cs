@@ -50,5 +50,10 @@ namespace CoreUIElements
         {
             _selection.transform.position = _weaponImages[index].transform.position;
         }
+
+        public GameObject[] GetWeaponImages()
+        {
+            return _weaponImages;
+        }
     }
 }

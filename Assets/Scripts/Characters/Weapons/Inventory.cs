@@ -165,6 +165,8 @@ public class Inventory
 
     private void TryTakeWeapon(int index)
     {
+        _isLocked = true;
+
         if (_weapon != null)
         {
             _weapon.Lock();
@@ -210,6 +212,7 @@ public class Inventory
     private void OnWeaponReady()
     {
         _weapon.Unlock();
+        _isLocked = false;
     }
 
     public void DecreaseRounds()
