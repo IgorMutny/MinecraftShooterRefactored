@@ -14,14 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Records>k__BackingField:
   - Character: {fileID: 11400000, guid: 2579568003be23e46afd8fe025fdb26d, type: 2}
-    Amount: 10
+    Amount: 4
   - Character: {fileID: 11400000, guid: a20cb889097a16145850e2f842622799, type: 2}
-    Amount: 10
+    Amount: 4
   - Character: {fileID: 11400000, guid: 5572a32397057eb43baab9619f294db1, type: 2}
-    Amount: 10
+    Amount: 3
   - Character: {fileID: 11400000, guid: 9d11b8e958addf64795c9bc8494a251b, type: 2}
-    Amount: 10
+    Amount: 3
   - Character: {fileID: 11400000, guid: f496fdbcdeeff3e40925b4d98fed67a2, type: 2}
-    Amount: 10
+    Amount: 3
   - Character: {fileID: 11400000, guid: ca4f605114a9f644b96ffd901e17b819, type: 2}
-    Amount: 5
+    Amount: 3

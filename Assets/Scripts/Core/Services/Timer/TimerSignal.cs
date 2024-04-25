@@ -5,36 +5,33 @@ public class TimerSignal
 {
     private float _counter;
     private Action _action;
-    private string _tag;
+    private float _multiplier;
 
     public event Action<TimerSignal> Ready;
 
-    public TimerSignal(float counter, Action action, string tag = null)
+    public TimerSignal(float counter, Action action, float multiplier)
     {
         _counter = counter;
         _action = action;
-        _tag = tag;
+        _multiplier = multiplier;
+    }
+
+    public void ChangeMultiplier(float multiplier)
+    { 
+        _multiplier = multiplier;
     }
 
     public void OnTick()
     {
         if (_counter > 0)
         {
-            _counter -= Time.fixedDeltaTime;
+            _counter -= Time.fixedDeltaTime * _multiplier;
 
             if (_counter <= 0 )
             {
                 _action();
                 Ready?.Invoke(this);
             }
-        }
-    }
-
-    ~TimerSignal()
-    { 
-        if (_tag != null)
-        {
-            Debug.Log($"TimerSignal {_tag} destroyed in memory");
         }
     }
 }

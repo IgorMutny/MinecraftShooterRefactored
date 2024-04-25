@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: AdvancedDropInfo
   m_EditorClassIdentifier: 
   <GoldAmount>k__BackingField: 20
-  <DiamondChance>k__BackingField: 0.05
-  <MedKitChance>k__BackingField: 0.2
-  <PowerupChance>k__BackingField: 0.1
+  <DiamondChance>k__BackingField: 0.04
+  <MedKitChance>k__BackingField: 0.1
+  <PowerupChance>k__BackingField: 0.08

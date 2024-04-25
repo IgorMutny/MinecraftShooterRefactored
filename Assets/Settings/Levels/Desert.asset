@@ -23,9 +23,11 @@ MonoBehaviour:
   <SceneName>k__BackingField: Desert
   <Waves>k__BackingField:
   - {fileID: 11400000, guid: 0921fb5ff02bc404f90720472ad15055, type: 2}
-  - {fileID: 11400000, guid: 833663e5b0cd84c499cac18e4e9423ad, type: 2}
-  - {fileID: 11400000, guid: 00acfcbe3713f6b4290996148b459184, type: 2}
-  - {fileID: 11400000, guid: 03887da8fad66784c9e8f85ea1536736, type: 2}
+  - {fileID: 11400000, guid: c5383959345ef9947a87d1655975a39a, type: 2}
+  - {fileID: 11400000, guid: 4be204e566c3f7c428e3e5c322d3c150, type: 2}
+  - {fileID: 11400000, guid: 12631a05506228b448ea4977759bfe63, type: 2}
+  - {fileID: 11400000, guid: 75ade309b5967e5459f53f56f7963aee, type: 2}
+  - {fileID: 11400000, guid: c87f542fce0f27042b6741171f2a7e35, type: 2}
   <DelayBetweenWaves>k__BackingField: 6
   <DelayBetweenEnemies>k__BackingField: 2
-  <AdditionalEnemiesPerWave>k__BackingField: 1
+  <AdditionalEnemiesPerWave>k__BackingField: 2

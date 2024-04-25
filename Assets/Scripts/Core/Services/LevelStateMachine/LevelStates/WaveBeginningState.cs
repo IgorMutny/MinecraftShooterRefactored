@@ -56,9 +56,16 @@ public class WaveBeginningState : ILevelState
 
         foreach (WaveRecord record in waveInfo.Records)
         {
-            for (int i = 0; i < record.Amount + additionalEnemies; i++)
+            for (int i = 0; i < record.Amount; i++)
             {
                 result.Add(record.Character);
+            }
+
+            for (int i = 0; i < additionalEnemies; i++)
+            {
+                int rnd = Random.Range(0, waveInfo.Records.Length - 1);
+                WaveRecord rndRecord = waveInfo.Records[rnd];
+                result.Add(rndRecord.Character);
             }
         }
 

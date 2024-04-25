@@ -18,11 +18,21 @@ MonoBehaviour:
     \u0442\u044B \u0443\u0432\u0438\u0434\u0438\u0448\u044C \u0442\u043E\u0433\u043E,
     \u043A\u043E\u0433\u043E \u043D\u0435 \u043E\u0436\u0438\u0434\u0430\u043B \u0437\u0434\u0435\u0441\u044C
     \u0443\u0432\u0438\u0434\u0435\u0442\u044C."
-  <Image>k__BackingField: {fileID: 0}
+  <Image>k__BackingField: {fileID: 21300000, guid: 7e061808c927620478f5249077057072, type: 3}
   <WaveToOpenNextLevel>k__BackingField: 10
   <NextLevelId>k__BackingField: 0
   <SceneName>k__BackingField: Tundra
-  <Waves>k__BackingField: []
-  <DelayBetweenWaves>k__BackingField: 0
-  <DelayBetweenEnemies>k__BackingField: 0
-  <AdditionalEnemiesPerWave>k__BackingField: 0
+  <Waves>k__BackingField:
+  - {fileID: 11400000, guid: 462afe5ec7ae88f44b871d9f880c8f8a, type: 2}
+  - {fileID: 11400000, guid: cabc03b3656bfaf4ab2daefa441064fd, type: 2}
+  - {fileID: 11400000, guid: 3bc8e5fbc255a4e4f80aa631bcd19783, type: 2}
+  - {fileID: 11400000, guid: 38fd3ea27265cd841a35cafdef48b82b, type: 2}
+  - {fileID: 11400000, guid: d876b3933c3b09d438c5f1976064bc74, type: 2}
+  - {fileID: 11400000, guid: 318e712ba21754449a175aa034ac5913, type: 2}
+  - {fileID: 11400000, guid: ff71a3f8a00bdb147bdddb111c0e271c, type: 2}
+  - {fileID: 11400000, guid: 2d36a20e44b6e40479b13af10bab0920, type: 2}
+  - {fileID: 11400000, guid: c95c457ad932f4e4580e031de2c51293, type: 2}
+  - {fileID: 11400000, guid: b4204072f2ca2f8498e825be49082fca, type: 2}
+  <DelayBetweenWaves>k__BackingField: 6
+  <DelayBetweenEnemies>k__BackingField: 2
+  <AdditionalEnemiesPerWave>k__BackingField: 2

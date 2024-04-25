@@ -9,6 +9,7 @@ public abstract class Effect
     protected Character _character;
     protected AppliedEffects _appliedEffects;
     protected TimerWrapper _timer;
+    protected TimerSignal _expiredSignal;
     protected bool _isActive;
 
     public EffectInfo Info { get; private set; }
@@ -22,7 +23,7 @@ public abstract class Effect
         _period = info.Period;
         _value = info.Value;
         _timer = ServiceLocator.Get<TimerWrapper>();
-        _timer.AddSignal(_duration, Expire);
+        _expiredSignal = _timer.AddSignal(_duration, Expire);
         _isActive = true;
 
         InitializeExtended();
@@ -31,6 +32,13 @@ public abstract class Effect
     public void SetDuration(float duration)
     {
         _duration = duration;
+
+        if (_expiredSignal != null)
+        {
+            _timer.RemoveSignal(_expiredSignal);
+        }
+
+        _timer.AddSignal(_duration, Expire);
     }
 
     public void SetCharacter(Character character)

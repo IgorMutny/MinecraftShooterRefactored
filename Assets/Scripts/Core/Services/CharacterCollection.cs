@@ -88,8 +88,11 @@ public class CharacterCollection: IService
     {
         foreach (Character enemy in _spawnedEnemies)
         {
-            enemy.View.Dissolve();
-            enemy.View.Dissolved += OnDissolved;
+            if (enemy.IsAlive == false)
+            {
+                enemy.View.Dissolve();
+                enemy.View.Dissolved += OnDissolved;
+            }
         }
     }
 

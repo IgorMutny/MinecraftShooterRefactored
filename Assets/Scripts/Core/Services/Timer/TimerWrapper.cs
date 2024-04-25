@@ -53,9 +53,9 @@ public class TimerWrapper : IService
         }
     }
 
-    public TimerSignal AddSignal(float seconds, Action action, string tag = null)
+    public TimerSignal AddSignal(float seconds, Action action, float multiplier = 1)
     {
-        TimerSignal signal = new TimerSignal(seconds, action, tag);
+        TimerSignal signal = new TimerSignal(seconds, action, multiplier);
         _signalsToAdd.Add(signal);
         signal.Ready += RemoveSignal;
         return signal;

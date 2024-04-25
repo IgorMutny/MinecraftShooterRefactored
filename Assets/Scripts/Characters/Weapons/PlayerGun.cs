@@ -61,7 +61,7 @@ public class PlayerGun : Weapon
             {
                 Attack();
                 _isReady = false;
-               _cooldownSignal = _timer.AddSignal(_cooldownTime / _speedMultiplier, SetReady);
+               _cooldownSignal = _timer.AddSignal(_cooldownTime, SetReady, _speedMultiplier);
             }
             else
             {
@@ -122,7 +122,7 @@ public class PlayerGun : Weapon
             }
 
             _isReloaded = false;
-            _reloadSignal = _timer.AddSignal(_reloadTime / _speedMultiplier, Reload);
+            _reloadSignal = _timer.AddSignal(_reloadTime, Reload, _speedMultiplier);
         }
     }
 
@@ -168,7 +168,17 @@ public class PlayerGun : Weapon
         {
             _view.ChangeSpeed(multiplier);
         }
-        
+
+        if (_cooldownSignal != null)
+        {
+            _cooldownSignal.ChangeMultiplier(multiplier);
+        }
+
+        if (_reloadSignal != null)
+        {
+            _reloadSignal.ChangeMultiplier(multiplier);
+        }
+
         _speedMultiplier = multiplier;
     }
 

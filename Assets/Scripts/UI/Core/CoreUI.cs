@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using TMPro;
 using UnityEngine;
 
 namespace CoreUIElements
@@ -17,10 +18,14 @@ namespace CoreUIElements
         [SerializeField] private YouDeadMessage _youDeadMessage;
         [SerializeField] private InGameMenu _inGameMenu;
         [SerializeField] private OptionsMenu _optionsMenu;
+        [SerializeField] private TextMeshProUGUI _fpsText;
 
         private Character _player;
         private LootCollection _lootCollection;
         private GameDataService _gameDataService;
+        private bool _showFPS = true;
+        private float _delay = 0.1f;
+        private float _counter = 0;
 
         public event Action ResumeButtonClicked;
         public event Action ExitButtonClicked;
@@ -176,6 +181,20 @@ namespace CoreUIElements
         private void OnSensitivityChanged(float volume)
         {
             _gameDataService.SetSensitivity(volume);
+        }
+
+        private void Update()
+        {
+            if (_showFPS == true)
+            {
+                _counter -= Time.unscaledDeltaTime;
+                if (_counter <= 0)
+                {
+                    _counter = _delay;
+                    int fps = (int)(1f / Time.unscaledDeltaTime);
+                    _fpsText.text = "FPS: " + fps;
+                }
+            }
         }
     }
 }

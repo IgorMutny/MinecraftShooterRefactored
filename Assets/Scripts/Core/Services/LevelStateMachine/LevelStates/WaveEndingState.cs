@@ -14,7 +14,7 @@ public class WaveEndingState : ILevelState
 
     private void OnEnemyDied(Character enemy, Character attacker)
     { 
-        if (_characterCollection.GetEnemiesCount() == 0)
+        if (_characterCollection.GetEnemiesCount() <= 3)
         {
             _characterCollection.EnemyDied -= OnEnemyDied;
             _characterCollection.ClearDeadEnemies();

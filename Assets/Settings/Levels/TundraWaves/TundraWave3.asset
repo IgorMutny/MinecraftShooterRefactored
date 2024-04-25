@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 826f37bcf5c329b4c8c1f2fd12cc0353, type: 3}
+  m_Name: TundraWave3
+  m_EditorClassIdentifier: 
+  <Records>k__BackingField:
+  - Character: {fileID: 11400000, guid: b0ff82bb5c1d2dd469f9a138e02ca068, type: 2}
+    Amount: 6
+  - Character: {fileID: 11400000, guid: 4d3af20a55fe60a439695eaea0014ea4, type: 2}
+    Amount: 6
+  - Character: {fileID: 11400000, guid: bb314092c92be8e48b64fc2418ed789e, type: 2}
+    Amount: 10
