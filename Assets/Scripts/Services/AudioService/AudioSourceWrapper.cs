@@ -11,11 +11,12 @@ public class AudioSourceWrapper
     private AudioClip[] _clips;
     private bool _ignoreListenerPause;
     private bool _is3D;
+    private bool _isMusic;
     private float _minDistance = 4;
     private float _innerVolume = 1;
 
     private AudioListener _listener => _service.Listener;
-    private float Volume => _service.Volume;
+    private float Volume => _isMusic ? _service.MusicVolume: _service.AudioVolume;
 
     public AudioSourceWrapper(Transform transform, bool is3D = false)
     {
@@ -23,10 +24,16 @@ public class AudioSourceWrapper
         SetAudioSource(transform, is3D);
     }
 
-    public AudioSourceWrapper(Transform transform, AudioService service, bool is3D = false)
+    public AudioSourceWrapper(Transform transform, AudioService service, bool is3D = false, bool isMusic = false)
     {
         _service = service;
         SetAudioSource(transform, is3D);
+        _isMusic = isMusic;
+
+        if (_isMusic == true)
+        {
+            _audioSource.loop = true;
+        }
     }
 
     private void SetAudioSource(Transform transform, bool is3D)
@@ -76,10 +83,20 @@ public class AudioSourceWrapper
         _audioSource.Play();
     }
 
+    public void Stop()
+    {
+        _audioSource.Stop();
+    }
+
     public void IgnoreListenerPause(bool value)
     {
         _ignoreListenerPause = value;
         _audioSource.ignoreListenerPause = _ignoreListenerPause;
+    }
+
+    public void ResetVolumeImmediately()
+    {
+        _audioSource.volume = Volume * _innerVolume;
     }
 
     private float GetVolumeByDistance()

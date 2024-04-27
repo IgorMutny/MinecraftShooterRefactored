@@ -16,7 +16,7 @@ MonoBehaviour:
   <DashDuration>k__BackingField: 0
   <DelayBetweenDashes>k__BackingField: 0
   <StrafeDuration>k__BackingField: 2
-  <DistanceToAttack>k__BackingField: 16
+  <DistanceToAttack>k__BackingField: 32
   <DelayBetweenAttacks>k__BackingField: 0.1
   <CanFlee>k__BackingField: 1
   <DistanceToFlee>k__BackingField: 4

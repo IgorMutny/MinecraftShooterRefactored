@@ -7,11 +7,12 @@ public class AudioService : IService
 
     public AudioListener Listener { get; private set; }
 
-    public float Volume { get; private set; }
+    public float AudioVolume { get; private set; }
+    public float MusicVolume { get; private set; }
 
     public AudioService(MiscObjectsCollection uiCollection)
     {
-        Volume = ServiceLocator.Get<GameDataService>().SoundVolume;
+        AudioVolume = ServiceLocator.Get<GameDataService>().SoundVolume;
 
         GameObject audioSourceObject = GameObject.Instantiate(uiCollection.UIAudioSource);
         Object.DontDestroyOnLoad(audioSourceObject);
@@ -19,9 +20,12 @@ public class AudioService : IService
         _audioSource.Initialize(this);
     }
 
-    public void SetVolume(float volume)
+    public void SetVolume(float audio, float music)
     {
-        Volume = volume;
+        AudioVolume = audio;
+        MusicVolume = music;
+
+        _audioSource.UpdateMusicVolume();
     }
 
     public void OnButtonClicked()
@@ -32,6 +36,16 @@ public class AudioService : IService
     public void Play(AudioClip clip)
     {
         _audioSource.Play(clip);
+    }
+
+    public void PlayMusic(AudioClip clip)
+    {
+        _audioSource.PlayMusic(clip);
+    }
+
+    public void StopMusic()
+    {
+        _audioSource.StopMusic();
     }
 
     public void FindListener()

@@ -6,6 +6,7 @@ public class UIAudioSource : MonoBehaviour
 
     private AudioSourceWrapper _buttonSource;
     private AudioSourceWrapper _additionalSource;
+    private AudioSourceWrapper _musicSource;
 
     public void Initialize(AudioService audioService)
     {
@@ -15,6 +16,9 @@ public class UIAudioSource : MonoBehaviour
 
         _additionalSource = new AudioSourceWrapper(transform, audioService);
         _additionalSource.IgnoreListenerPause(false);
+
+        _musicSource = new AudioSourceWrapper(transform, audioService, false, true);
+        _musicSource.IgnoreListenerPause(false);
     }
 
     public void OnButtonClicked()
@@ -26,5 +30,21 @@ public class UIAudioSource : MonoBehaviour
     {
         _additionalSource.SetClip(clip);
         _additionalSource.Play();
+    }
+
+    public void PlayMusic(AudioClip clip)
+    {
+        _musicSource.SetClip(clip);
+        _musicSource.Play();
+    }
+
+    public void StopMusic()
+    {
+        _musicSource.Stop();
+    }
+
+    public void UpdateMusicVolume()
+    {
+        _musicSource.ResetVolumeImmediately();
     }
 }

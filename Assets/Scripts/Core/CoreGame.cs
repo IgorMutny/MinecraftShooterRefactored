@@ -34,6 +34,11 @@ public class CoreGame
         CreateLevelStateMachine();
 
         Cursor.lockState = CursorLockMode.Locked;
+
+        if (level.Theme != null)
+        {
+            ServiceLocator.Get<AudioService>().PlayMusic(level.Theme);
+        }
     }
 
     #region InitializationMethods
@@ -154,5 +159,7 @@ public class CoreGame
         _pauseHandler.Destroy();
         ServiceLocator.Unregister<PauseHandler>();
         _pauseHandler = null;
+
+        ServiceLocator.Get<AudioService>().StopMusic();
     }
 }

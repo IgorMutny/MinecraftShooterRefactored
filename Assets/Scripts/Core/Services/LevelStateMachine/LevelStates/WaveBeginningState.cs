@@ -16,6 +16,7 @@ public class WaveBeginningState : ILevelState
         _enemiesToSpawn = GetEnemiesList();
 
         ShowMessage();
+        PlaySound();
         OnSignal();
     }
 
@@ -25,6 +26,14 @@ public class WaveBeginningState : ILevelState
         int currentWave = _stateMachine.CurrentWave + 1;
         string text = $"<size=120%>ÂÎËÍÀ <size=150%>{currentWave}<size=120%> ÍÀ×ÀËÀÑÜ!";
         sender.ShowMessage(text, Color.white);
+    }
+
+    private void PlaySound()
+    {
+        AudioClip waveBegins = 
+            ServiceLocator.Get<SettingsService>().Get<MiscObjectsCollection>().WaveBegins;
+
+        ServiceLocator.Get<AudioService>().Play(waveBegins);
     }
 
     private void OnSignal()

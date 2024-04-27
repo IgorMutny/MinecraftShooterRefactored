@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: HerobrineLootInfo
   m_EditorClassIdentifier: 
   <GoldAmount>k__BackingField: 100
-  <DiamondChance>k__BackingField: 0.1
-  <MedKitChance>k__BackingField: 0.6
-  <PowerupChance>k__BackingField: 0.3
+  <DiamondChance>k__BackingField: 0.08
+  <MedKitChance>k__BackingField: 0.1
+  <PowerupChance>k__BackingField: 0.16

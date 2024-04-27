@@ -19,6 +19,7 @@ public class WaveEndingState : ILevelState
             _characterCollection.EnemyDied -= OnEnemyDied;
             _characterCollection.ClearDeadEnemies();
             ShowMessage();
+            PlaySound();
 
             _stateMachine.IncreaseCurrentWave();
             _stateMachine.SetState(new DelayBetweenWavesState());
@@ -31,5 +32,13 @@ public class WaveEndingState : ILevelState
         int currentWave = _stateMachine.CurrentWave + 1;
         string text = $"<size=120%>бнкмю <size=150%>{currentWave}<size=120%> гюбепьемю!";
         sender.ShowMessage(text, Color.white);
+    }
+
+    private void PlaySound()
+    {
+        AudioClip waveEnds =
+            ServiceLocator.Get<SettingsService>().Get<MiscObjectsCollection>().WaveEnds;
+
+        ServiceLocator.Get<AudioService>().Play(waveEnds);
     }
 }

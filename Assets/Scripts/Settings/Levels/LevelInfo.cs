@@ -7,6 +7,7 @@ public class LevelInfo : ScriptableObject
     [field: SerializeField] public string Name { get; private set; }
     [field: SerializeField] public string Description { get; private set; }
     [field: SerializeField] public Sprite Image { get; private set; }
+    [field: SerializeField] public AudioClip Theme { get; private set; }
     [field: SerializeField] public int WaveToOpenNextLevel { get; private set; }
     [field: SerializeField] public int NextLevelId { get; private set; }
     [field: SerializeField] public string SceneName { get; private set; }

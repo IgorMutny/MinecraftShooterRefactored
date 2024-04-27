@@ -18,6 +18,7 @@ MonoBehaviour:
     10 \u0432\u043E\u043B\u043D, \u0447\u0442\u043E\u0431\u044B \u043E\u0442\u043A\u0440\u044B\u0442\u044C
     \u043A\u0430\u0440\u0442\u0443 \"\u0422\u0443\u043D\u0434\u0440\u0430\"."
   <Image>k__BackingField: {fileID: 21300000, guid: d646afdcdbd2ff84997ba634d9532f32, type: 3}
+  <Theme>k__BackingField: {fileID: 8300000, guid: 4fd92cd8dc3e5844781074a322a06107, type: 3}
   <WaveToOpenNextLevel>k__BackingField: 10
   <NextLevelId>k__BackingField: 3
   <SceneName>k__BackingField: Desert

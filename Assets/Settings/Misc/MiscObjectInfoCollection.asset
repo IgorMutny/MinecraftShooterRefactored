@@ -19,3 +19,5 @@ MonoBehaviour:
   <PCInput>k__BackingField: {fileID: 3295970940706355601, guid: 60678f7e66d76414facf63c6fcaf47be, type: 3}
   <MobileInput>k__BackingField: {fileID: 3295970940706355601, guid: d97c84225f9748c43a31c25353096970, type: 3}
   <CoreCameras>k__BackingField: {fileID: 728391718671457586, guid: 6432a857e6324114f948a914af52d9bc, type: 3}
+  <WaveBegins>k__BackingField: {fileID: 8300000, guid: a75e94d9ebdbcc240a701f59e673493b, type: 3}
+  <WaveEnds>k__BackingField: {fileID: 8300000, guid: 660f2a262743e4940b56e48093905f4a, type: 3}

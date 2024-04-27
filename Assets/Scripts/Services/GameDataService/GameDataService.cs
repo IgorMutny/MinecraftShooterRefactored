@@ -13,7 +13,7 @@ public class GameDataService : IService, IReadOnlyGameDataService
     public int Diamonds => _gameData.Diamonds;
     public int SelectedLevel => _gameData.SelectedLevel;
 
-    private bool _savesEnabled = true;
+    private bool _savesEnabled = false;
 
     public GameDataService()
     {
@@ -131,13 +131,20 @@ public class GameDataService : IService, IReadOnlyGameDataService
             _audioService = ServiceLocator.Get<AudioService>();
         }
 
-        _audioService.SetVolume(value);
+        _audioService.SetVolume(value, _gameData.MusicVolume);
         Save();
     }
 
     public void SetMusicVolume(float value)
     {
         _gameData.MusicVolume = value;
+
+        if (_audioService == null)
+        {
+            _audioService = ServiceLocator.Get<AudioService>();
+        }
+
+        _audioService.SetVolume(_gameData.SoundVolume, value);
         Save();
     }
 

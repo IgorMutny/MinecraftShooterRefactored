@@ -10,4 +10,6 @@ public class MiscObjectsCollection : ScriptableObject
     [field: SerializeField] public GameObject PCInput { get; private set; }
     [field: SerializeField] public GameObject MobileInput { get; private set; }
     [field: SerializeField] public GameObject CoreCameras { get; private set; }
+    [field: SerializeField] public AudioClip WaveBegins { get; private set; }
+    [field: SerializeField] public AudioClip WaveEnds { get; private set; }
 }
