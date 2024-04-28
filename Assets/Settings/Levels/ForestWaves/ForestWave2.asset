@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Records>k__BackingField:
   - Character: {fileID: 11400000, guid: 2579568003be23e46afd8fe025fdb26d, type: 2}
-    Amount: 6
+    Amount: 4
   - Character: {fileID: 11400000, guid: a20cb889097a16145850e2f842622799, type: 2}
-    Amount: 6
+    Amount: 10

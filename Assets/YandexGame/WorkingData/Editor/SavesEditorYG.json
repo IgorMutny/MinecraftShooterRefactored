@@ -1,7 +1,7 @@
 {
-    "idSave": 2232,
+    "idSave": 2141,
     "isFirstSession": false,
     "language": "ru",
     "promptDone": false,
-    "Data": "{\"SoundVolume\":1.0,\"MusicVolume\":0.6930944919586182,\"Sensitivity\":375.5697021484375,\"Gold\":29130,\"Diamonds\":62,\"SelectedLevel\":2,\"Items\":[false,true,true,true,true,true,true,true,false,false,false,false,false,false,true,false],\"Levels\":[false,true,true,true]}"
+    "Data": "{\"SoundVolume\":1.0,\"MusicVolume\":0.4626676142215729,\"Sensitivity\":500.0,\"Gold\":1320,\"Diamonds\":0,\"SelectedLevel\":1,\"Items\":[false,true,true,true,true,false,true,false,false,false,true,true,true,true,false,false],\"Levels\":[false,true,true,true],\"EnemiesKilled\":32}"
 }

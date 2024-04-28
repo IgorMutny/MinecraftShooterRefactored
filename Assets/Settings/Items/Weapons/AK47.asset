@@ -17,8 +17,8 @@ MonoBehaviour:
   <Description>k__BackingField: "\u0410\u0440\u043C\u0435\u0439\u0441\u043A\u0438\u0439
     \u0430\u0432\u0442\u043E\u043C\u0430\u0442. 75 \u043B\u0435\u0442 \u043D\u0430
     \u0441\u043B\u0443\u0436\u0431\u0435!"
-  <PriceInGold>k__BackingField: 100
-  <PriceInDiamonds>k__BackingField: 1
+  <PriceInGold>k__BackingField: 2500
+  <PriceInDiamonds>k__BackingField: 10
   <Model>k__BackingField: {fileID: 919132149155446097, guid: 56848a9db17355849a6526134c28231e, type: 3}
   <Icon>k__BackingField: {fileID: 21300000, guid: f65817af3f323c34fa0c229a3c48f92a, type: 3}
   <HandModel>k__BackingField: {fileID: 4810072880699512515, guid: dbfddbf0746689e4a84857df3ac264b3, type: 3}

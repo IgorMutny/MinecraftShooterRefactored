@@ -46,8 +46,14 @@ public class LootCollection : IService
         DropInfo dropInfo = enemy.DropInfo;
         Vector3 position = enemy.transform.position;
 
+        IncreaseEnemiesKilled();
         TryAddGold(dropInfo);
         TryCreateLoot(dropInfo, position);
+    }
+
+    private void IncreaseEnemiesKilled()
+    {
+        _gameDataService.IncreaseEnemiesKilled();
     }
 
     private void TryAddGold(DropInfo dropInfo)

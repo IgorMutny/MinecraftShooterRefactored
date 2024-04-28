@@ -18,4 +18,4 @@ MonoBehaviour:
   - Character: {fileID: 11400000, guid: 4d3af20a55fe60a439695eaea0014ea4, type: 2}
     Amount: 6
   - Character: {fileID: 11400000, guid: bb314092c92be8e48b64fc2418ed789e, type: 2}
-    Amount: 10
+    Amount: 14

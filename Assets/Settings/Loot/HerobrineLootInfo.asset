@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <GoldAmount>k__BackingField: 100
   <DiamondChance>k__BackingField: 0.08
-  <MedKitChance>k__BackingField: 0.1
-  <PowerupChance>k__BackingField: 0.16
+  <MedKitChance>k__BackingField: 0.16
+  <PowerupChance>k__BackingField: 0.08

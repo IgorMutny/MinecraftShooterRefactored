@@ -12,8 +12,9 @@ public class GameDataService : IService, IReadOnlyGameDataService
     public int Gold => _gameData.Gold;
     public int Diamonds => _gameData.Diamonds;
     public int SelectedLevel => _gameData.SelectedLevel;
+    public int EnemiesKilled => _gameData.EnemiesKilled;
 
-    private bool _savesEnabled = false;
+    private bool _savesEnabled = true;
 
     public GameDataService()
     {
@@ -27,6 +28,11 @@ public class GameDataService : IService, IReadOnlyGameDataService
         {
             _gameDataProvider.Save(_gameData);
         }
+    }
+
+    public void IncreaseEnemiesKilled()
+    {
+        _gameData.EnemiesKilled += 1;
     }
 
     public void AddGold(int value)

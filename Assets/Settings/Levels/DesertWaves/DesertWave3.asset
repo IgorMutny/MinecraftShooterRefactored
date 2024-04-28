@@ -22,6 +22,6 @@ MonoBehaviour:
   - Character: {fileID: 11400000, guid: 4d3af20a55fe60a439695eaea0014ea4, type: 2}
     Amount: 3
   - Character: {fileID: 11400000, guid: 5572a32397057eb43baab9619f294db1, type: 2}
-    Amount: 3
+    Amount: 5
   - Character: {fileID: 11400000, guid: bb314092c92be8e48b64fc2418ed789e, type: 2}
-    Amount: 3
+    Amount: 5

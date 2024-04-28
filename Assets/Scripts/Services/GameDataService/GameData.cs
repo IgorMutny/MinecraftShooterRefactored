@@ -15,6 +15,7 @@ public class GameData
     public int SelectedLevel;
     public bool[] Items = new bool[ItemsCount];
     public bool[] Levels = new bool[LevelsCount];
+    public int EnemiesKilled;
 
     public GameData()
     {
@@ -28,5 +29,7 @@ public class GameData
 
         Items[1] = true;
         Levels[1] = true;
+
+        EnemiesKilled = 0;
     }
 }
