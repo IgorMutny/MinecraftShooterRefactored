@@ -23,7 +23,7 @@ namespace CoreUIElements
         private Character _player;
         private LootCollection _lootCollection;
         private GameDataService _gameDataService;
-        private bool _showFPS = true;
+        private bool _showFPS = false;
         private float _delay = 0.1f;
         private float _counter = 0;
 
@@ -32,6 +32,8 @@ namespace CoreUIElements
 
         public void Initialize(Character player)
         {
+            GetComponent<Canvas>().worldCamera = FindObjectOfType<CoreCameras>().UICamera;
+
             _lootCollection = ServiceLocator.Get<LootCollection>();
             _lootCollection.BalanceChanged += OnBalanceChanged;
 

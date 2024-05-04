@@ -81,6 +81,7 @@ public class Character : MonoBehaviour
 
         Health.Died += OnDied;
         Health.Damaged += OnDamaged;
+        Health.Resurrected += OnResurrected;
     }
 
     private void AddAppliedEffects()
@@ -123,6 +124,11 @@ public class Character : MonoBehaviour
         IsAlive = false;
     }
 
+    private void OnResurrected()
+    {
+        AppliedEffects.OnDied();
+    }
+
     private void OnSpeedMultiplierChanged(float multiplier)
     {
         Inventory.ChangeWeaponSpeed(multiplier);
@@ -152,6 +158,7 @@ public class Character : MonoBehaviour
     {
         Health.Died -= OnDied;
         Health.Damaged -= OnDamaged;
+        Health.Resurrected -= OnResurrected;
         AppliedEffects.SpeedMultiplierChanged -= OnSpeedMultiplierChanged;
         AppliedEffects.DamageMultiplierChanged -= OnDamageMultiplierChanged;
         View.Destroy();
