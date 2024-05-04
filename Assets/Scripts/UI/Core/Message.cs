@@ -31,12 +31,12 @@ namespace CoreUIElements
                 .Append(rect.DOScale(1f, 0.75f))
                 .AppendInterval(1.5f)
                 .Append(rect.DOScale(0f, 0.75f))
-                .Insert(0f, rect.DORotate(new Vector3(0, 0, 15), 0.25f))
-                .Insert(0.25f, rect.DORotate(new Vector3(0, 0, 0), 0.25f))
-                .Insert(0.5f, rect.DORotate(new Vector3(0, 0, 15), 0.25f))
-                .Insert(2.25f, rect.DORotate(new Vector3(0, 0, 0), 0.25f))
-                .Insert(2.5f, rect.DORotate(new Vector3(0, 0, 15), 0.25f))
-                .Insert(2.75f, rect.DORotate(new Vector3(0, 0, 0), 0.25f))
+                .Insert(0f, rect.DOLocalRotate(new Vector3(0, 0, 15), 0.25f))
+                .Insert(0.25f, rect.DOLocalRotate(new Vector3(0, 0, 0), 0.25f))
+                .Insert(0.5f, rect.DOLocalRotate(new Vector3(0, 0, 15), 0.25f))
+                .Insert(2.25f, rect.DOLocalRotate(new Vector3(0, 0, 0), 0.25f))
+                .Insert(2.5f, rect.DOLocalRotate(new Vector3(0, 0, 15), 0.25f))
+                .Insert(2.75f, rect.DOLocalRotate(new Vector3(0, 0, 0), 0.25f))
                 .Insert(0f, rect.DOAnchorMin(new Vector2(0, 0.5f), 3f));
         }
 

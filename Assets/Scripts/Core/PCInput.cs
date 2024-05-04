@@ -55,12 +55,6 @@ public class PCInput : MonoBehaviour
                 _pauseHandler.Pause();
             }
         }
-
-        if (Input.GetKeyDown(KeyCode.T))
-        {
-            ServiceLocator.GetServicesAmount();
-            ServiceLocator.Get<TimerWrapper>().GetSignalsAmount();
-        }
     }
 
     private Vector3 GetMovement()
